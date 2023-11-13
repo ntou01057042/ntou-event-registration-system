@@ -1,0 +1,112 @@
+[{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca1b"
+  },
+  "title": "資工系新生茶會",
+  "startTime": {
+    "$date": "2023-09-07T08:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-09-07T10:30:00.000Z"
+  },
+  "describe": "The description of 「資工系新生茶會」.",
+  "from": "資工系學會",
+  "venue": "資工系館",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca1c"
+  },
+  "title": "資工x光電x機械 聯合宿營",
+  "startTime": {
+    "$date": "2023-09-22T16:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-09-23T16:00:00.000Z"
+  },
+  "describe": "The description of 「資工x光電x機械 聯合宿營」.",
+  "from": "資工系學會",
+  "venue": "合歡自然生活體驗基地",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca1d"
+  },
+  "title": "生科x電機 聯合迎新宿營 - 生電實驗室",
+  "startTime": {
+    "$date": "2023-10-16T10:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-10-16T13:00:00.000Z"
+  },
+  "describe": "The description of 「生科x電機 聯合迎新宿營 - 生電實驗室」.",
+  "from": "電機系學會",
+  "venue": "合歡自然生活體驗基地",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca1e"
+  },
+  "title": "資工系系烤",
+  "startTime": {
+    "$date": "2023-10-16T10:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-10-16T13:00:00.000Z"
+  },
+  "describe": "The description of 「資工系系烤」.",
+  "from": "資工系學會",
+  "venue": "壘球場附近的烤肉區",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca1f"
+  },
+  "title": "河工鬼屋 - 邪",
+  "startTime": {
+    "$date": "2023-03-30T10:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-03-30T17:00:00.000Z"
+  },
+  "describe": "The description of 「河工鬼屋 - 邪」.",
+  "from": "河工系學會",
+  "venue": "河工系館",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca20"
+  },
+  "title": "2023 學生創業新手村",
+  "startTime": {
+    "$date": "2023-11-17T16:00:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-11-17T16:00:00.000Z"
+  },
+  "describe": "The description of 「2023 學生創業新手村」.",
+  "from": "教務處 教學中心",
+  "venue": "延平技術大樓五樓501教室",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+},
+{
+  "_id": {
+    "$oid": "6534cc24b8f4901b759cca21"
+  },
+  "title": "創新思維工作坊",
+  "startTime": {
+    "$date": "2023-06-07T01:30:00.000Z"
+  },
+  "endTime": {
+    "$date": "2023-06-07T10:00:00.000Z"
+  },
+  "describe": "The description of 「創新思維工作坊」.",
+  "from": "教務處 教學中心",
+  "venue": "延平技術大樓11樓1102教室",
+  "_class": "ntou.cse.ntoueventregistration.entity.Event"
+}]
