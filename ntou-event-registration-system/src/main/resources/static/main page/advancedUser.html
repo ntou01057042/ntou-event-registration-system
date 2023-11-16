@@ -34,18 +34,13 @@
                 console.log("success：" + response);
                 createCampaign(response);
             }
-            /**success: function (error) {
-                $.getJSON("../file/test.events.json", function (data) {
-                    createCampaign(data);
-                })
-            }**/
         });
         function createCampaign(data) {
             let createList = document.getElementById("createList");
             for (let i = 0; i < data.length; i++) {
                 let campaign = document.createElement("a");
                 campaign.classList.add("list-group-item", "list-group-item-action");
-                campaign.href = "#";
+                campaign.href = "../campaign/Participant.html";
                 const options = {
                     weekday: "long",
                     year: "numeric",
@@ -98,11 +93,6 @@
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto ">
-                        <li class="nav-item">
-                            <a href="../main page/campaignSetting.html" class="nav-link active ">
-                                我的活動
-                            </a>
-                        </li>
                         <li>
                             <a href="#" class="nav-link link-dark">
                                 我的收藏
@@ -114,13 +104,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
-                                進階權限
+                            <a href="../management/SendMail.html" class="nav-link link-dark">
+                                進階寄信
                             </a>
                         </li>
                         <li>
-                            <a href="member.html" class="nav-link link-dark">
-                                回到一般使用者
+                            <a href="#" class="nav-link link-dark">
+                                進階權限
                             </a>
                         </li>
                     </ul>
@@ -128,7 +118,7 @@
                 </div>
                 <div class="col-md-2 border" id="campaigns" style="width: 60%;">
                     我的活動
-                    <a type="button" href="../management/campaign.html" class="btn btn-primary">
+                    <a type="button" href="../management/createCampaign.html" class="btn btn-primary">
                         創建活動</a>
                     <div>
                         已創建
