@@ -1,6 +1,7 @@
 package ntou.cse.ntoueventregistrationsystem.controller;
 
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
+import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,10 @@ public class EventController {
     @PostMapping
     public void postEvent(@RequestBody Event event) {
         service.createEvent(event);
+    }
+
+    @PostMapping("/register")
+    public void registerEvent(@RequestParam("id") String id, @RequestBody Participant participant){
+        service.register(id, participant);
     }
 }
