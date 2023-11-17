@@ -3,9 +3,11 @@ package ntou.cse.ntoueventregistrationsystem.controller;
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
 import ntou.cse.ntoueventregistrationsystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/events")
@@ -31,4 +33,18 @@ public class EventController {
     public void postEvent(@RequestBody Event event) {
         service.createEvent(event);
     }
+
+    @PutMapping("/{id}/update")
+    public  void putEvent(Event event, String newTitle){
+        service.updateEventTitle(event, newTitle);
+    }
+    @GetMapping("/getId")
+    public Event getEvent(@RequestParam String id) {
+        return service.getEventBy(id);
+    }
+
+//    TODO
+//    @PutMapping("/{id}")
+//    TODO
+//    @DeleteMapping("/{id}")
 }
