@@ -33,18 +33,16 @@ public class EventController {
     public void postEvent(@RequestBody Event event) {
         service.createEvent(event);
     }
-
-    @PutMapping("/{id}/update")
-    public  void putEvent(Event event, String newTitle){
-        service.updateEventTitle(event, newTitle);
-    }
-    @GetMapping("/getId")
+    @GetMapping("/getById")
     public Event getEvent(@RequestParam String id) {
         return service.getEventBy(id);
     }
-
-//    TODO
-//    @PutMapping("/{id}")
+    @PutMapping("/{id}")
+    public Event putEvent(@PathVariable("id") String id, @RequestParam("title") String newTitle){
+        Event event = service.getEventBy(id);
+        service.updateEventTitle(event, newTitle);
+        return service.getEventBy(id);
+    }
 //    TODO
 //    @DeleteMapping("/{id}")
 }

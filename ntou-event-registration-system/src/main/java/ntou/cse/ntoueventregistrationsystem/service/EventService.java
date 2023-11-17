@@ -32,13 +32,14 @@ public class EventService {
         repository.insert(event);
     }
 
-    public void updateEventTitle(Event event, String title) {
-        event.setTitle(title);
-        repository.save(event);
-    }
-
     public Event getEventBy(String id) {
         Optional event = repository.findById(id);
         return event.isPresent() ? (Event) event.get() : null;
+    }
+
+    public void updateEventTitle(Event event, String title) {
+        event.setTitle(title);
+        System.out.println("update");
+        repository.save(event);
     }
 }
