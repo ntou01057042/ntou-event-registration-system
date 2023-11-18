@@ -27,4 +27,8 @@ public class EventService {
     public void createEvent(Event event) {
         repository.insert(event);
     }
+
+    public void updateComments(Event event) {
+        repository.save(event);
+    }
 }

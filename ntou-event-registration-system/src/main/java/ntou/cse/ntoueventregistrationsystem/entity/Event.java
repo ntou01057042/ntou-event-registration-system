@@ -4,6 +4,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Document("events")
 public class Event implements Serializable {
@@ -13,6 +14,8 @@ public class Event implements Serializable {
     private String describe;
     private String from;
     private String venue;
+
+    private ArrayList<String> comments;
 
     public Event() {
     }
@@ -73,5 +76,13 @@ public class Event implements Serializable {
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public ArrayList<String> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<String> comments) {
+        this.comments = comments;
     }
 }
