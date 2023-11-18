@@ -5,6 +5,9 @@ import ntou.cse.ntoueventregistrationsystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -30,5 +33,9 @@ public class EventController {
     @PostMapping
     public void postEvent(@RequestBody Event event) {
         service.createEvent(event);
+    }
+    @GetMapping("/export")
+    public void exportToCSV(HttpServletResponse response, String id) throws IOException{
+        service.generateCSV(response, id);
     }
 }
