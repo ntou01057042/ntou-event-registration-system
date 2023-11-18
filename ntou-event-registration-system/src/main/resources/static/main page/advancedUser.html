@@ -30,15 +30,11 @@
         $.ajax({
             url: "/events",
             type: "GET",
-            /**success: function (response) {
-                //    console.log("success：" + response);
-                //    createParticipant(response);
-                },**/
-            success: function () {
-                $.getJSON("../file/test.events.json", function (response) {
-                    createCampaign(response);
-                });
+            success: function (response) {
+                console.log("success：" + response);
+                createParticipant(response);
             }
+
         });
         function createCampaign(data) {
             let createList = document.getElementById("createList");

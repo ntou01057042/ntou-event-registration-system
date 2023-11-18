@@ -23,18 +23,19 @@
             $.ajax({
                 url: url,
                 type: "GET",
-                /**
+
                 success: function (data) {
                     events = data;
                     campaign(data);
                 }
-                **/
 
+                /**
                 success: function (data) {
                     $.getJSON("./file/test.events.json", function (data) {
                         campaign(data);
                     });
                 }
+                **/
             })
             $.getJSON("file/categories.json", function (data) {
                 let selectElement = document.getElementById("classFrom");

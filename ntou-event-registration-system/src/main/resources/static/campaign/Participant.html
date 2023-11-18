@@ -43,15 +43,19 @@
             $.ajax({
                 url: "/events",
                 type: "GET",
-                /**success: function (response) {
-                //    console.log("success：" + response);
-                //    createParticipant(response);
-                },**/
+                /**
                 success: function () {
                     $.getJSON("../file/test.events.json", function (response) {
                         eventsData = response;
                         filterParticipant(response);
                     });
+                }
+
+                **/
+                success: function (response) {
+                    console.log("success：" + response);
+                    eventsData = response;
+                    createParticipant(response);
                 }
 
             });
