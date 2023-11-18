@@ -30,52 +30,74 @@
         }
     </style>
     <script>
+        let eventId;
         $(document).ready(function () {
-            let url = "/campaign?title=" + "";
-            $.ajax({//建立所有參加某活動ID的人
-                url: url,
+            function getEventIdFromUrl() {
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+                const eventId = urlParams.get('eventId');
+                return eventId;
+            }
+            eventId = getEventIdFromUrl();
+            console.log("Event ID from URL: ", eventId);
+            $.ajax({
+                url: "/events",
                 type: "GET",
-                success: function (response) {
-                    console.log("success：" + response);
-                    createCampaign(response);
+                /**success: function (response) {
+                //    console.log("success：" + response);
+                //    createParticipant(response);
+                },**/
+                success: function () {
+                    $.getJSON("../file/test.events.json", function (response) {
+                        eventsData = response;
+                        filterParticipant(response);
+                    });
                 }
+
             });
-            function createParticipant(data) {
+            function filterParticipant(eventsData) {
+                console.log(eventId);
+                const event = eventsData.find(event => event._id.$oid == eventId);
+                if (event) {
+                    document.getElementById("createList").innerHTML = "";
+                    createParticipant(event.participant);
+                } else {
+                    console.log("沒有找到匹配的活動");
+                }
+            }
+            function createParticipant(participants) {
                 let createList = document.getElementById("createList");
-                for (let i = 0; i < data.length; i++) {
+                for (let i = 0; i < participants.length; i++) {
                     let participant = document.createElement("a");
                     participant.classList.add("list-group-item", "list-group-item-action");
-                    participant.href = "#";//userID
-                    participant.textContent = data[i].name;
+                    participant.href = "#";
+                    participant.textContent = participants[i].name;
                     createList.appendChild(participant);
                 }
             }
             document.getElementById('exportButton').addEventListener('click', function () {
-                $.getJSON("../file/p.json", function (data) {
-                    exportToExcel(data);
+
+                $.ajax({
+                    url: "/export?id=" + eventId,
+                    type: "GET",
+                    success: function (response) {
+                        console.log("success：" + response);
+                    },
+                    error: function () {
+                        const event = eventsData.find(event => event._id.$oid == eventId);
+                        console.log(event.participant);
+                        exportToExcel(event.participant);
+                    }
                 });
+
             });
-
-
-
         })
-        function exportToPDF(data) {
-            var doc = new jsPDF();
-
-            data.participants.forEach(function (participant, index) {
-                doc.text(20, 10 + (index * 10), participant.name);
-            });
-
-            doc.save('participants.pdf');
-        }
         function exportToExcel(data) {
-            var worksheet = XLSX.utils.json_to_sheet(data.participants);
+            var worksheet = XLSX.utils.json_to_sheet(data); // 使用數據數組直接作為輸入
             var workbook = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
-
             XLSX.writeFile(workbook, 'participants.xlsx');
         }
-
 
     </script>
 </head>

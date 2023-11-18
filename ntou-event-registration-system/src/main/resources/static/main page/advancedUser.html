@@ -30,9 +30,14 @@
         $.ajax({
             url: "/events",
             type: "GET",
-            success: function (response) {
-                console.log("success：" + response);
-                createCampaign(response);
+            /**success: function (response) {
+                //    console.log("success：" + response);
+                //    createParticipant(response);
+                },**/
+            success: function () {
+                $.getJSON("../file/test.events.json", function (response) {
+                    createCampaign(response);
+                });
             }
         });
         function createCampaign(data) {
@@ -40,7 +45,7 @@
             for (let i = 0; i < data.length; i++) {
                 let campaign = document.createElement("a");
                 campaign.classList.add("list-group-item", "list-group-item-action");
-                campaign.href = "../campaign/Participant.html";
+                campaign.href = "#";
                 const options = {
                     weekday: "long",
                     year: "numeric",
@@ -51,6 +56,12 @@
                 };
                 let startTime = new Date(data[i].startTime);
                 campaign.textContent = data[i].title + startTime.toLocaleString(undefined, options);
+                campaign.setAttribute('data-id', data[i]._id.$oid);
+                campaign.addEventListener('click', () => {
+                    let eventId = event.target.getAttribute('data-id');
+                    console.log("活動 ID: " + eventId);
+                    window.location.assign('../campaign/Participant.html?eventId=' + eventId,);
+                });
                 createList.appendChild(campaign);
             }
         }
