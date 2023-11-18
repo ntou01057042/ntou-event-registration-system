@@ -1,6 +1,8 @@
 package ntou.cse.ntoueventregistrationsystem.appuser;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +19,7 @@ public class AppUserController {
     }
 
     @PostMapping
-    public void postAppUser(@RequestBody AppUser appUser) {
-        service.createAppUser(appUser);
+    public ResponseEntity<Void> postAppUser(@RequestBody AppUser appUser) {
+        return service.createAppUser(appUser) ? ResponseEntity.ok().build() : ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 }

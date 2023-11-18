@@ -15,8 +15,13 @@ public class AppUserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public void createAppUser(AppUser appUser) {
-        appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
-        repository.insert(appUser);
+    public Boolean createAppUser(AppUser appUser) {
+        if (repository.existsByEmail(appUser.getEmail())) {
+            return false;
+        } else {
+            appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
+            repository.insert(appUser);
+            return true;
+        }
     }
 }
