@@ -1,11 +1,13 @@
 package ntou.cse.ntoueventregistrationsystem.controller;
 
+import jakarta.servlet.http.HttpServletResponse;
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
 import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.service.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -46,5 +48,9 @@ public class EventController {
     @PostMapping("/register")
     public void registerEvent(@RequestParam("id") String id, @RequestBody Participant participant){
         service.register(id, participant);
+    }
+    @GetMapping("/export")
+    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
+        service.generateCSV(response, id);
     }
 }
