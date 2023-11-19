@@ -38,5 +38,7 @@ public class EventService {
         repository.save(event);
     }
 
-
+    public void deleteEvent(String id) {
+        repository.deleteById(id);
+    }
 }

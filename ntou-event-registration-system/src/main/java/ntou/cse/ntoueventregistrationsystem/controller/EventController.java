@@ -38,5 +38,6 @@ public class EventController {
     @PutMapping
     public void putEvent(@RequestBody Event event) { service.updateEvent(event); }
 
-
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") String id) { service.deleteEvent(id); }
 }
