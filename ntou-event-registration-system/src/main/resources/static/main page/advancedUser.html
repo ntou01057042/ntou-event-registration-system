@@ -56,8 +56,8 @@
                 let startTime = new Date(data[i].startTime);
                 campaign.textContent = data[i].title + startTime.toLocaleString(undefined, options);
                 campaign.addEventListener('click',()=>{
-                    localStorage.removeItem('title');
-                    localStorage.setItem('title',data[i].title);
+                    localStorage.removeItem('eventID');
+                    localStorage.setItem('eventID',data[i].id);
                     window.location.assign('../management/eventManagementPage.html', );
                 });
                 createList.appendChild(campaign);
