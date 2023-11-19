@@ -33,6 +33,16 @@ public class EventController {
         service.createEvent(event);
     }
 
+    @PutMapping
+    public void putEvent(@RequestBody Event event) {
+        service.updateEvent(event);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable("id") String id) {
+        service.deleteEvent(id);
+    }
+
     @PostMapping("/register")
     public void registerEvent(@RequestParam("id") String id, @RequestBody Participant participant){
         service.register(id, participant);
