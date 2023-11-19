@@ -68,15 +68,12 @@
 
                 $.ajax({
                     contentType: "application/json",
-                    data: {
-                        id: id,
-                        participant: JSON.stringify(obj)
-                    },
+                    data: JSON.stringify(obj),
                     success: function () {
                         console.log("成功：" + id + " " + JSON.stringify(obj));
                     },
                     type: "POST",
-                    url: "/events/register"
+                    url: "/events/register?id=" + id
                 });
             });
 
