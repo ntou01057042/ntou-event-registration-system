@@ -32,43 +32,18 @@
     <script>
         let eventId;
         $(document).ready(function () {
-            function getEventIdFromUrl() {
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-                const eventId = urlParams.get('eventId');
-                return eventId;
-            }
-            eventId = getEventIdFromUrl();
-            console.log("Event ID from URL: ", eventId);
+            let eventId = localStorage.getItem("eventID");
+            console.log("Event ID", eventId);
             $.ajax({
-                url: "/events",
+                url: "/events/" + eventId,
                 type: "GET",
-                /**
-                success: function () {
-                    $.getJSON("../file/test.events.json", function (response) {
-                        eventsData = response;
-                        filterParticipant(response);
-                    });
-                }
-
-                **/
                 success: function (response) {
                     console.log("success：" + response);
                     eventsData = response;
-                    createParticipant(response);
+                    createParticipant(response.participant);
                 }
 
             });
-            function filterParticipant(eventsData) {
-                console.log(eventId);
-                const event = eventsData.find(event => event.id == eventId);
-                if (event) {
-                    document.getElementById("createList").innerHTML = "";
-                    createParticipant(event.participant);
-                } else {
-                    console.log("沒有找到匹配的活動");
-                }
-            }
             function createParticipant(participants) {
                 let createList = document.getElementById("createList");
                 for (let i = 0; i < participants.length; i++) {
