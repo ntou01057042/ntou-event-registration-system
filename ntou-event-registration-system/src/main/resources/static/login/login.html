@@ -15,6 +15,34 @@
             text-decoration: none;
         }
     </style>
+    <script>
+        $(document).ready(function () {
+            document.getElementById("Form").addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                const formData = new FormData(event.target);
+                const obj = Object.fromEntries(formData.entries());
+                console.log(JSON.stringify(obj));
+                $.ajax({
+                    contentType: "application/json",
+                    data: JSON.stringify(obj),
+                    success: function () {
+                        console.log("成功：");
+                        localStorage.removeItem('email');
+                        localStorage.setItem('email', obj.email);
+                        window.location.assign('../login/homepage.html',);
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 403) {
+                            alert("帳號密碼錯誤！");
+                        }
+                    },
+                    type: "POST",
+                    url: "/auth/login"
+                });
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -43,9 +71,7 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label">密碼</label>
                                     <input type="password" name="password" id="password" class="form-control" />
-
                                 </div>
-
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-block mb-4">Log in</button>
                             </form>
