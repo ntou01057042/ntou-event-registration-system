@@ -42,6 +42,11 @@
                     success: function () {
                         console.log("成功：" + JSON.stringify(obj));
                     },
+                    error: function (xhr) {
+                        if (xhr.status === 403) {
+                            alert("錯誤：信箱已被使用！");
+                        }
+                    },
                     type: "POST",
                     url: "/users"
                 });
