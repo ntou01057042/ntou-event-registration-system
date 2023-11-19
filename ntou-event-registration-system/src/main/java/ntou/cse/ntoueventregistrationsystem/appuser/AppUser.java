@@ -1,5 +1,6 @@
 package ntou.cse.ntoueventregistrationsystem.appuser;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -7,8 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class AppUser {
     @Id
     private String id;
-    private String email;
     private String password;
+    private String email;
+    private Boolean enabled;
+
+    private String name;
+
+    @JsonCreator
+    public AppUser(String password, String email, String name) {
+        this.password = password;
+        this.email = email;
+        this.enabled = true;
+        this.name = name;
+    }
 
     public String getId() {
         return id;
@@ -32,5 +44,21 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

@@ -6,26 +6,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.SecretKey;
+import java.security.Key;
 import java.util.Date;
 
 @Service
-public class TokenService {
+public class LoginResponseService {
     private final AuthenticationProvider authenticationProvider;
-    private final SecretKey secretKey = Keys.hmacShaKeyFor("learninghowtousejjwttoimplementjwt".getBytes());
+    private final Key privatekey = Keys.hmacShaKeyFor("thisistheprivatekeyforjwtsignature".getBytes());
 
     @Autowired
-    public TokenService(AuthenticationProvider authenticationProvider) {
+    public LoginResponseService(AuthenticationProvider authenticationProvider) {
         this.authenticationProvider = authenticationProvider;
     }
 
     public LoginResponse createToken(LoginRequest request) {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
-        UserDetails userDetails = (UserDetails) authenticationProvider.authenticate(authenticationToken).getPrincipal();
-        return new LoginResponse(createAccessToken(userDetails.getUsername()));
+        CustomUserDetails userDetails = (CustomUserDetails) authenticationProvider.authenticate(authenticationToken).getPrincipal();
+        return new LoginResponse(createAccessToken(userDetails.getUsername()), userDetails.getUsername(), userDetails.getName());
     }
 
     private String createAccessToken(String username) {
@@ -34,7 +33,7 @@ public class TokenService {
                 .expiration(new Date(new Date().getTime() + 90 * 1000))
                 .issuedAt(new Date())
                 .claim("username", username)
-                .signWith(secretKey)
+                .signWith(privatekey)
                 .compact();
     }
 }

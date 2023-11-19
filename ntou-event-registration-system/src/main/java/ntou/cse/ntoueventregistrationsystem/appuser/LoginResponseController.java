@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class TokenController {
-    private final TokenService service;
+public class LoginResponseController {
+    private final LoginResponseService service;
 
     @Autowired
-    public TokenController(TokenService service) {
+    public LoginResponseController(LoginResponseService service) {
         this.service = service;
     }
 
