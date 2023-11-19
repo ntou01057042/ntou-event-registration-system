@@ -1,14 +1,13 @@
 package ntou.cse.ntoueventregistrationsystem.service;
 
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
+import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
-
 
 @Service
 public class EventService {
@@ -27,11 +26,8 @@ public class EventService {
         return repository.findByTitleLike(keyword);
     }
 
-    public void createEvent(Event event) { repository.insert(event); }
-
-    public Event getEventBy(String id) {
-        Optional<Event> event = repository.findById(id);
-        return (Event) event.orElse(null);
+    public void createEvent(Event event) {
+        repository.insert(event);
     }
 
     public void updateEvent(Event event) {
@@ -40,5 +36,15 @@ public class EventService {
 
     public void deleteEvent(String id) {
         repository.deleteById(id);
+    }
+
+    public Event register(String id, Participant participant){
+        Event oldEvent = repository.findById(id).get();
+        ArrayList<Participant> newParticipant = oldEvent.getParticipant();
+        newParticipant.add(participant);
+
+        Event newEvent = new Event(oldEvent.getTitle(), oldEvent.getStartTime(), oldEvent.getEndTime(), oldEvent.getDescribe(),
+                            oldEvent.getFrom(), oldEvent.getVenue(), oldEvent.getId(), newParticipant);
+        return repository.save(newEvent);
     }
 }

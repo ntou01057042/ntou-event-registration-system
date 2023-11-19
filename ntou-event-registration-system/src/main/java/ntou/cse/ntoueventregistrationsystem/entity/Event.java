@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @Document("events")
 public class Event implements Serializable {
@@ -16,6 +17,19 @@ public class Event implements Serializable {
     private String describe;
     private String from;
     private String venue;
+    private ArrayList<Participant> participant = new ArrayList<Participant>();
+
+    public Event(String title, LocalDateTime startTime, LocalDateTime endTime, String describe, String from,
+            String venue, String id, ArrayList<Participant> participant) {
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.describe = describe;
+        this.from = from;
+        this.venue = venue;
+        this.id = id;
+        this.participant = participant;
+    }
 
     public Event() {
     }
@@ -78,5 +92,20 @@ public class Event implements Serializable {
         this.venue = venue;
     }
 
-    public String getId() { return id; }
+    public void setParticipant(ArrayList<Participant> participant) {
+        this.participant = participant;
+    }
+
+    public ArrayList<Participant> getParticipant() {
+        return participant;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }
