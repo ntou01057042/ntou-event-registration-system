@@ -1,5 +1,6 @@
 package ntou.cse.ntoueventregistrationsystem.entity;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -7,6 +8,8 @@ import java.time.LocalDateTime;
 
 @Document("events")
 public class Event implements Serializable {
+    @Id
+    private String id;
     private String title;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -74,4 +77,6 @@ public class Event implements Serializable {
     public void setVenue(String venue) {
         this.venue = venue;
     }
+
+    public String getId() { return id; }
 }

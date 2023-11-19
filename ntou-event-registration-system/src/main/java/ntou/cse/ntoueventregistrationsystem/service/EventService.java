@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
+
 
 @Service
 public class EventService {
@@ -24,7 +27,18 @@ public class EventService {
         return repository.findByTitleLike(keyword);
     }
 
-    public void createEvent(Event event) {
-        repository.insert(event);
+    public void createEvent(Event event) { repository.insert(event); }
+
+    public Event getEventBy(String id) {
+        Optional<Event> event = repository.findById(id);
+        return (Event) event.orElse(null);
+    }
+
+    public void updateEvent(Event event) {
+        repository.save(event);
+    }
+
+    public void deleteEvent(String id) {
+        repository.deleteById(id);
     }
 }
