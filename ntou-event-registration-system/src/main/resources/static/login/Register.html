@@ -30,9 +30,8 @@
                 }
                 updateOptions(dataUrl);
             });
-            document.getElementById("Form").addEventListener("submit", function (event) {
+            /**document.getElementById("Form").addEventListener("submit", function (event) {
                 event.preventDefault();
-
                 const formData = new FormData(event.target);
                 const obj = Object.fromEntries(formData.entries());
                 console.log(JSON.stringify(obj));
@@ -41,6 +40,36 @@
                     data: JSON.stringify(obj),
                     success: function () {
                         console.log("成功：" + JSON.stringify(obj));
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 403) {
+                            alert("錯誤：信箱已被使用！");
+                        }
+                    },
+                    type: "POST",
+                    url: "/users"
+                });
+            });**/
+            document.getElementById("Form").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData = new FormData(event.target);
+                const password = formData.get("password");
+                const confirmPassword = formData.get("confirmPassword");
+                if (password !== confirmPassword) {
+                    alert("密碼不匹配！");
+                    return;
+                }
+                const filteredData = {
+                    name: formData.get("name"),
+                    email: formData.get("email"),
+                    password: formData.get("password")
+                };
+                console.log(JSON.stringify(filteredData));
+                $.ajax({
+                    contentType: "application/json",
+                    data: JSON.stringify(filteredData),
+                    success: function () {
+                        console.log("成功：" + JSON.stringify(filteredData));
                     },
                     error: function (xhr) {
                         if (xhr.status === 403) {
@@ -107,7 +136,10 @@
                                 <div class="form-outline mb-4">
                                     <label class="form-label">密碼</label>
                                     <input type="password" name="password" class="form-control" />
-
+                                </div>
+                                <div class="form-outline mb-4">
+                                    <label class="form-label">確認密碼</label>
+                                    <input type="password" name="confirmPassword" class="form-control" />
                                 </div>
                                 <!-- Username input -->
                                 <div class="form-outline mb-4">
