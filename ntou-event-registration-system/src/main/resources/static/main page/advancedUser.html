@@ -34,14 +34,17 @@
                 console.log("success：" + response);
                 createCampaign(response);
             }
-
+            /**success: function (error) {
+                $.getJSON("../file/test.events.json", function (data) {
+                    createCampaign(data);
+                })
+            }**/
         });
         function createCampaign(data) {
             let createList = document.getElementById("createList");
             for (let i = 0; i < data.length; i++) {
                 let campaign = document.createElement("a");
                 campaign.classList.add("list-group-item", "list-group-item-action");
-                campaign.href = "#";
                 const options = {
                     weekday: "long",
                     year: "numeric",
@@ -52,14 +55,13 @@
                 };
                 let startTime = new Date(data[i].startTime);
                 campaign.textContent = data[i].title + startTime.toLocaleString(undefined, options);
-                campaign.setAttribute('data-id', data[i].id);
+                campaign.addEventListener('click',()=>{
+                    localStorage.removeItem('title');
+                    localStorage.setItem('title',data[i].title);
+                    window.location.assign('../management/eventManagementPage.html', );
+                });
                 createList.appendChild(campaign);
             }
-            campaign.addEventListener('click', () => {
-                let eventId = event.target.getAttribute('data-id');
-                console.log("活動 ID: " + eventId);
-                window.location.assign('../campaign/Participant.html?eventId=' + eventId,);
-            });
         }
 
     </script>
@@ -100,6 +102,11 @@
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto ">
+                        <li class="nav-item">
+                            <a href="../main page/campaignSetting.html" class="nav-link active ">
+                                我的活動
+                            </a>
+                        </li>
                         <li>
                             <a href="#" class="nav-link link-dark">
                                 我的收藏
@@ -111,13 +118,13 @@
                             </a>
                         </li>
                         <li>
-                            <a href="../management/SendMail.html" class="nav-link link-dark">
-                                進階寄信
+                            <a href="#" class="nav-link link-dark">
+                                進階權限
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
-                                進階權限
+                            <a href="member.html" class="nav-link link-dark">
+                                回到一般使用者
                             </a>
                         </li>
                     </ul>
@@ -125,7 +132,7 @@
                 </div>
                 <div class="col-md-2 border" id="campaigns" style="width: 60%;">
                     我的活動
-                    <a type="button" href="../management/createCampaign.html" class="btn btn-primary">
+                    <a type="button" href="../management/campaign.html" class="btn btn-primary">
                         創建活動</a>
                     <div>
                         已創建
