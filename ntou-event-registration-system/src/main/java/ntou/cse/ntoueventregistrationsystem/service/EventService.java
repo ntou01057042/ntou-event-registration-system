@@ -30,6 +30,14 @@ public class EventService {
         repository.insert(event);
     }
 
+    public void updateEvent(Event event) {
+        repository.save(event);
+    }
+
+    public void deleteEvent(String id) {
+        repository.deleteById(id);
+    }
+
     public Event register(String id, Participant participant){
         Event oldEvent = repository.findById(id).get();
         ArrayList<Participant> newParticipant = oldEvent.getParticipant();

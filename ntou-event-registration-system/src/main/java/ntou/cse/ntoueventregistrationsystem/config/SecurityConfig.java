@@ -26,6 +26,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/events/?*").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/events").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/events/?*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/events/register*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .anyRequest().authenticated()
