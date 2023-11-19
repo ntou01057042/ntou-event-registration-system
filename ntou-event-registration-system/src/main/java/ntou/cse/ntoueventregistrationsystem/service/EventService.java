@@ -1,5 +1,6 @@
 package ntou.cse.ntoueventregistrationsystem.service;
 
+import com.opencsv.CSVWriter;
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
 import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.repository.EventRepository;
@@ -9,10 +10,8 @@ import org.springframework.stereotype.Service;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.*;
-import com.opencsv.CSVWriter;
-
 
 @Service
 public class EventService {
@@ -34,7 +33,26 @@ public class EventService {
     public void createEvent(Event event) {
         repository.insert(event);
     }
-    public void generateCSV(HttpServletResponse response, String id) throws IOException{
+
+    public void updateEvent(Event event) {
+        repository.save(event);
+    }
+
+    public void deleteEvent(String id) {
+        repository.deleteById(id);
+    }
+
+    public Event register(String id, Participant participant){
+        Event oldEvent = repository.findById(id).get();
+        ArrayList<Participant> newParticipant = oldEvent.getParticipant();
+        newParticipant.add(participant);
+
+        Event newEvent = new Event(oldEvent.getTitle(), oldEvent.getStartTime(), oldEvent.getEndTime(), oldEvent.getDescribe(),
+                            oldEvent.getFrom(), oldEvent.getVenue(), oldEvent.getId(), newParticipant);
+        return repository.save(newEvent);
+    }
+
+    public void generateCSV(HttpServletResponse response, String id) throws IOException {
         response.setContentType("text/csv");
         response.setHeader("Content-Disposition", "attachment; file=report.csv");
         CSVWriter writer = new CSVWriter(response.getWriter());
@@ -45,7 +63,7 @@ public class EventService {
 
         for(Participant p : participant)
             writer.writeNext(new String[] {p.getName(), "\t" + p.getStudentID(), "\t" + p.getEmail(), "\t" + p.getPhoneNumber()});
-        
+
         writer.close();
     }
 }
