@@ -29,9 +29,9 @@
                     success: function (data) {
                         console.log("成功：");
                         localStorage.removeItem('email');
-                        localStorage.setItem('email', obj.email);
+                        localStorage.setItem('email', data.username);
                         localStorage.setItem('name', data.name);
-                        window.location.assign('../login/homepage.html',);
+                        window.location.assign('../homepage.html',);
                     },
                     error: function (xhr) {
                         if (xhr.status === 403) {

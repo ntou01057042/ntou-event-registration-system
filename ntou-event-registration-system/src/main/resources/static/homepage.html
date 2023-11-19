@@ -5,7 +5,7 @@
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="http://code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title>海大活動報名系統</title>
@@ -20,6 +20,7 @@
 
         function loading() {
             let url = "/events";
+            document.getElementById('current-user-name').innerHTML = localStorage.getItem("name");
             $.ajax({
                 url: url,
                 type: "GET",
@@ -28,12 +29,6 @@
                     events = data;
                     campaign(data);
                 }
-                /**
-                 success: function (data) {
-                 $.getJSON("./file/test.events.json", function (data) {
-                 campaign(data);
-                 });
-                 }**/
             })
             $.getJSON("file/categories.json", function (data) {
                 let selectElement = document.getElementById("classFrom");
@@ -118,7 +113,6 @@
                             hour: "2-digit",
                             minute: "2-digit"
                         };
-
                         campaign.innerHTML += `
                             <div class="card">
                                 <div class="card-body">
@@ -144,6 +138,10 @@
 
         $(document).ready(function () {
             loading();
+            document.getElementById("logout").addEventListener("click", function (event) {
+                localStorage.clear();
+                window.location.assign('./login/login.html',);
+            });
 
             document.getElementById("search-bar").addEventListener("keypress", function (event) {
                 if (event.key === "Enter") {
@@ -161,60 +159,65 @@
 </head>
 
 <body>
-<!-- Navbar -->
-<div class="container-fluid p-0 m-0">
-    <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
+    <!-- Navbar -->
+    <div class="container-fluid p-0 m-0">
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
 
-        <div>
-            <a class="navbar-brand" href="./homepage.html"><img src="img/badge-check.png" alt="" width="30"
-                                                                height="30" class="d-inline-block align-text-top">&nbsp海大活動報名系統</a>
-        </div>
-        <div class="d-flex">
-            <form class="me-2">
-                <input class="form-control" type="search" placeholder="搜尋活動" aria-label="Search" id="search-bar">
-            </form>
-
-            <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
-        </div>
-
-        <div class="nav-item ms-auto">
-            <a class="nav-link dropdown-toggle" href="main page/advancedUser.html" role="button" id="member">
-                <img src="img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>
-            </a>
-        </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row remaining-space">
-            <div class="space col-0 col-lg-1 d-none d-lg-block">
-
+            <div>
+                <a class="navbar-brand" href="./homepage.html"><img src="img/badge-check.png" alt="" width="30"
+                        height="30" class="d-inline-block align-text-top">&nbsp海大活動報名系統</a>
             </div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
-                <hr>
-                <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
-                    <span class="fs-4">所有活動</span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto " id="classFrom">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            首頁
-                        </a>
-                    </li>
-                </ul>
-                <hr>
+            <div class="d-flex">
+                <form class="me-2">
+                    <input class="form-control" type="search" placeholder="搜尋活動" aria-label="Search" id="search-bar">
+                </form>
+
+                <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
             </div>
-            <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-                <div class="row gy-3 py-3 px-4" id="campaigns">
+            <div class="d-flex align-items-center ms-auto">
+                <div class="nav-item" id="logout">
+                    <img src="img/logout.png" height="25" alt="logout" loading="lazy" />
+                </div>
+                <div class="nav-item">
+                    <a class="nav-link" href="main page/advancedUser.html" role="button" id="member">
+                        <img src="img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
+                        <span id="current-user-name">用戶名稱</span>
+                    </a>
                 </div>
             </div>
-            <div class="space col-0 col-sm-1  d-none d-sm-block">
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row remaining-space">
+                <div class="space col-0 col-lg-1 d-none d-lg-block">
+
+                </div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
+                    <hr>
+                    <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
+                        <span class="fs-4">所有活動</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto " id="classFrom">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                首頁
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
+                    <div class="row gy-3 py-3 px-4" id="campaigns">
+                    </div>
+                </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block">
+                </div>
             </div>
         </div>
+
+
     </div>
-
-
-</div>
 
 
 </body>
