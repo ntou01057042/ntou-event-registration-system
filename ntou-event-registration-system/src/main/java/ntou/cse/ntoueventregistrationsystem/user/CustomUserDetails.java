@@ -1,4 +1,4 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,7 +1,8 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.login;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

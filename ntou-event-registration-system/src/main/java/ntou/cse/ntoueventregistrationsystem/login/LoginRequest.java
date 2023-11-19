@@ -1,4 +1,4 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.login;
 
 public class LoginRequest {
     private String username;

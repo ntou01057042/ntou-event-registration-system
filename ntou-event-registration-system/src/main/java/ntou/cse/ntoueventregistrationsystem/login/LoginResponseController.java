@@ -1,4 +1,4 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.login;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

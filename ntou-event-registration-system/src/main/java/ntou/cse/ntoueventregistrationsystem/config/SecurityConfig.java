@@ -1,5 +1,6 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.config;
 
+import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

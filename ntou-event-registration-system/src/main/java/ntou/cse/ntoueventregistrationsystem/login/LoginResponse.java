@@ -1,4 +1,4 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.login;
 
 public class LoginResponse {
     private String accessToken;

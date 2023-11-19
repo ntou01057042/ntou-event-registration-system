@@ -1,4 +1,4 @@
-package ntou.cse.ntoueventregistrationsystem.appuser;
+package ntou.cse.ntoueventregistrationsystem.user;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import org.springframework.data.annotation.Id;
