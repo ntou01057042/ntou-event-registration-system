@@ -18,18 +18,7 @@ public class Event implements Serializable {
     private String from;
     private String venue;
     private ArrayList<Participant> participant = new ArrayList<Participant>();
-
-    public Event(String title, LocalDateTime startTime, LocalDateTime endTime, String describe, String from,
-            String venue, String id, ArrayList<Participant> participant) {
-        this.title = title;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.describe = describe;
-        this.from = from;
-        this.venue = venue;
-        this.id = id;
-        this.participant = participant;
-    }
+    private ArrayList<String> comments;
 
     public Event() {
     }
@@ -42,6 +31,18 @@ public class Event implements Serializable {
         this.describe = describe;
         this.from = from;
         this.venue = venue;
+    }
+
+    public Event(String title, LocalDateTime startTime, LocalDateTime endTime, String describe, String from,
+                 String venue, String id, ArrayList<Participant> participant) {
+        this.title = title;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.describe = describe;
+        this.from = from;
+        this.venue = venue;
+        this.id = id;
+        this.participant = participant;
     }
 
     public String getTitle() {
@@ -98,6 +99,14 @@ public class Event implements Serializable {
 
     public ArrayList<Participant> getParticipant() {
         return participant;
+    }
+
+    public ArrayList<String> getComments() {
+        return comments;
+    }
+
+    public void setComments(ArrayList<String> comments) {
+        this.comments = comments;
     }
 
     public String getId() {

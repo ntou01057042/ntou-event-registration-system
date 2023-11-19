@@ -1,17 +1,17 @@
 package ntou.cse.ntoueventregistrationsystem.service;
 
 import com.opencsv.CSVWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import ntou.cse.ntoueventregistrationsystem.entity.Event;
 import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class EventService {
@@ -32,6 +32,11 @@ public class EventService {
 
     public void createEvent(Event event) {
         repository.insert(event);
+    }
+
+    public Event getEventBy(String id) {
+        Optional<Event> event = repository.findById(id);
+        return (Event) event.orElse(null);
     }
 
     public void updateEvent(Event event) {
@@ -65,5 +70,9 @@ public class EventService {
             writer.writeNext(new String[] {p.getName(), "\t" + p.getStudentID(), "\t" + p.getEmail(), "\t" + p.getPhoneNumber()});
 
         writer.close();
+    }
+
+    public void updateComments(Event event) {
+        repository.save(event);
     }
 }
