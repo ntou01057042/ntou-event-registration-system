@@ -25,24 +25,18 @@ public class EventController {
     }
 
     @GetMapping("/search")
-    public List<Event> getEvents(@RequestParam("keyword") String keyword) {
-        return service.getEventsByTitleLike(keyword);
-    }
+    public List<Event> getEvents(@RequestParam("keyword") String keyword) { return service.getEventsByTitleLike(keyword); }
 
     @PostMapping
-    public void postEvent(@RequestBody Event event) {
-        service.createEvent(event);
-    }
-    @GetMapping("/getById")
-    public Event getEvent(@RequestParam String id) {
+    public void postEvent(@RequestBody Event event) { service.createEvent(event); }
+
+    @GetMapping("/{id}")
+    public Event getEvent(@PathVariable("id") String id) {
         return service.getEventBy(id);
     }
-    @PutMapping("/{id}")
-    public Event putEvent(@PathVariable("id") String id, @RequestParam("title") String newTitle){
-        Event event = service.getEventBy(id);
-        service.updateEventTitle(event, newTitle);
-        return service.getEventBy(id);
-    }
-//    TODO
-//    @DeleteMapping("/{id}")
+
+    @PutMapping
+    public void putEvent(@RequestBody Event event) { service.updateEvent(event); }
+
+
 }

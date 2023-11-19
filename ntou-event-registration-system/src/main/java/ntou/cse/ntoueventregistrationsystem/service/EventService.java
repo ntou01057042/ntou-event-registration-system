@@ -4,7 +4,6 @@ import ntou.cse.ntoueventregistrationsystem.entity.Event;
 import ntou.cse.ntoueventregistrationsystem.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,18 +27,16 @@ public class EventService {
         return repository.findByTitleLike(keyword);
     }
 
-    public void createEvent(Event event) {
-        repository.insert(event);
-    }
+    public void createEvent(Event event) { repository.insert(event); }
 
     public Event getEventBy(String id) {
-        Optional event = repository.findById(id);
-        return event.isPresent() ? (Event) event.get() : null;
+        Optional<Event> event = repository.findById(id);
+        return (Event) event.orElse(null);
     }
 
-    public void updateEventTitle(Event event, String title) {
-        event.setTitle(title);
-        System.out.println("update");
+    public void updateEvent(Event event) {
         repository.save(event);
     }
+
+
 }
