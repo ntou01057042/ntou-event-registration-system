@@ -61,7 +61,7 @@
             });
             function filterParticipant(eventsData) {
                 console.log(eventId);
-                const event = eventsData.find(event => event._id.$oid == eventId);
+                const event = eventsData.find(event => event.id == eventId);
                 if (event) {
                     document.getElementById("createList").innerHTML = "";
                     createParticipant(event.participant);
@@ -88,7 +88,7 @@
                         console.log("success：" + response);
                     },
                     error: function () {
-                        const event = eventsData.find(event => event._id.$oid == eventId);
+                        const event = eventsData.find(event => event.id == eventId);
                         console.log(event.participant);
                         exportToExcel(event.participant);
                     }
