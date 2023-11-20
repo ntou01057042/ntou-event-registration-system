@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title>海大活動報名系統</title>
@@ -87,114 +88,119 @@
 
     </script>
 </head>
+
 <body>
-<div class="container-fluid p-0 m-0">
-    <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
+    <div class="container-fluid p-0 m-0">
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
 
-        <div>
-            <a class="navbar-brand" href="../homepage.html"><img src="../img/badge-check.png" alt="" width="30"
-                                                                 height="30" class="d-inline-block align-text-top">&nbsp海大活動報名系統</a>
-        </div>
-        <div class="d-flex">
-            <form class="me-2">
-                <input class="form-control" type="search" placeholder="搜尋活動" aria-label="Search" id="search-bar">
-            </form>
-
-            <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
-        </div>
-
-        <div class="nav-item ms-auto">
-            <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">
-                <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>
-            </a>
-        </div>
-    </nav>
-
-    <div class="container-fluid">
-        <div class="row remaining-space">
-            <div class="space col-0 col-lg-1 d-none d-lg-block">
-
+            <div>
+                <a class="navbar-brand" href="../homepage.html"><img src="../img/badge-check.png" alt="" width="30"
+                        height="30" class="d-inline-block align-text-top">&nbsp海大活動報名系統</a>
             </div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
-                <hr>
-                <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
-                    <span class="fs-4">進階使用者</span>
+            <div class="d-flex">
+                <form class="me-2">
+                    <input class="form-control" type="search" placeholder="搜尋活動" aria-label="Search" id="search-bar">
+                </form>
+
+                <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
+            </div>
+
+            <div class="nav-item ms-auto">
+                <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">
+                    <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
                 </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto ">
-                    <li class="nav-item">
-                        <a href="../main page/campaignSetting.html" class="nav-link active ">
-                            我的活動
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            我的收藏
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../management/Blacklist.html" class="nav-link link-dark">
-                            黑名單管理
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            進階權限
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            回到一般使用者
-                        </a>
-                    </li>
-                </ul>
-                <hr>
             </div>
-            <div class="px-3 m-0 col-9 col-sm-8 col-xl-7">
-                <div class="card mt-4">
-                    <div class="card-header pt-3">
-                        <h5 class="card-title">修改活動</h5>
-                    </div>
-                    <form class="card-body" id="Form">
-                        <div class="form-outline mb-4">
-                            <label for="title">活動主題</label>
-                            <input type="text" id="title" name="title" class="form-control" required>
-                        </div>
+        </nav>
 
-                        <div class="form-outline mb-4">
-                            <label for="activityCategory">活動分類</label>
-                            <select id="activityCategory" name="from" class="form-control" required>
-                            </select>
+        <div class="container-fluid">
+            <div class="row remaining-space">
+                <div class="space col-0 col-lg-1 d-none d-lg-block">
+
+                </div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
+                    <hr>
+                    <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
+                        <span class="fs-4">進階使用者</span>
+                    </a>
+                    <hr>
+
+                    <ul class="nav nav-pills flex-column mb-auto ">
+                        <li class="nav-item">
+                            <a href="../main page/advancedUser.html" class="nav-link link-dark">
+                                我的活動
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../main page/eventManagemantPage.html" class="nav-link active ">
+                                修改活動
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="nav-link link-dark">
+                                活動設定
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="../campaign/Participant.html" class="nav-link link-dark">
+                                參加者管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./Real-time Notifications.html" class="nav-link link-dark">
+                                即時通知
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="px-3 m-0 col-9 col-sm-8 col-xl-7">
+                    <div class="card mt-4">
+                        <div class="card-header pt-3">
+                            <h5 class="card-title">修改活動</h5>
                         </div>
-                        <div class="form-outline mb-4">
-                            <label for="startTime">活動開始時間</label>
-                            <input id="startTime" type="datetime-local" name="startTime" class="form-control" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="endTime">活動結束時間</label>
-                            <input id="endTime" type="datetime-local" name="endTime" class="form-control" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="venue">活動地點</label>
-                            <input id="venue" type="text" name="venue" class="form-control" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="activityDescription">活動介紹</label>
-                            <textarea id="activityDescription" name="describe" rows="4"
-                                      class="form-control" required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <input type="submit" value="確定更改" class="btn btn-primary" id="submitBtn"/>
-                        </div>
-                    </form>
+                        <form class="card-body" id="Form">
+                            <div class="form-outline mb-4">
+                                <label for="title">活動主題</label>
+                                <input type="text" id="title" name="title" class="form-control" required>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label for="activityCategory">活動分類</label>
+                                <select id="activityCategory" name="from" class="form-control" required>
+                                </select>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="startTime">活動開始時間</label>
+                                <input id="startTime" type="datetime-local" name="startTime" class="form-control"
+                                    required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="endTime">活動結束時間</label>
+                                <input id="endTime" type="datetime-local" name="endTime" class="form-control" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="venue">活動地點</label>
+                                <input id="venue" type="text" name="venue" class="form-control" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="activityDescription">活動介紹</label>
+                                <textarea id="activityDescription" name="describe" rows="4" class="form-control"
+                                    required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="確定更改" class="btn btn-primary" id="submitBtn" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block">
                 </div>
             </div>
-            <div class="space col-0 col-sm-1  d-none d-sm-block">
-            </div>
         </div>
+
+
     </div>
-
-
-</div>
 </body>
+
 </html>
