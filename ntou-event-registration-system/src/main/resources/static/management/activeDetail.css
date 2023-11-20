@@ -85,6 +85,10 @@ h5{
     height: 40px;
 }
 
+#details{
+    flex-direction: revert;
+}
+
 #mybtn{
     border-radius: 30px;
     background-color: rgb(74, 110, 190);
