@@ -6,7 +6,8 @@
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
         integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
+    <!-- SheetJS 函式庫 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
     <title>海大活動報名系統</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,6 +27,57 @@
             font-family: "微軟正黑體";
         }
     </style>
+    <script>
+        let eventId;
+        let title;
+        $(document).ready(function () {
+            let eventId = localStorage.getItem("eventID");
+            console.log("Event ID", eventId);
+            $.ajax({
+                url: "/events/" + eventId,
+                type: "GET",
+                success: function (response) {
+                    console.log("success：" + response);
+                    eventsData = response;
+                    title = response.title;
+                    document.getElementById('title').innerHTML = title;
+                    createParticipant(response.participant);
+                }
+
+            });
+            function createParticipant(participants) {
+
+                let createList = document.getElementById("createList");
+                for (let i = 0; i < participants.length; i++) {
+                    let participant = document.createElement("a");
+                    participant.classList.add("list-group-item", "list-group-item-action");
+                    participant.href = "#";
+                    participant.textContent = participants[i].name;
+                    createList.appendChild(participant);
+                }
+            }
+            document.getElementById('exportButton').addEventListener('click', function () {
+                $.ajax({
+                    url: "/export?id=" + eventId,
+                    type: "GET",
+                    success: function (response) {
+                        console.log("success：" + response);
+                    },
+                    error: function () {
+                        exportToExcel(eventsData.participant);
+                    }
+                });
+            });
+        })
+        function exportToExcel(data) {
+            var worksheet = XLSX.utils.json_to_sheet(data);
+            var workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
+            let file = title + ".xlsx";
+            XLSX.writeFile(workbook, file);
+        }
+
+    </script>
 </head>
 
 <body>
@@ -56,6 +108,7 @@
                 <div class="bg-light col-md-2 border" style="width: 10%;">
 
                 </div>
+                <!--分類欄-->
                 <div class="d-flex flex-column bg-light col-md-1.5 border" style="width: 15%;">
 
                     <a href="../main page/advancedUser.html"
@@ -65,8 +118,13 @@
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto ">
                         <li class="nav-item">
-                            <a href="#" class="nav-link active ">
+                            <a href="../main page/advancedUser.html" class="nav-link link-dark">
                                 我的活動
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../main page/eventManagemantPage.html" class="nav-link link-dark">
+                                修改活動
                             </a>
                         </li>
                         <li>
@@ -74,13 +132,9 @@
                                 活動設定
                             </a>
                         </li>
+
                         <li>
-                            <a href="./Blacklist.html" class="nav-link link-dark">
-                                黑名單管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./Participant.html" class="nav-link link-dark">
+                            <a href="#" class="nav-link active ">
                                 參加者管理
                             </a>
                         </li>
@@ -89,16 +143,20 @@
                                 即時通知
                             </a>
                         </li>
-                        <li>
-                            <a href="./SendMail.html" class="nav-link link-dark">
-                                進階寄信
-                            </a>
-                        </li>
                     </ul>
                     <hr>
                 </div>
+                <!--分類欄-->
                 <div class="col-md-2 border" id="campaigns" style="width: 60%;">
-                    即時通知
+                    參加者管理:<div id="title"></div>
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-outline-primary" id="exportButton">匯出</button>
+                    </div>
+                    <div>
+                        參加者名單
+                        <div class="list-group mt-2 mb-2" id="createList">
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-light col-md-1.5 border" style="width: 15%;">
                 </div>

@@ -34,11 +34,6 @@
                 console.log("success：" + response);
                 createCampaign(response);
             }
-            /**success: function (error) {
-                $.getJSON("../file/test.events.json", function (data) {
-                    createCampaign(data);
-                })
-            }**/
         });
         function createCampaign(data) {
             let createList = document.getElementById("createList");
@@ -55,10 +50,10 @@
                 };
                 let startTime = new Date(data[i].startTime);
                 campaign.textContent = data[i].title + startTime.toLocaleString(undefined, options);
-                campaign.addEventListener('click',()=>{
+                campaign.addEventListener('click', () => {
                     localStorage.removeItem('eventID');
-                    localStorage.setItem('eventID',data[i].id);
-                    window.location.assign('../management/eventManagementPage.html', );
+                    localStorage.setItem('eventID', data[i].id);
+                    window.location.assign('../management/eventManagementPage.html',);
                 });
                 createList.appendChild(campaign);
             }
@@ -115,6 +110,11 @@
                         <li>
                             <a href="../management/Blacklist.html" class="nav-link link-dark">
                                 黑名單管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="./SendMail.html" class="nav-link link-dark">
+                                進階寄信
                             </a>
                         </li>
                         <li>
