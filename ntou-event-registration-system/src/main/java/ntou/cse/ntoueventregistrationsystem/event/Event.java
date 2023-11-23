@@ -1,5 +1,6 @@
-package ntou.cse.ntoueventregistrationsystem.entity;
+package ntou.cse.ntoueventregistrationsystem.event;
 
+import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 

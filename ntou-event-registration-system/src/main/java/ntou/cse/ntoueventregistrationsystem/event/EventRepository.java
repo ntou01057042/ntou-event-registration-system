@@ -1,6 +1,6 @@
-package ntou.cse.ntoueventregistrationsystem.repository;
+package ntou.cse.ntoueventregistrationsystem.event;
 
-import ntou.cse.ntoueventregistrationsystem.entity.Event;
+import ntou.cse.ntoueventregistrationsystem.event.Event;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

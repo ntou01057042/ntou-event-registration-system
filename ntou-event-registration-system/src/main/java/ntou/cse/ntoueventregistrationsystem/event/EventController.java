@@ -1,15 +1,14 @@
-package ntou.cse.ntoueventregistrationsystem.controller;
+package ntou.cse.ntoueventregistrationsystem.event;
 
 import jakarta.servlet.http.HttpServletResponse;
-import ntou.cse.ntoueventregistrationsystem.entity.Event;
+import ntou.cse.ntoueventregistrationsystem.event.Event;
 import ntou.cse.ntoueventregistrationsystem.entity.Participant;
-import ntou.cse.ntoueventregistrationsystem.service.EventService;
+import ntou.cse.ntoueventregistrationsystem.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

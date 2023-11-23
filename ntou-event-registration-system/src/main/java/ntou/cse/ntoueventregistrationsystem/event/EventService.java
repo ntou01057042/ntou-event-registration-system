@@ -1,10 +1,10 @@
-package ntou.cse.ntoueventregistrationsystem.service;
+package ntou.cse.ntoueventregistrationsystem.event;
 
 import com.opencsv.CSVWriter;
 import jakarta.servlet.http.HttpServletResponse;
-import ntou.cse.ntoueventregistrationsystem.entity.Event;
+import ntou.cse.ntoueventregistrationsystem.event.Event;
 import ntou.cse.ntoueventregistrationsystem.entity.Participant;
-import ntou.cse.ntoueventregistrationsystem.repository.EventRepository;
+import ntou.cse.ntoueventregistrationsystem.event.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
