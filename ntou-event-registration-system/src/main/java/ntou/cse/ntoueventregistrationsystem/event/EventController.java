@@ -2,13 +2,11 @@ package ntou.cse.ntoueventregistrationsystem.event;
 
 import jakarta.servlet.http.HttpServletResponse;
 import ntou.cse.ntoueventregistrationsystem.event.Event;
-import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import ntou.cse.ntoueventregistrationsystem.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -26,14 +24,8 @@ public class EventController {
         return service.getAllEvents();
     }
 
-    @GetMapping("/search")
-    public List<Event> getEvents(@RequestParam("keyword") String keyword) {
-        return service.getEventsByTitleLike(keyword);
-    }
-
     @PostMapping
     public void postEvent(@RequestBody Event event) {
-        event.setComments(new ArrayList<String>());
         service.createEvent(event);
     }
 
@@ -52,21 +44,8 @@ public class EventController {
         service.deleteEvent(id);
     }
 
-    @PostMapping("/register")
-    public void registerEvent(@RequestParam("id") String id, @RequestBody Participant participant){
-        service.register(id, participant);
-    }
-
-    @GetMapping("/export")
-    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
-        service.generateCSV(response, id);
-    }
-
-    @PutMapping("/{id}")
-    public void putComment(@PathVariable("id") String id, @RequestBody String comment){
-        Event event = service.getEventBy(id);
-        ArrayList<String> comments = event.getComments();
-        comments.add(comment);
-        service.updateComments(event);
-    }
+//    @GetMapping("/export")
+//    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
+//        service.generateCSV(response, id);
+//    }
 }

@@ -1,6 +1,5 @@
 package ntou.cse.ntoueventregistrationsystem.event;
 
-import ntou.cse.ntoueventregistrationsystem.entity.Participant;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,33 +17,6 @@ public class Event implements Serializable {
     private String describe;
     private String from;
     private String venue;
-    private ArrayList<Participant> participant = new ArrayList<Participant>();
-    private ArrayList<String> comments;
-
-    public Event() {
-    }
-
-    public Event(String title, LocalDateTime startTime, LocalDateTime endTime, String describe, String from,
-                 String venue) {
-        this.title = title;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.describe = describe;
-        this.from = from;
-        this.venue = venue;
-    }
-
-    public Event(String title, LocalDateTime startTime, LocalDateTime endTime, String describe, String from,
-                 String venue, String id, ArrayList<Participant> participant) {
-        this.title = title;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.describe = describe;
-        this.from = from;
-        this.venue = venue;
-        this.id = id;
-        this.participant = participant;
-    }
 
     public String getTitle() {
         return title;
@@ -92,22 +64,6 @@ public class Event implements Serializable {
 
     public void setVenue(String venue) {
         this.venue = venue;
-    }
-
-    public void setParticipant(ArrayList<Participant> participant) {
-        this.participant = participant;
-    }
-
-    public ArrayList<Participant> getParticipant() {
-        return participant;
-    }
-
-    public ArrayList<String> getComments() {
-        return comments;
-    }
-
-    public void setComments(ArrayList<String> comments) {
-        this.comments = comments;
     }
 
     public String getId() {
