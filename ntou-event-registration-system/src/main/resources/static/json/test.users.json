@@ -2,6 +2,7 @@
   "_id": {
     "$oid": "655f778934fc3d4787a3273b"
   },
+  "authority": "ADMIN",
   "password": "$2a$10$fUeIxOTHaWjGw1MQjGLXgu9.qYaUp7k4OtM0BCeZvYNAiYaxBWgzW",
   "email": "01057042@email.ntou.edu.tw",
   "enabled": true,
@@ -12,6 +13,7 @@
   "_id": {
     "$oid": "655f77a534fc3d4787a3273c"
   },
+  "authority": "ADMIN",
   "password": "$2a$10$u3ezyuQLi5u08Unvz1Lj6O9dB4YYA/7edhk6PQQJydTWa.4D2sc0i",
   "email": "01057014@email.ntou.edu.tw",
   "enabled": true,
@@ -22,6 +24,7 @@
   "_id": {
     "$oid": "655f77b634fc3d4787a3273d"
   },
+  "authority": "ADMIN",
   "password": "$2a$10$pf0QxL533qB8/Sd2nLJ/Ou3UNpQWs0B1BqVmN58foJjJwVQRFyQ.e",
   "email": "01057020@email.ntou.edu.tw",
   "enabled": true,
@@ -32,6 +35,7 @@
   "_id": {
     "$oid": "655f77c534fc3d4787a3273e"
   },
+  "authority": "ADMIN",
   "password": "$2a$10$CERhx89gib7tM9ZMW8OcwuaXCquTQ1F5KejTiqqcACefWijHXvGlS",
   "email": "01057051@email.ntou.edu.tw",
   "enabled": true,
@@ -42,6 +46,7 @@
   "_id": {
     "$oid": "655f77d234fc3d4787a3273f"
   },
+  "authority": "ADMIN",
   "password": "$2a$10$giF1YA6rkmEq/evJuTck.uU1FtewzjVog3sFpKnao.AsA4yPTFNky",
   "email": "01057055@email.ntou.edu.tw",
   "enabled": true,
