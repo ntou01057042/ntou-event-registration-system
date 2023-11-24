@@ -1,6 +1,5 @@
 package ntou.cse.ntoueventregistrationsystem.comment;
 
-import ntou.cse.ntoueventregistrationsystem.comment.Comment;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
