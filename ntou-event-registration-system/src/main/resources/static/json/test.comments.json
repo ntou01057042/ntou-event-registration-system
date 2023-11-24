@@ -1,0 +1,16 @@
+[{
+  "_id": {
+    "$oid": "655fe10465f61858b206dcf6"
+  },
+  "eventId": "6534cc24b8f4901b759cca1f",
+  "text": "不可怕",
+  "_class": "ntou.cse.ntoueventregistrationsystem.comment.Comment"
+},
+{
+  "_id": {
+    "$oid": "655fe12765f61858b206dcf7"
+  },
+  "eventId": "6534cc24b8f4901b759cca1f",
+  "text": "好可怕",
+  "_class": "ntou.cse.ntoueventregistrationsystem.comment.Comment"
+}]
