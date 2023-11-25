@@ -1,12 +1,11 @@
 package ntou.cse.ntoueventregistrationsystem.registration;
 
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/registrations")
@@ -24,8 +23,8 @@ public class RegistrationController {
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
-    @GetMapping("/export/{id}")
-    public void exportToCSV(HttpServletResponse response, @PathVariable String id) throws IOException {
-        service.generateCSV(response, id);
+    @GetMapping("/{eventId}")
+    public ResponseEntity<ArrayList<Registration>> getRegistrations(@PathVariable String eventId) {
+        return ResponseEntity.ok(service.getAllRegistrationsByEventId(eventId));
     }
 }
