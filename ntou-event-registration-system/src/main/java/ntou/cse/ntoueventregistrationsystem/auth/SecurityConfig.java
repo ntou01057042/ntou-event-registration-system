@@ -21,7 +21,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthenticationFilter jwtAuthenticationFilter) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers(HttpMethod.GET, "/events").permitAll()
+//                        .requestMatchers(HttpMethod.GET, "/events").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/events").hasAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/events").permitAll()
                         .requestMatchers(HttpMethod.GET, "/events/?*").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/events").permitAll()

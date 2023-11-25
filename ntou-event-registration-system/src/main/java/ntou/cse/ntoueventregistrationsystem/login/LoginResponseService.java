@@ -36,7 +36,7 @@ public class LoginResponseService {
     private String createAccessToken(String username) {
         return Jwts.builder()
                 .subject("Access Token")
-                .expiration(new Date(new Date().getTime() + 600 * 1000))
+                .expiration(new Date(new Date().getTime() + 60 * 1000))
                 .issuedAt(new Date())
                 .claim("username", username)
                 .signWith(privatekey)
