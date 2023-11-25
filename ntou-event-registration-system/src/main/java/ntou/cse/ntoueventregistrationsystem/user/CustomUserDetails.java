@@ -42,6 +42,10 @@ public record CustomUserDetails(AppUser appUser) implements UserDetails {
         return appUser().getEnabled();
     }
 
+    public Authority getAuthority() {
+        return appUser().getAuthority();
+    }
+
     public String getName() {
         return appUser().getName();
     }

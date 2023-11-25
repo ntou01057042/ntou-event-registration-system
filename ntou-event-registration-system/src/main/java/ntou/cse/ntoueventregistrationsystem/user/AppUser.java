@@ -16,8 +16,8 @@ public class AppUser {
     private String name;
 
     @JsonCreator
-    public AppUser(Authority authority, String password, String email, String name) {
-        this.authority = authority;
+    public AppUser(String password, String email, String name) {
+        this.authority = Authority.GENERAL;
         this.password = password;
         this.email = email;
         this.enabled = true;

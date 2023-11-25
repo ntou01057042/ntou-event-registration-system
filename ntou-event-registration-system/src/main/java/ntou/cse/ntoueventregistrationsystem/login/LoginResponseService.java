@@ -25,13 +25,18 @@ public class LoginResponseService {
     public LoginResponse createToken(LoginRequest request) {
         Authentication authenticationToken = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
         CustomUserDetails userDetails = (CustomUserDetails) authenticationProvider.authenticate(authenticationToken).getPrincipal();
-        return new LoginResponse(createAccessToken(userDetails.getUsername()), userDetails.getUsername(), userDetails.getName());
+        return new LoginResponse(
+                createAccessToken(userDetails.getUsername()),
+                userDetails.getAuthority().name(),
+                userDetails.getUsername(),
+                userDetails.getName()
+        );
     }
 
     private String createAccessToken(String username) {
         return Jwts.builder()
                 .subject("Access Token")
-                .expiration(new Date(new Date().getTime() + 90 * 1000))
+                .expiration(new Date(new Date().getTime() + 600 * 1000))
                 .issuedAt(new Date())
                 .claim("username", username)
                 .signWith(privatekey)
