@@ -26,6 +26,40 @@
             font-family: "微軟正黑體";
         }
     </style>
+    <script>
+        $.ajax({
+            url: "/events",
+            type: "GET",
+            success: function (response) {
+                console.log("success：" + response);
+                createCampaign(response);
+            }
+        });
+        function createCampaign(data) {
+            let createList = document.getElementById("createList");
+            for (let i = 0; i < data.length; i++) {
+                let campaign = document.createElement("a");
+                campaign.classList.add("list-group-item", "list-group-item-action");
+                const options = {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    date: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit"
+                };
+                let startTime = new Date(data[i].startTime);
+                campaign.textContent = data[i].title + startTime.toLocaleString(undefined, options);
+                campaign.addEventListener('click', () => {
+                    localStorage.removeItem('eventID');
+                    localStorage.setItem('eventID', data[i].id);
+                    window.location.assign('../management/eventManagementPage.html',);
+                });
+                createList.appendChild(campaign);
+            }
+        }
+
+    </script>
 </head>
 
 <body>
@@ -58,43 +92,49 @@
                 </div>
                 <div class="d-flex flex-column bg-light col-md-1.5 border" style="width: 15%;">
 
-                    <a href="../main page/advancedUser.html"
-                        class="d-flex  justify-content-center  link-dark text-decoration-none">
+                    <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
                         <span class="fs-4">進階使用者</span>
                     </a>
                     <hr>
                     <ul class="nav nav-pills flex-column mb-auto ">
                         <li class="nav-item">
-                            <a href="../main page/advancedUser.html" class="nav-link link-dark">
+                            <a href="./advancedUser.html" class="nav-link link-dark">
                                 我的活動
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="../main page/eventManagemantPage.html" class="nav-link link-dark">
-                                修改活動
+                        <li>
+                            <a href="./myCollection.html" class="nav-link link-dark">
+                                我的收藏
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="nav-link link-dark">
-                                活動設定
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="./Participant.html" class="nav-link">
-                                參加者管理
-                            </a>
-                        </li>
-                        <li>
-                            <a href="./Real-time Notifications.html" class="nav-link link-dark">
-                                即時通知
+                            <a href="./Blacklist.html" class="nav-link link-dark">
+                                黑名單管理
                             </a>
                         </li>
                     </ul>
                     <hr>
                 </div>
                 <div class="col-md-2 border" id="campaigns" style="width: 60%;">
-                    即時通知
+                    我的活動
+                    <a type="button" href="../campaign/createCampaign.html" class="btn btn-primary">
+                        創建活動</a>
+                    <div>
+                        已創建
+                        <div class="list-group mt-2 mb-2" id="createList">
+                        </div>
+                    </div>
+                    <div>
+                        已報名
+                        <div class="list-group mt-2 mb-2">
+                        </div>
+                    </div>
+                    <div>
+                        已結束
+                        <div class="list-group mt-2 mb-2">
+                        </div>
+                    </div>
+
                 </div>
                 <div class="bg-light col-md-1.5 border" style="width: 15%;">
                 </div>

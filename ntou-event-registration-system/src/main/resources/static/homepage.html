@@ -89,7 +89,7 @@
                     localStorage.removeItem('eventID');
                     localStorage.setItem('eventID', data[i].id);
                     console.log(data[i].id);
-                    window.location.assign('../management/activeDetail.html',);
+                    window.location.assign('../campaign/activeDetail.html',);
                 });
                 document.getElementById("campaigns").appendChild(campaign);
             }
@@ -179,7 +179,7 @@
                     <img src="img/logout.png" height="25" alt="logout" loading="lazy" />
                 </div>
                 <div class="nav-item">
-                    <a class="nav-link" href="main page/advancedUser.html" role="button" id="member">
+                    <a class="nav-link" href="./main/advancedUser.html" role="button" id="member">
                         <img src="img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
                         <span id="current-user-name">用戶名稱</span>
                     </a>
