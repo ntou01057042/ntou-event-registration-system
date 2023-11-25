@@ -4,7 +4,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title>海大活動報名系統</title>
@@ -85,87 +85,88 @@
 </head>
 
 <body>
-<!-- Navbar -->
-<div class="container-fluid p-0 m-0">
-    <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
-        <div>
-            <a class="navbar-brand" href="../homepage.html"><img src="../img/badge-check.png" alt="" width="30"
-                                                                 height="30" class="d-inline-block align-text-top">海大活動報名系統</a>
-        </div>
-        <div class="d-flex">
-            <form class="me-2">
-                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-            </form>
-
-            <button class="btn btn-outline-success" type="button">Search</button>
-        </div>
-
-        <div class="nav-item ms-auto">
-            <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">
-                <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>
-            </a>
-        </div>
-    </nav>
-    <div class="container-fluid">
-        <div class="row remaining-space" ;>
-            <div class="space col-0 col-lg-1 d-none d-lg-block">
-
+    <!-- Navbar -->
+    <div class="container-fluid p-0 m-0">
+        <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
+            <div>
+                <a class="navbar-brand" href="../homepage.html"><img src="../img/badge-check.png" alt="" width="30"
+                        height="30" class="d-inline-block align-text-top">海大活動報名系統</a>
             </div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
-                <hr>
-                <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
-                    <span class="fs-4">所有活動</span>
+            <div class="d-flex">
+                <form class="me-2">
+                    <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </form>
+
+                <button class="btn btn-outline-success" type="button">Search</button>
+            </div>
+
+            <div class="nav-item ms-auto">
+                <a class="nav-link dropdown-toggle" href="../main/advancedUser.html" role="button" id="member">
+                    <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
                 </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto " id="classFrom">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            首頁
-                        </a>
-                    </li>
-                </ul>
-                <hr>
             </div>
-            <div class="px-3 m-0 col-9 col-sm-8 col-xl-7">
+        </nav>
+        <div class="container-fluid">
+            <div class="row remaining-space" ;>
+                <div class="space col-0 col-lg-1 d-none d-lg-block">
 
-                <div class="card mt-4">
-                    <div class="card-header pt-3">
-                        <h5 class="card-title">報名活動</h5>
-                    </div>
-                    <form class="card-body" id="Form">
-                        <div class="form-outline mb-4">
-                            <label for="title">活動名稱</label>
-                            <input type="text" id="title" name="title" class="form-control-plaintext" disabled readonly>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <label for="name">姓名</label>
-                            <input type="text" id="name" name="name" class="form-control" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="studentID">學號</label>
-                            <input type="text" id="studentID" name="studentID" class="form-control" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="email">信箱</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="phoneNumber">電話</label>
-                            <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
-                        </div>
-                        <div class="text-center">
-                            <input type="submit" value="提交" class="btn btn-primary" id="submitBtn"/>
-                        </div>
-                    </form>
                 </div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow manu">
+                    <hr>
+                    <a href="#" class="d-flex  justify-content-center  link-dark text-decoration-none">
+                        <span class="fs-4">所有活動</span>
+                    </a>
+                    <hr>
+                    <ul class="nav nav-pills flex-column mb-auto " id="classFrom">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                首頁
+                            </a>
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="px-3 m-0 col-9 col-sm-8 col-xl-7">
 
-            </div>
-            <div class="space col-0 col-sm-1  d-none d-sm-block">
+                    <div class="card mt-4">
+                        <div class="card-header pt-3">
+                            <h5 class="card-title">報名活動</h5>
+                        </div>
+                        <form class="card-body" id="Form">
+                            <div class="form-outline mb-4">
+                                <label for="title">活動名稱</label>
+                                <input type="text" id="title" name="title" class="form-control-plaintext" disabled
+                                    readonly>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label for="name">姓名</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="studentID">學號</label>
+                                <input type="text" id="studentID" name="studentID" class="form-control" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="email">信箱</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="phoneNumber">電話</label>
+                                <input type="text" id="phoneNumber" name="phoneNumber" class="form-control" required>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="提交" class="btn btn-primary" id="submitBtn" />
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block">
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
