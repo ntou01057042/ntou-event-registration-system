@@ -46,7 +46,7 @@
             let id = localStorage.getItem("eventID");
             console.log(id);
             $.ajax({
-                url: "/registrations/exports/" + id,
+                url: "/registration/" + id,
                 type: "GET",
                 success: function (data) {
                     participantsData = data;
