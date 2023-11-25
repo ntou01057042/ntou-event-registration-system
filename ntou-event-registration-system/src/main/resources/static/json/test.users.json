@@ -1,50 +1,66 @@
 [{
   "_id": {
-    "$oid": "655f778934fc3d4787a3273b"
+    "$oid": "6561217382f1e92b8a5926bc"
   },
-  "password": "$2a$10$fUeIxOTHaWjGw1MQjGLXgu9.qYaUp7k4OtM0BCeZvYNAiYaxBWgzW",
+  "authority": "ADMIN",
+  "password": "$2a$10$jfRUQuFhIWqlsnEacOp9..cgF0sMNyzF3LolA.CUu3QHRfGlmSXTC",
   "email": "01057042@email.ntou.edu.tw",
   "enabled": true,
   "name": "吳柏頡",
-  "_class": "ntou.cse.ntoueventregistrationsystem.user.User"
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
 },
 {
   "_id": {
-    "$oid": "655f77a534fc3d4787a3273c"
+    "$oid": "6561217f82f1e92b8a5926bd"
   },
-  "password": "$2a$10$u3ezyuQLi5u08Unvz1Lj6O9dB4YYA/7edhk6PQQJydTWa.4D2sc0i",
+  "authority": "ADMIN",
+  "password": "$2a$10$Ycuc7aQDf7WUj4WoZo4sHOAquaQ0.s2CYJiBvwNgKqAUKE0fePZ6e",
   "email": "01057014@email.ntou.edu.tw",
   "enabled": true,
   "name": "洪淵傳",
-  "_class": "ntou.cse.ntoueventregistrationsystem.user.User"
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
 },
 {
   "_id": {
-    "$oid": "655f77b634fc3d4787a3273d"
+    "$oid": "6561219a82f1e92b8a5926be"
   },
-  "password": "$2a$10$pf0QxL533qB8/Sd2nLJ/Ou3UNpQWs0B1BqVmN58foJjJwVQRFyQ.e",
+  "authority": "ADMIN",
+  "password": "$2a$10$J.rDFaVWdqOY6omvHTb2dOQxe4taMHFpDW86UCjn..79YzVBwYvUO",
   "email": "01057020@email.ntou.edu.tw",
   "enabled": true,
   "name": "林佑丞",
-  "_class": "ntou.cse.ntoueventregistrationsystem.user.User"
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
 },
 {
   "_id": {
-    "$oid": "655f77c534fc3d4787a3273e"
+    "$oid": "656121a882f1e92b8a5926bf"
   },
-  "password": "$2a$10$CERhx89gib7tM9ZMW8OcwuaXCquTQ1F5KejTiqqcACefWijHXvGlS",
+  "authority": "ADMIN",
+  "password": "$2a$10$HY.vCcY1xgcKgD/GGoPxO.sPbVXD9P6Ve1Y4aXRF83f.wDpVO07sm",
   "email": "01057051@email.ntou.edu.tw",
   "enabled": true,
   "name": "陳俞君",
-  "_class": "ntou.cse.ntoueventregistrationsystem.user.User"
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
 },
 {
   "_id": {
-    "$oid": "655f77d234fc3d4787a3273f"
+    "$oid": "656121b482f1e92b8a5926c0"
   },
-  "password": "$2a$10$giF1YA6rkmEq/evJuTck.uU1FtewzjVog3sFpKnao.AsA4yPTFNky",
+  "authority": "ADMIN",
+  "password": "$2a$10$Em/AnKEyanufWqsgVUPiVuConvYO6LGIWhi3ta2XD7zEMFkM./b4e",
   "email": "01057055@email.ntou.edu.tw",
   "enabled": true,
   "name": "宋威儀",
-  "_class": "ntou.cse.ntoueventregistrationsystem.user.User"
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
+},
+{
+  "_id": {
+    "$oid": "65619d69b4fd555ba23b957f"
+  },
+  "authority": "GENERAL",
+  "password": "$2a$10$POaEZo3TWmaGcXTQv/ceK.vyqMqHpDQD/cAz4Zv3Oykok6iOsAas.",
+  "email": "01057023@mail.ntou.edu.tw",
+  "enabled": true,
+  "name": "廖語婕",
+  "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
 }]
