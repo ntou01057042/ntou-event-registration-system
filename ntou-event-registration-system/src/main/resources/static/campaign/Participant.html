@@ -49,7 +49,7 @@
                 url: "/registrations/exports/" + id,
                 type: "GET",
                 success: function (data) {
-
+                    participantsData = data;
                     createParticipant(data);
                 },
                 error: function () {
