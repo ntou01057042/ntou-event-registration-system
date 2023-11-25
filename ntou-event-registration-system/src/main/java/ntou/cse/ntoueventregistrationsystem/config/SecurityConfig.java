@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/registrations").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/registrations/export/?*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/registrations/?*").permitAll()
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments").permitAll()
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
