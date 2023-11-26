@@ -30,26 +30,7 @@
                 }
                 updateOptions(dataUrl);
             });
-            /**document.getElementById("Form").addEventListener("submit", function (event) {
-                event.preventDefault();
-                const formData = new FormData(event.target);
-                const obj = Object.fromEntries(formData.entries());
-                console.log(JSON.stringify(obj));
-                $.ajax({
-                    contentType: "application/json",
-                    data: JSON.stringify(obj),
-                    success: function () {
-                        console.log("成功：" + JSON.stringify(obj));
-                    },
-                    error: function (xhr) {
-                        if (xhr.status === 403) {
-                            alert("錯誤：信箱已被使用！");
-                        }
-                    },
-                    type: "POST",
-                    url: "/users"
-                });
-            });**/
+
             document.getElementById("Form").addEventListener("submit", function (event) {
                 event.preventDefault();
                 const formData = new FormData(event.target);
