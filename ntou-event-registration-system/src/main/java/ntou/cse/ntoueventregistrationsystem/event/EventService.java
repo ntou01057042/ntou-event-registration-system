@@ -35,4 +35,8 @@ public class EventService {
     public void deleteEvent(String id) {
         repository.deleteById(id);
     }
+
+    public List<Event> getEventsByTitleLike(String keyword) {
+        return repository.findAllByTitleLike(keyword);
+    }
 }

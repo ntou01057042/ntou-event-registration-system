@@ -1,0 +1,45 @@
+a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.remaining-space {
+    height: calc(1024px - 56px);
+}
+
+* {
+    font-family: "微軟正黑體";
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    place-items: center;
+    background-image: url("img/background.svg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.space{
+    border-style: none;
+    margin: 0;
+}
+
+.menu{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    border-style: none;
+    margin: 0;
+}
