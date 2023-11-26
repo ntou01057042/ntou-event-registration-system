@@ -2,7 +2,6 @@
 <html>
 <body>
 <nav class="navbar navbar-expand-lg bg-light shadow-sm px-3">
-
     <div>
         <a class="navbar-brand" href="../homepage/homepage.html"><img src="../img/badge-check.png" alt="" width="30" height="30" class="d-inline-block align-text-top">&nbsp海大活動報名系統</a>
     </div>
@@ -10,29 +9,16 @@
         <form class="me-2">
             <input class="form-control" type="search" placeholder="搜尋活動" aria-label="Search" id="search-bar">
         </form>
-
         <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
     </div>
-
-<!--    <div class="nav-item ms-auto">-->
-<!--        <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">-->
-<!--            <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>-->
-<!--        </a>-->
-<!--    </div>-->
-
     <div class="d-flex align-items-center ms-auto">
-        <div class="nav-item" id="logout">
-            <img src="../img/logout.png" height="25" alt="logout" loading="lazy" />
-        </div>
-        <div class="nav-item">
-            <a class="nav-link" href="../main page/advancedUser.html" role="button" id="member">
-                <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
-                <span id="current-user-name"></span>
-            </a>
-        </div>
+        <a class="nav-item" id="logout" href="#"></a>
+        <div id="vr" class="vr mx-2" style="height: 30px;" hidden></div>
+        <a class="nav-item" id="member" href="#">
+            <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
+            <span id="current-user-name"></span>
+        </a>
     </div>
 </nav>
-
 </body>
-
 </html>

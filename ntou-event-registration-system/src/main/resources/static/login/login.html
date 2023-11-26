@@ -27,6 +27,7 @@
                         sessionStorage.setItem('accessToken', data.accessToken);
                         sessionStorage.setItem('email', data.username);
                         sessionStorage.setItem('name', data.name);
+                        sessionStorage.setItem('authority', data.authority);
                         window.location.assign('../homepage/homepage.html',);
                     },
                     error: function (xhr) {
