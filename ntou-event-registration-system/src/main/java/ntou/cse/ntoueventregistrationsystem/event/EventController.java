@@ -1,12 +1,8 @@
 package ntou.cse.ntoueventregistrationsystem.event;
 
-import jakarta.servlet.http.HttpServletResponse;
-import ntou.cse.ntoueventregistrationsystem.event.Event;
-import ntou.cse.ntoueventregistrationsystem.event.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,6 +33,11 @@ public class EventController {
     @PutMapping
     public void putEvent(@RequestBody Event event) {
         service.updateEvent(event);
+    }
+
+    @GetMapping("/search")
+    public List<Event> getEvents(@RequestParam("keyword") String keyword) {
+        return service.getEventsByTitleLike(keyword);
     }
 
     @DeleteMapping("/{id}")

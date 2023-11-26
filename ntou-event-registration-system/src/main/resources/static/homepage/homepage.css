@@ -15,7 +15,7 @@ a {
 body{
     display: flex;
     place-items: center;
-    background-image: url("img/background.svg");
+    background-image: url("../img/background.svg");
     background-size: cover;
     background-attachment: fixed;
 }
@@ -33,18 +33,13 @@ body{
     margin: 0;
 }
 
-.navbar{
-
-}
-
-.manu{
+.menu{
     background-color: rgba(255, 255, 255, 0.7);
 }
 
 .container{
     width: 100%;
     display: flex;
-    flex-wrap: wrap;
     border-style: none;
     margin: 0;
 }
@@ -75,5 +70,3 @@ body{
     font-size: small;
     height: 40px;
 }
-
-/*@media()*/

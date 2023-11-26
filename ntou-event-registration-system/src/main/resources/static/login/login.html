@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- ===== CSS ===== -->
-    <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
 
     <!-- ===== BOX ICONS ===== -->
     <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
@@ -24,11 +24,10 @@
                     contentType: "application/json",
                     data: JSON.stringify(obj),
                     success: function (data) {
-                        alert("登入成功!");
-                        localStorage.removeItem('email');
-                        localStorage.setItem('email', data.username);
-                        localStorage.setItem('name', data.name);
-                        window.location.assign('../homepage.html',);
+                        sessionStorage.setItem('accessToken', data.accessToken);
+                        sessionStorage.setItem('email', data.username);
+                        sessionStorage.setItem('name', data.name);
+                        window.location.assign('../homepage/homepage.html',);
                     },
                     error: function (xhr) {
                         if (xhr.status === 403) {
@@ -107,7 +106,7 @@
     <div class="login">
         <div class="login__content">
             <div class="login__img">
-                <img src="../assets/img/img-login.svg" alt="">
+                <img src="img-login.svg" alt="">
             </div>
 
             <div class="login__forms">
@@ -124,7 +123,7 @@
                         <input type="password" placeholder="Password" name="password" class="login__input" required>
                     </div>
 
-                    <a href="../homepage.html" class="login__forgot">back to homepage</a>
+                    <a href="../homepage/homepage.html" class="login__forgot">back to homepage</a>
 
                     <button type="submit" class="login__button" style="text-decoration: none;">Sign In</button>
 
@@ -178,7 +177,7 @@
     </div>
 
     <!--===== MAIN JS =====-->
-    <script src="../assets/js/main.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>

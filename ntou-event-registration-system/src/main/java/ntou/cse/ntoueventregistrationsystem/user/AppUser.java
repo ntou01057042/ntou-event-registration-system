@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class AppUser {
     @Id
     private String id;
+    private Authority authority;
     private String password;
     private String email;
     private Boolean enabled;
@@ -16,6 +17,7 @@ public class AppUser {
 
     @JsonCreator
     public AppUser(String password, String email, String name) {
+        this.authority = Authority.GENERAL;
         this.password = password;
         this.email = email;
         this.enabled = true;
@@ -30,12 +32,12 @@ public class AppUser {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public Authority getAuthority() {
+        return authority;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setAuthority(Authority authority) {
+        this.authority = authority;
     }
 
     public String getPassword() {
@@ -44,6 +46,14 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Boolean getEnabled() {

@@ -1,6 +1,5 @@
 package ntou.cse.ntoueventregistrationsystem.comment;
 
-import ntou.cse.ntoueventregistrationsystem.registration.Registration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
