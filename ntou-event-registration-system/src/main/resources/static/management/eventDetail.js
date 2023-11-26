@@ -1,68 +1,45 @@
 window.addEventListener("load", function () {
     loading();
-    fetch('../navbar/navbar.html')
+    fetch('../navbar/searchBar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar').innerHTML = data;
-            // document.getElementById("search-bar").addEventListener("keypress", function (event) {
-            //     if (event.key === "Enter") {
-            //         event.preventDefault();
-            //         showSearchResults();
-            //     }
-            // });
-            // document.getElementById("search-button").addEventListener("click", showSearchResults);
-            importExternal('../navbar/navbar.js');
+
+            loadNavbarScript('../navbar/searchBar.js');
+
+        });
+
+    fetch('../navbar/menu.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('menu').innerHTML = data;
+
+            loadNavbarScript('../navbar/menu.js');
 
         });
 },false);
 
-function importExternal(url) {
-    return new Promise((resolve, reject) => {
-        const script = document.createElement('script');
-        script.src = url;
-        script.async = true;
-        script.onload = () => resolve(window['external_global_component']);
-        script.onerror = reject;
-
-        document.body.appendChild(script);
-    });
+function loadNavbarScript(src) {
+    let script = document.createElement('script');
+    script.src = src;
+    document.head.appendChild(script);
 }
 
-let id;
+const urlParams = new URLSearchParams(window.location.search);
+const id = urlParams.get('id');
 
 function loading() {
-    id = localStorage.getItem("eventID");
     $.ajax({
-        url: "/events/" + id,
+        url: "../events/" + id,
         type: "GET",
         success: function (data) {
             console.log(data);
-            campaign(data);
+            events(data);
         }
     })
 
-    $.getJSON("../file/categories.json", function (data) {
-        let selectElement = document.getElementById("classFrom");
-        for (let category in data) {
-            if (data.hasOwnProperty(category)) {
-                data[category].forEach(function (unit) {
-                    let button = document.createElement("button");
-                    button.className = "btn";
-                    button.textContent = unit;
-                    button.addEventListener("click", function () {
-                        let buttonText = $(this).text();
-                        console.log(unit);
-                        filterCampaignsByCategory(unit);
-                    });
-                    selectElement.appendChild(button);
-                });
-            }
-        }
-    });
     document.getElementById("sign_up").addEventListener('click', () => {
-        localStorage.removeItem('eventID');
-        localStorage.setItem('eventID', id);
-        window.location.assign('signUpPage.html',);
+        window.location.assign(`signUpPage.html?id=${id}`);
     });
 
     document.getElementById("commentForm").addEventListener("submit", function (event) {
@@ -78,14 +55,14 @@ function loading() {
                 loadComment();
             },
             type: "PUT",
-            url: "/events/" + id
+            url: "../events/" + id
         });
     });
 
     loadComment();
 }
 
-function campaign(data) {
+function events(data) {
     let detail = document.getElementById("info");
     let startTime = new Date(data.startTime);
     let endTime = new Date(data.endTime);
@@ -114,7 +91,7 @@ function campaign(data) {
 
 function loadComment() {
     $.ajax({
-        url: "/events/" + id,
+        url: "../events/" + id,
         type: "GET",
         success: function (data) {
             console.log(data);
