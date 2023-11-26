@@ -21,16 +21,18 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers(HttpMethod.GET, "/events").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/events/search").permitAll()
                         .requestMatchers(HttpMethod.POST, "/events").permitAll()
                         .requestMatchers(HttpMethod.GET, "/events/?*").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/events").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/events/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/events/register*").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/events/export").permitAll()
                         .requestMatchers(HttpMethod.PUT, "/events/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/registrations").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/registrations/?*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/comments").permitAll()
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )
