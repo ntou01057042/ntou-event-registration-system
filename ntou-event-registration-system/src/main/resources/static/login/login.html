@@ -27,10 +27,9 @@
                     contentType: "application/json",
                     data: JSON.stringify(obj),
                     success: function (data) {
-                        console.log("成功：");
-                        localStorage.removeItem('email');
-                        localStorage.setItem('email', data.username);
-                        localStorage.setItem('name', data.name);
+                        sessionStorage.setItem('accessToken', data.accessToken);
+                        sessionStorage.setItem('email', data.username);
+                        sessionStorage.setItem('name', data.name);
                         window.location.assign('../homepage/homepage.html',);
                     },
                     error: function (xhr) {
@@ -48,6 +47,7 @@
 
 <body>
     <div class="px-1 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+        <a href="../homepage/homepage.html">返回首頁</a>
         <div class="container">
             <div class="row gx-lg-5 align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
