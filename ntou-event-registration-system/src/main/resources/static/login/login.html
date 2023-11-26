@@ -24,7 +24,7 @@
                     contentType: "application/json",
                     data: JSON.stringify(obj),
                     success: function (data) {
-                        alert("成功：");
+                        alert("登入成功!");
                         localStorage.removeItem('email');
                         localStorage.setItem('email', data.username);
                         localStorage.setItem('name', data.name);
