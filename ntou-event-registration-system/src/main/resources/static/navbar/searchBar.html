@@ -14,10 +14,22 @@
         <button class="btn btn-outline-success" type="button" id="search-button">搜尋</button>
     </div>
 
-    <div class="nav-item ms-auto">
-        <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">
-            <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>
-        </a>
+<!--    <div class="nav-item ms-auto">-->
+<!--        <a class="nav-link dropdown-toggle" href="../main page/advancedUser.html" role="button" id="member">-->
+<!--            <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy"/>-->
+<!--        </a>-->
+<!--    </div>-->
+
+    <div class="d-flex align-items-center ms-auto">
+        <div class="nav-item" id="logout">
+            <img src="../img/logout.png" height="25" alt="logout" loading="lazy" />
+        </div>
+        <div class="nav-item">
+            <a class="nav-link" href="../main page/advancedUser.html" role="button" id="member">
+                <img src="../img/user.png" class="rounded-circle" height="25" alt="member" loading="lazy" />
+                <span id="current-user-name"></span>
+            </a>
+        </div>
     </div>
 </nav>
 

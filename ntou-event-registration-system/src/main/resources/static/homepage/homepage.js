@@ -87,7 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById('navbar').innerHTML = data;
 
             loadNavbarScript('../navbar/searchBar.js');
-
         });
 
     fetch('../navbar/menu.html')
