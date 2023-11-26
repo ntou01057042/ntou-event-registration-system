@@ -44,18 +44,25 @@ function loading() {
 
     document.getElementById("commentForm").addEventListener("submit", function (event) {
         event.preventDefault();
-        const formData = new FormData(event.target);
-        const obj = Object.fromEntries(formData.entries());
+        // const formData = new FormData(event.target);
+        // console.log(formData)
+        // const obj = Object.fromEntries(formData.entries());
+        // console.log(obj)
+        const comment = document.getElementById("comment").value;
+        // console.log(comment);
 
         $.ajax({
             contentType: "application/json",
-            data: obj["comment"],
+            data: JSON.stringify({
+                "eventId": id,
+                "text": comment
+            }),
             success: function () {
-                console.log("成功：" + JSON.stringify(obj));
+                // console.log("成功：" + JSON.stringify(obj));
                 loadComment();
             },
-            type: "PUT",
-            url: "../events/" + id
+            type: "POST",
+            url: "/comments"
         });
     });
 
@@ -91,20 +98,20 @@ function events(data) {
 
 function loadComment() {
     $.ajax({
-        url: "../events/" + id,
+        url: "/comments/" + id,
         type: "GET",
         success: function (data) {
             console.log(data);
             let commentArea = document.getElementById("comments");
             commentArea.innerHTML = "";
-            for (let i = 0; i < data["comments"].length; ++i) {
+            for (let i = 0; i < data.length; ++i) {
 
                 console.log(commentArea);
                 commentArea.innerHTML += `
                             <div class="card mt-3 commentArea">
                                 <div class="card-body">
                                     <img src="../img/user_circle.png" alt="circle" class="userCircle me-3">
-                                    ${data["comments"][i]}
+                                    ${data[i].text}
                                 </div>
                             </div>
                         `

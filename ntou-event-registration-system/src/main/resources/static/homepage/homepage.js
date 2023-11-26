@@ -14,8 +14,9 @@ function showSearchResults(keyword) {
     console.log("show");
     document.getElementById("events").innerHTML = "";
     $.ajax({
-        url: `../events/search?keyword=${keyword}`,
+        url: `/events/search?keyword=${keyword}`,
         success: function (data){
+            console.log(data)
             addEventsCard(data)
         },
     });
