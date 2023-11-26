@@ -31,7 +31,7 @@
                         localStorage.removeItem('email');
                         localStorage.setItem('email', data.username);
                         localStorage.setItem('name', data.name);
-                        window.location.assign('../homepage.html',);
+                        window.location.assign('../homepage/homepage.html',);
                     },
                     error: function (xhr) {
                         if (xhr.status === 403) {

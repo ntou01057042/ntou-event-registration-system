@@ -35,6 +35,11 @@ public class EventController {
         service.updateEvent(event);
     }
 
+    @GetMapping("/search")
+    public List<Event> getEvents(@RequestParam("keyword") String keyword) {
+        return service.getEventsByTitleLike(keyword);
+    }
+
     @DeleteMapping("/{id}")
     public void deleteProduct(@PathVariable("id") String id) {
         service.deleteEvent(id);
