@@ -45,6 +45,10 @@ public class EventController {
         service.deleteEvent(id);
     }
 
+    @PostMapping("/restrict/{id}")
+    public void changeState(@PathVariable("id") String id){
+        service.swapState(id);
+    }
 //    @GetMapping("/export")
 //    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
 //        service.generateCSV(response, id);
