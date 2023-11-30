@@ -27,4 +27,9 @@ public class RegistrationController {
     public ResponseEntity<ArrayList<Registration>> getRegistrations(@PathVariable String eventId) {
         return ResponseEntity.ok(service.getAllRegistrationsByEventId(eventId));
     }
+    
+    @DeleteMapping("/cancel/{id}")
+    public void cancelRegistrations(@PathVariable("id") String id){
+        service.deleteRegistration(id);
+    }
 }
