@@ -1,6 +1,8 @@
 package ntou.cse.ntoueventregistrationsystem.event;
 
+import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,7 +23,8 @@ public class EventController {
     }
 
     @PostMapping
-    public void postEvent(@RequestBody Event event) {
+    public void postEvent(@RequestBody Event event, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        event.setCreatorId(userDetails.getId());
         service.createEvent(event);
     }
 
