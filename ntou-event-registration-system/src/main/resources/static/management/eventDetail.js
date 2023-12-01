@@ -17,7 +17,7 @@ window.addEventListener("load", function () {
             loadNavbarScript('../navbar/menu.js');
 
         });
-},false);
+}, false);
 
 function loadNavbarScript(src) {
     let script = document.createElement('script');
@@ -91,8 +91,11 @@ function events(data) {
                    </div>
 
             `;
-
-
+    if (typeof (data.restrict) === 'boolean') {
+        if (!data.restrict) {
+            document.getElementById('sign_up').disabled = true;
+        }
+    }
 }
 
 
