@@ -9,7 +9,7 @@ public class Registration {
     private String id;
     private String eventId;
 //    private String userId;
-
+    private String userId;
     private String name;
     private String studentID;
     private String email;
@@ -69,5 +69,13 @@ public class Registration {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }
