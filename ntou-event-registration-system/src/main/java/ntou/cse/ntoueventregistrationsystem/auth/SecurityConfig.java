@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/registrations/?*").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.DELETE, "/registrations/cancel/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page

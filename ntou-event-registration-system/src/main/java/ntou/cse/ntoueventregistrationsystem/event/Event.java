@@ -16,6 +16,7 @@ public class Event implements Serializable {
     private String describe;
     private String from;
     private String venue;
+    private String creatorId;
     private boolean restrict;
 
     public String getTitle() {
@@ -72,6 +73,14 @@ public class Event implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getCreatorId() {
+        return creatorId;
+    }
+
+    public void setCreatorId(String creatorId) {
+        this.creatorId = creatorId;
     }
 
     public boolean isRestrict() {
