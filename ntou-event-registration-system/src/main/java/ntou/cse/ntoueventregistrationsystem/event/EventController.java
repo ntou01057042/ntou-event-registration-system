@@ -60,4 +60,9 @@ public class EventController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
     }
+
+    @PostMapping("/restrict/{id}")
+    public void changeState(@PathVariable("id") String id){
+        service.swapState(id);
+    }
 }
