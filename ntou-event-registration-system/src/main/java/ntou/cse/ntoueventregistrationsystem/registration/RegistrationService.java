@@ -24,7 +24,12 @@ public class RegistrationService {
     public ArrayList<Registration> getAllRegistrationsByEventId(String eventId) {
         return repository.findAllByEventId(eventId);
     }
+
     public void deleteRegistration(String id){
         repository.deleteById(id);
+    }
+
+    public ArrayList<Registration> getAllRegistrationByUserId(String userId){
+        return repository.findAllByUserId(userId);
     }
 }
