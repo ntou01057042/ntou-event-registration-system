@@ -78,12 +78,15 @@ public class Event implements Serializable {
     public String getCreatorId() {
         return creatorId;
     }
+
     public boolean isRestrict() {
         return restrict;
     }
+
     public void setCreatorId(String creatorId) {
         this.creatorId = creatorId;
     }
+
     public void setRestrict(boolean restrict) {
         this.restrict = restrict;
     }

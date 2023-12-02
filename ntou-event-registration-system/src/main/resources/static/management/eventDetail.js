@@ -27,7 +27,7 @@ function loadNavbarScript(src) {
 
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
-
+let eventCondition = false;
 function loading() {
     $.ajax({
         url: "../events/" + id,
@@ -39,7 +39,12 @@ function loading() {
     })
 
     document.getElementById("sign_up").addEventListener('click', () => {
-        window.location.assign(`signUpPage.html?id=${id}`);
+        if (eventCondition) {
+            window.location.assign(`signUpPage.html?id=${id}`);
+        }
+        else {
+            alert("無法報名!");
+        }
     });
 
     document.getElementById("commentForm").addEventListener("submit", function (event) {
@@ -92,8 +97,10 @@ function events(data) {
 
             `;
     if (typeof (data.restrict) === 'boolean') {
+        eventCondition = data.restrict;
         if (!data.restrict) {
             document.getElementById('sign_up').disabled = true;
+            document.getElementById('sign_up').innerHTML = "報名截止";
         }
     }
 }
