@@ -2,6 +2,8 @@ package ntou.cse.ntoueventregistrationsystem.event;
 
 import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,9 +25,11 @@ public class EventController {
     }
 
     @PostMapping
-    public void postEvent(@RequestBody Event event, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> postEvent(@RequestBody Event event,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         event.setCreatorId(userDetails.getId());
         service.createEvent(event);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
@@ -34,8 +38,14 @@ public class EventController {
     }
 
     @PutMapping
-    public void putEvent(@RequestBody Event event) {
-        service.updateEvent(event);
+    public ResponseEntity<Void> putEvent(@RequestBody Event event,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        if (userDetails.getId().equals(event.getCreatorId())) {
+            service.updateEvent(event);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
 
     @GetMapping("/search")
@@ -44,16 +54,18 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable("id") String id) {
-        service.deleteEvent(id);
+    public ResponseEntity<Void> deleteEvent(@PathVariable("id") String id,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
+        if (userDetails.getId().equals(service.getEventBy(id).getCreatorId())) {
+            service.deleteEvent(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
 
     @PostMapping("/restrict/{id}")
-    public void changeState(@PathVariable("id") String id){
+    public void changeState(@PathVariable("id") String id) {
         service.swapState(id);
     }
-//    @GetMapping("/export")
-//    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
-//        service.generateCSV(response, id);
-//    }
 }
