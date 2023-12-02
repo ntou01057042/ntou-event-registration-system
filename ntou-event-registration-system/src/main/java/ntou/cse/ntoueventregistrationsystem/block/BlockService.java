@@ -3,6 +3,8 @@ package ntou.cse.ntoueventregistrationsystem.block;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BlockService {
 
@@ -28,5 +30,9 @@ public class BlockService {
         } else {
             return false;
         }
+    }
+
+    public List<Block> getAllBlocks(String userId) {
+        return repository.findAllByUserId(userId);
     }
 }

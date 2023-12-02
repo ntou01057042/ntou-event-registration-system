@@ -7,6 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/blocks")
 public class BlockController {
@@ -21,5 +23,10 @@ public class BlockController {
     public ResponseEntity<Void> postBlock(@RequestBody Block block, @AuthenticationPrincipal CustomUserDetails userDetails) {
         block.setUserId(userDetails.getId());
         return service.createBlock(block) ? ResponseEntity.ok().build() : ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+    }
+
+    @GetMapping
+    public List<Block> getAllBlocks(@AuthenticationPrincipal CustomUserDetails userDetails){
+        return service.getAllBlocks(userDetails.getId());
     }
 }
