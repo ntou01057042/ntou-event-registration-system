@@ -44,4 +44,7 @@ public class EventService {
         event.setRestrict((event.isRestrict() ? false : true));
         repository.save(event);
     }
+    public List<Event> getAllEventsByCreatorId(String Id){
+        return repository.findAllByCreatorId(Id);
+    }
 }

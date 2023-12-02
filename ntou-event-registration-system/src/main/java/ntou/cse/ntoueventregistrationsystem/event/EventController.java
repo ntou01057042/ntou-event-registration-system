@@ -52,6 +52,10 @@ public class EventController {
     public void changeState(@PathVariable("id") String id){
         service.swapState(id);
     }
+    @GetMapping("/userEvent")
+    public List<Event> getUserEvent(@AuthenticationPrincipal CustomUserDetails userDetails){
+        return service.getAllEventsByCreatorId(userDetails.getId());
+    }
 //    @GetMapping("/export")
 //    public void exportToCSV(HttpServletResponse response, String id) throws IOException {
 //        service.generateCSV(response, id);
