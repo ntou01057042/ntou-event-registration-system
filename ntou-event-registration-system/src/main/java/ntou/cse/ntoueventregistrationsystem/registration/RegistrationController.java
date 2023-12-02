@@ -19,9 +19,9 @@ public class RegistrationController {
         this.service = service;
     }
 
-    @PostMapping
-    public ResponseEntity<Void> postRegistration(@RequestBody Registration registration, @AuthenticationPrincipal CustomUserDetails userDetails) {
-        registration.setUserId(userDetails.getId());
+    @PostMapping("/{eventId}")
+    public ResponseEntity<Void> postRegistration(@PathVariable String eventId, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        Registration registration = new Registration(eventId, userDetails.getId(), userDetails.getEmail());
         service.createRegistration(registration);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }

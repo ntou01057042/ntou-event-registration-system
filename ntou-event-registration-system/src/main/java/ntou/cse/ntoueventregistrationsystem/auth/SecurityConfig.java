@@ -37,6 +37,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
+                        .requestMatchers(HttpMethod.POST, "/email").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )

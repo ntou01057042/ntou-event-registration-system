@@ -53,4 +53,7 @@ public record CustomUserDetails(AppUser appUser) implements UserDetails {
     public String getName() {
         return appUser().getName();
     }
+    public String getEmail() {
+        return appUser().getEmail();
+    }
 }
