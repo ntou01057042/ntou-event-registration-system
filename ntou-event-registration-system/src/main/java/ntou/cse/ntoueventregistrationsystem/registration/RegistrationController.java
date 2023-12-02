@@ -30,6 +30,12 @@ public class RegistrationController {
     public ResponseEntity<ArrayList<Registration>> getRegistrations(@PathVariable String eventId) {
         return ResponseEntity.ok(service.getAllRegistrationsByEventId(eventId));
     }
+
+    @DeleteMapping("/cancel/{id}")
+    public ResponseEntity<Void> cancelRegistrations(@PathVariable("id") String id){
+        service.deleteRegistration(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
     @GetMapping
     public ResponseEntity<ArrayList<Registration>> getRegistrations(@AuthenticationPrincipal CustomUserDetails userDetails){
         return ResponseEntity.ok(service.getAllRegistrationByUserId(userDetails.getId()));
