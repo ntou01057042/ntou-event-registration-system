@@ -15,16 +15,23 @@ public class RegistrationService {
     }
 
     public void createRegistration(Registration registration) {
-//        if (repository.existsByEventIdAndUserId(registration.getEventId(), registration.getUserId())) {
-//            throw new UnprocessableEntityException("This user has already registered for this event.");
-//        }
+        // if (repository.existsByEventIdAndUserId(registration.getEventId(),
+        // registration.getUserId())) {
+        // throw new UnprocessableEntityException("This user has already registered for
+        // this event.");
+        // }
         repository.save(registration);
     }
 
     public ArrayList<Registration> getAllRegistrationsByEventId(String eventId) {
         return repository.findAllByEventId(eventId);
     }
-    public void deleteRegistration(String id){
+
+    public void deleteRegistration(String id) {
         repository.deleteById(id);
+    }
+
+    public ArrayList<Registration> getAllRegistrationByUserId(String userId) {
+        return repository.findAllByUserId(userId);
     }
 }

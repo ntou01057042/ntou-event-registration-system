@@ -4,10 +4,6 @@
   },
   "eventId": "6534cc24b8f4901b759cca1f",
   "userId": "6561219a82f1e92b8a5926be",
-  "name": "林佑丞",
-  "studentID": "01057020",
-  "email": "01057020@mail.ntou.edu.tw",
-  "phoneNumber": "0912123456",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
 {
@@ -16,10 +12,6 @@
   },
   "eventId": "6534cc24b8f4901b759cca1c",
   "userId": "65619d69b4fd555ba23b957f",
-  "name": "陳俞君",
-  "studentID": "01057051",
-  "email": "01057051@mail.ntou.edu.tw",
-  "phoneNumber": "0909123456",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
 {
@@ -28,9 +20,5 @@
   },
   "eventId": "6534cc24b8f4901b759cca1c",
   "userId": "65619d69b4fd555ba23b957f",
-  "name": "洪淵傳",
-  "studentID": "01057014",
-  "email": "01057014@mail.ntou.edu.tw",
-  "phoneNumber": "0959123456",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 }]
