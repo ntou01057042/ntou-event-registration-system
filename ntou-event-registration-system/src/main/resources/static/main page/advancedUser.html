@@ -97,15 +97,27 @@
             cancelButton.style.float = "right";
             cancelButton.textContent = "取消報名";
             cancelButton.setAttribute("id", regisID);
+            if (typeof (response.restrict) === 'boolean') {
+                if (!response.restrict) {
+                    cancelButton.disabled = true;
+                    cancelButton.setAttribute("id", "lock");
+                }
+            }
             cancelButton.addEventListener("click", function () {
                 let clickedButtonId = this.getAttribute("id");
-                let confirmation = confirm("確定取消報名？");
-                if (confirmation) {
-                    console.log("取消報名 clicked. Button ID: ", clickedButtonId);
-                    cancelRegistration(clickedButtonId);
-                } else {
-                    console.log("取消報名被取消. Button ID: ", clickedButtonId);
+                if (clickedButtonId != "lock") {
+                    let confirmation = confirm("確定取消報名？");
+                    if (confirmation) {
+                        console.log("取消報名 clicked. Button ID: ", clickedButtonId);
+                        cancelRegistration(clickedButtonId);
+                    } else {
+                        console.log("取消報名被取消. Button ID: ", clickedButtonId);
+                    }
                 }
+                else {
+                    alert("無法取消報名!");
+                }
+
             });
             con.appendChild(word);
             con.appendChild(cancelButton);
