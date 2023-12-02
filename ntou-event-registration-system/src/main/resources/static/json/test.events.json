@@ -12,6 +12,7 @@
   "describe": "The description of 「資工系新生茶會」.",
   "from": "資工系學會",
   "venue": "資工系館",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -29,6 +30,7 @@
   "describe": "The description of 「資工x光電x機械 聯合宿營」.",
   "from": "資工系學會",
   "venue": "合歡自然生活體驗基地",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -46,6 +48,7 @@
   "describe": "The description of 「生科x電機 聯合迎新宿營 - 生電實驗室」.",
   "from": "電機系學會",
   "venue": "合歡自然生活體驗基地",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -63,6 +66,7 @@
   "describe": "The description of 「資工系系烤」.",
   "from": "資工系學會",
   "venue": "壘球場附近的烤肉區",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -80,6 +84,7 @@
   "describe": "The description of 「河工鬼屋 - 邪」.",
   "from": "河工系學會",
   "venue": "河工系館",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -97,6 +102,7 @@
   "describe": "The description of 「2023 學生創業新手村」.",
   "from": "教務處 教學中心",
   "venue": "延平技術大樓五樓501教室",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -114,6 +120,7 @@
   "describe": "The description of 「創新思維工作坊」.",
   "from": "教務處 教學中心",
   "venue": "延平技術大樓11樓1102教室",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
@@ -131,6 +138,7 @@
   "describe": "新版需求與設計文件+90%↑系統實作+測試報告+專案看板",
   "from": "資工系選修課",
   "venue": "資工系館",
+  "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 }]
