@@ -34,19 +34,21 @@
                 type: "GET",
                 headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                 success: function (response) {
-                    console.log("success：" + response);
                     MyEvent(response);
                 },
                 error: function () {
-                    alert("失敗!");
+                    console.log("取得報名失敗!");
                 }
             });
             $.ajax({
-                url: "/events/",
+                url: "/events/userEvent",
                 type: "GET",
                 headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                 success: function (response) {
                     createCampaign(response);
+                },
+                error: function () {
+                    console.log("取得已創建活動失敗");
                 }
             });
         })
@@ -81,20 +83,24 @@
                 lockButton.addEventListener("click", function () {
                     let clickedButtonId = this.getAttribute("eventId");
                     let condition = this.getAttribute("restrict") === "true";
-                    console.log(condition);
+                    let confirmation;
                     if (condition) {
-                        let confirmation = confirm("確定解鎖活動？");
+                        confirmation = confirm("確定解鎖活動？");
                     }
                     else {
-                        let confirmation = confirm("確定鎖定活動？");
+                        confirmation = confirm("確定鎖定活動？");
                     }
                     if (confirmation) {
                         $.ajax({
                             url: "/events/restrict/" + clickedButtonId,
                             type: "POST",
+                            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                             success: function (response) {
                                 alert("修改成功");
                                 location.reload();
+                            },
+                            error: function () {
+                                console.log("修改活動失敗");
                             }
                         });
 
@@ -124,6 +130,9 @@
                 success: function (response) {
                     alert("取消報名成功!");
                     location.reload();
+                },
+                error: function () {
+                    console.log("取消報名活動失敗");
                 }
             })
         }
@@ -154,8 +163,6 @@
                     if (confirmation) {
                         console.log("取消報名 clicked. Button ID: ", clickedButtonId);
                         cancelRegistration(clickedButtonId);
-                    } else {
-                        console.log("取消報名被取消. Button ID: ", clickedButtonId);
                     }
                 }
                 else {
@@ -176,7 +183,6 @@
                     url: "/events/" + data[i].eventId,
                     type: "GET",
                     success: function (response) {
-                        console.log(response.title);
                         createMyEvent(response, data[i].id);
                     },
                     error: function () {
