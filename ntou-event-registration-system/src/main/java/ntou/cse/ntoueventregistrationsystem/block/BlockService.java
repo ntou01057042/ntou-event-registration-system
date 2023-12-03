@@ -23,16 +23,14 @@ public class BlockService {
             return true;
         }
     }
-    public Boolean deleteBlock(Block block) {
-        if (repository.existsByUserIdAndTargetId(block.getUserId(),block.getTargetId())) {
-            repository.delete(block);
-            return true;
-        } else {
-            return false;
-        }
+    public boolean existsByUserIdAndTargetId(String userId, String targetId) {
+        return repository.existsByUserIdAndTargetId(userId, targetId);
     }
 
     public List<Block> getAllBlocks(String userId) {
         return repository.findAllByUserId(userId);
+    }
+    public void deleteBlock(String userId, String targetId) {
+        repository.deleteByUserIdAndTargetId(userId,targetId);
     }
 }

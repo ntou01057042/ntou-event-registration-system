@@ -9,6 +9,8 @@ import java.util.List;
 public interface BlockRepository extends MongoRepository<Block, String> {
 
     boolean existsByUserIdAndTargetId(String userId, String targetId);
-
     List<Block> findAllByUserId(String userId);
+    void deleteByUserIdAndTargetId(String userId, String targetId);
+
+
 }

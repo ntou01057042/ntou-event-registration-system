@@ -39,4 +39,6 @@ public class EventService {
     public List<Event> getEventsByTitleLike(String keyword) {
         return repository.findAllByTitleLike(keyword);
     }
+
+
 }
