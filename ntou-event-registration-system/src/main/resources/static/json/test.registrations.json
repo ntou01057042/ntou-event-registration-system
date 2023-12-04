@@ -1,33 +1,24 @@
 [{
   "_id": {
-    "$oid": "655fc3b315987b3183efe60a"
+    "$oid": "656a0c2374109453726bb471"
   },
-  "eventId": "6534cc24b8f4901b759cca1f",
-  "name": "吳柏頡",
-  "studentID": "01057042",
-  "email": "01057042@email.ntou.edu.tw",
-  "phoneNumber": "0989119350",
+  "eventId": "6568848ab809ae1a1c5f8d4e",
+  "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
 {
   "_id": {
-    "$oid": "655fc49e52232513384e5485"
+    "$oid": "656a0ccf74109453726bb472"
   },
-  "eventId": "6534cc24b8f4901b759cca1f",
-  "name": "廖語婕",
-  "studentID": "01057023",
-  "email": "01057023@mail.ntou.edu.tw",
-  "phoneNumber": "0909112613",
+  "eventId": "6568827b866adc1af716a917",
+  "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
 {
   "_id": {
-    "$oid": "655fca957234c52772d49651"
+    "$oid": "656a0d1574109453726bb473"
   },
-  "eventId": "6534cc24b8f4901b759cca1c",
-  "name": "廖語婕",
-  "studentID": "01057023",
-  "email": "01057023@mail.ntou.edu.tw",
-  "phoneNumber": "0909112613",
+  "eventId": "656884a0b809ae1a1c5f8d4f",
+  "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 }]

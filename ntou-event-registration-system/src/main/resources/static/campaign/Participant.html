@@ -37,7 +37,7 @@
                 let participant = document.createElement("a");
                 participant.classList.add("list-group-item", "list-group-item-action");
                 participant.href = "#";
-                participant.textContent = data[i].studentID;
+                participant.textContent = data[i]._id.$oid;
                 createList.appendChild(participant);
 
             }
@@ -100,8 +100,8 @@
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div>
-                <a class="navbar-brand" href="../homepage/homepage.html"><img src="../img/badge-check.png" alt="" width="30"
-                                                                              height="30" class="d-inline-block align-text-top">海大活動報名系統</a>
+                <a class="navbar-brand" href="../homepage/homepage.html"><img src="../img/badge-check.png" alt=""
+                        width="30" height="30" class="d-inline-block align-text-top">海大活動報名系統</a>
             </div>
             <div class="d-flex">
                 <form class="me-2">
@@ -138,7 +138,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../main page/eventManagemantPage.html" class="nav-link link-dark">
+                            <a href="../management/eventManagemantPage.html" class="nav-link link-dark">
                                 修改活動
                             </a>
                         </li>

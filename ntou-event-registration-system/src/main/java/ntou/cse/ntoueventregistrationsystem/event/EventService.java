@@ -39,4 +39,13 @@ public class EventService {
     public List<Event> getEventsByTitleLike(String keyword) {
         return repository.findAllByTitleLike(keyword);
     }
+
+    public void swapState(String id){
+        Event event = repository.findById(id).get();
+        event.setRestrict((event.isRestrict() ? false : true));
+        repository.save(event);
+    }
+    public List<Event> getAllEventsByCreatorId(String Id){
+        return repository.findAllByCreatorId(Id);
+    }
 }
