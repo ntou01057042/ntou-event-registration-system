@@ -41,6 +41,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.POST, "/email").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )
