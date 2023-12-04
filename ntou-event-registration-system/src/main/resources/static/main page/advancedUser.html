@@ -68,7 +68,7 @@
 
                 lockButton.style.float = "right";
                 if (typeof (data[i].restrict) === 'boolean') {
-                    if (!data[i].restrict) {
+                    if (data[i].restrict) {
                         lockButton.classList.add("btn", "btn-secondary");
                         lockButton.textContent = "活動解鎖";
                         lockButton.setAttribute("restrict", true);
@@ -178,7 +178,7 @@
         function MyEvent(data) {
 
             for (let i = 0; i < data.length; i++) {
-                console.log(data[i].eventId);
+                // console.log(data[i].eventId);
                 $.ajax({
                     url: "/events/" + data[i].eventId,
                     type: "GET",

@@ -9,6 +9,16 @@ public class Registration {
     private String id;
     private String eventId;
     private String userId;
+    private String email;
+
+    public Registration() {
+    }
+
+    public Registration(String eventId, String userId, String email) {
+        this.eventId = eventId;
+        this.userId = userId;
+        this.email = email;
+    }
 
     public String getId() {
         return id;
@@ -32,5 +42,13 @@ public class Registration {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

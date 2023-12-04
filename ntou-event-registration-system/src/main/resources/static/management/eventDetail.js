@@ -39,7 +39,7 @@ function loading() {
     })
 
     document.getElementById("sign_up").addEventListener('click', () => {
-        if (eventCondition) {
+        if (!eventCondition) {
             window.location.assign(`signUpPage.html?id=${id}`);
         }
         else {
@@ -98,7 +98,7 @@ function events(data) {
             `;
     if (typeof (data.restrict) === 'boolean') {
         eventCondition = data.restrict;
-        if (!data.restrict) {
+        if (data.restrict) {
             document.getElementById('sign_up').disabled = true;
             document.getElementById('sign_up').innerHTML = "報名截止";
         }
