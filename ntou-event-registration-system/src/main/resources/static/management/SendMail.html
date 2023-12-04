@@ -40,24 +40,32 @@
                     console.log("取得已創建活動失敗");
                 }
             });
-            $("#submitButton").click(function (event) {
+            $("#Form").submit(function (event) {
+                event.preventDefault();
+
                 const title = document.getElementById("event").value;
                 const subject = document.getElementById("subject").value;
                 const text = document.getElementById("message").value;
                 const eventId = document.getElementById("event").options[document.getElementById("event").selectedIndex].getAttribute("eventId");
+
+                const url = "/email?subject=" + subject + "&text=" + text + "&eventId=" + eventId;
+
                 $.ajax({
-                    contentType: "application/json",
-                    data: JSON.stringify(obj),
+                    type: "POST",
+                    url: url,
+                    headers: {
+                        "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")
+                    },
                     success: function () {
                         console.log("成功：" + title);
-                        window.alert("訊息傳送成功!");
+                        alert("訊息傳送成功!");
                     },
-                    type: "POST",
-                    url: "/email?subject=" + subject + "&text=" + text + "&eventId=" + eventId
+                    error: function (xhr, status, error) {
+                        console.error("發生錯誤：" + error);
+                        alert("訊息傳送失敗!");
+                    }
                 });
             });
-
-
         })
         function updateOptions(data) {
             let selectElement = document.getElementById("event");
