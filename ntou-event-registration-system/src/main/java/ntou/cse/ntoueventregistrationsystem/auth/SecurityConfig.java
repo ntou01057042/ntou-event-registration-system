@@ -25,6 +25,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/events").permitAll()
                         .requestMatchers(HttpMethod.POST, "/events").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/events/?*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/events/userEvent").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.PUT, "/events").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/events/?*").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/events/register*").permitAll()

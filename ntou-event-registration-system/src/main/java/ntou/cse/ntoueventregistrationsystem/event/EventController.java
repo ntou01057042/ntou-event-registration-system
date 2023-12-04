@@ -25,7 +25,8 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postEvent(@RequestBody Event event, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> postEvent(@RequestBody Event event,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         event.setCreatorId(userDetails.getId());
         service.createEvent(event);
         return ResponseEntity.ok().build();
@@ -37,7 +38,8 @@ public class EventController {
     }
 
     @PutMapping
-    public ResponseEntity<Void> putEvent(@RequestBody Event event, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> putEvent(@RequestBody Event event,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         if (userDetails.getId().equals(event.getCreatorId())) {
             service.updateEvent(event);
             return ResponseEntity.ok().build();
@@ -52,7 +54,8 @@ public class EventController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteEvent(@PathVariable("id") String id, @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> deleteEvent(@PathVariable("id") String id,
+            @AuthenticationPrincipal CustomUserDetails userDetails) {
         if (userDetails.getId().equals(service.getEventBy(id).getCreatorId())) {
             service.deleteEvent(id);
             return ResponseEntity.noContent().build();
@@ -62,7 +65,11 @@ public class EventController {
     }
 
     @PostMapping("/restrict/{id}")
-    public void changeState(@PathVariable("id") String id){
+    public void changeState(@PathVariable("id") String id) {
         service.swapState(id);
+    }
+    @GetMapping("/userEvent")
+    public List<Event> getUserEvent(@AuthenticationPrincipal CustomUserDetails userDetails){
+        return service.getAllEventsByCreatorId(userDetails.getId());
     }
 }

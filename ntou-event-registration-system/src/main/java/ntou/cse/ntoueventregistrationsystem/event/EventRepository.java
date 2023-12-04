@@ -8,4 +8,5 @@ import java.util.List;
 @Repository
 public interface EventRepository extends MongoRepository<Event, String> {
     List<Event> findAllByTitleLike(String keyword);
+    List<Event> findAllByCreatorId(String id);
 }
