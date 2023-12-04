@@ -6,7 +6,7 @@ function  loadManu(){
             if (data.hasOwnProperty(category)) {
                 data[category].forEach(function (unit) {
                     let button = document.createElement("button");
-                    button.className = "btn";
+                    button.className = "btn text-center col";
                     button.textContent = unit;
                     button.addEventListener("click", function () {
                         console.log(unit);
@@ -18,4 +18,3 @@ function  loadManu(){
         }
     });
 }
-
