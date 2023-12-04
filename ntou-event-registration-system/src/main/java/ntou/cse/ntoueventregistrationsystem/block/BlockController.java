@@ -29,11 +29,14 @@ public class BlockController {
     public List<Block> getAllBlocks(@AuthenticationPrincipal CustomUserDetails userDetails){
         return service.getAllBlocks(userDetails.getId());
     }
+
     @DeleteMapping
     public ResponseEntity<Void> deleteBlock(@RequestParam String targetId, @AuthenticationPrincipal CustomUserDetails userDetails){
-        if(service.existsByUserIdAndTargetId(userDetails.getId(),targetId)){
+        if (service.existsByUserIdAndTargetId(userDetails.getId(),targetId)){
             service.deleteBlock(userDetails.getId(),targetId);
-            return ResponseEntity.ok().build();
-        } else return ResponseEntity.noContent().build();
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
+        }
     }
 }
