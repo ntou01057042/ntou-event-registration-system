@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "656a0c2374109453726bb471"
   },
-  "eventId": "6534cc24b8f4901b759cca1f",
+  "eventId": "6568848ab809ae1a1c5f8d4e",
   "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
@@ -10,15 +10,15 @@
   "_id": {
     "$oid": "656a0ccf74109453726bb472"
   },
-  "eventId": "6534cc24b8f4901b759cca1c",
-  "userId": "65619d69b4fd555ba23b957f",
+  "eventId": "6568827b866adc1af716a917",
+  "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 },
 {
   "_id": {
     "$oid": "656a0d1574109453726bb473"
   },
-  "eventId": "6534cc24b8f4901b759cca1c",
-  "userId": "65619d69b4fd555ba23b957f",
+  "eventId": "656884a0b809ae1a1c5f8d4f",
+  "userId": "6561219a82f1e92b8a5926be",
   "_class": "ntou.cse.ntoueventregistrationsystem.registration.Registration"
 }]

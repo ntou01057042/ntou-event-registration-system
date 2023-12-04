@@ -25,6 +25,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/events").permitAll()
                         .requestMatchers(HttpMethod.POST, "/events").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/events/?*").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/events/userEvent").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.PUT, "/events").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/events/?*").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/events/register*").permitAll()
@@ -37,6 +38,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
+                        .requestMatchers(HttpMethod.POST, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.GET, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.DELETE, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/email").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
