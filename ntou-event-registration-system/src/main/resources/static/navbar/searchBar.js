@@ -28,7 +28,7 @@ document.getElementById("member").addEventListener("click", () => {
         } else if (sessionStorage.getItem("authority") === "ADVANCED") {
             window.location.href = '../main page/advancedUser.html';
         } else if (sessionStorage.getItem("authority") === "ADMIN") {
-            window.location.href = '';
+            window.location.href = '../main page/advancedUser.html';
         }
     }
 });

@@ -1,5 +1,5 @@
-loadManu();
-function  loadManu(){
+loadMenu();
+function  loadMenu(){
     $.getJSON("../file/categories.json", function (data) {
         let selectElement = document.getElementById("classFrom");
         for (let category in data) {
