@@ -8,12 +8,7 @@ public class Registration {
     @Id
     private String id;
     private String eventId;
-//    private String userId;
-
-    private String name;
-    private String studentID;
-    private String email;
-    private String phoneNumber;
+    private String userId;
 
     public String getId() {
         return id;
@@ -31,43 +26,11 @@ public class Registration {
         this.eventId = eventId;
     }
 
-//    public String getUserId() {
-//        return userId;
-//    }
-//
-//    public void setUserId(String userId) {
-//        this.userId = userId;
-//    }
-
-    public String getName() {
-        return name;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getStudentID() {
-        return studentID;
-    }
-
-    public void setStudentID(String studentID) {
-        this.studentID = studentID;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 }

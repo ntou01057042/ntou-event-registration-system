@@ -40,5 +40,9 @@ public class EventService {
         return repository.findAllByTitleLike(keyword);
     }
 
-
+    public void swapState(String id){
+        Event event = repository.findById(id).get();
+        event.setRestrict((event.isRestrict() ? false : true));
+        repository.save(event);
+    }
 }
