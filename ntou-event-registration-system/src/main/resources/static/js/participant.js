@@ -1,5 +1,6 @@
 let eventId;
 let title;
+let participantsData;
 
 function createParticipant(data) {
     let createList = document.getElementById("createList");
@@ -16,6 +17,7 @@ function createParticipant(data) {
         blackButton.classList.add("btn", "btn-danger");
         blackButton.style.float = "right";
         blackButton.textContent = "新增黑名單";
+
         let pinfo = document.createElement("button");
         pinfo.classList.add("btn", "btn-link", "me-2");
         pinfo.textContent = "詳細資訊";
@@ -45,6 +47,7 @@ $(document).ready(function () {
                 type: "GET",
                 headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                 success: function (data) {
+                    participantsData = data;
                     createParticipant(data);
                 }
 

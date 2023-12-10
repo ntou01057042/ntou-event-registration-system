@@ -17,6 +17,7 @@
     <script src="../js/fetchUserMenu.js"></script>
     <script src="../js/fetchSearchBar.js"></script>
     <link href="../css/main.css" rel="stylesheet" type="text/css">
+    <link href="../css/eventManagementPage.css" rel="stylesheet" type="text/css">
 </head>
 
 
@@ -34,22 +35,34 @@
                 </div>
                 <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu">
                 </div>
-                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-                    參加者管理:
-                    <div class="list-group mt-2 mb-2">
-                        <div class="container">
-                            <select class="form-select" id="eventList" aria-label="Default select example">
-                                <option selected>選擇一個活動</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-outline-primary" id="exportButton">匯出</button>
-                    <div>
-                        參加者名單
-                        <div class="list-group mt-2 mb-2" id="createList">
-                        </div>
-                    </div>
 
+                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
+                    <div class="card m-3">
+                        <div class="card-header">
+                            <h5 class="card-title">參加者管理</h5>
+                        </div>
+                        <div class="card-body mb-4">
+                            <div class="list-group mt-2 mb-2">
+                                <div class="container">
+                                    <select class="form-select" id="eventList" aria-label="Default select example">
+                                        <option selected>選擇一個活動</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="btn-group d-flex flex-wrap justify-content-center py-3 mb-4" role="group">
+                                <a class="btn btn-outline-primary" id="exportButton">資料匯出</a>
+                                <a href="./SendMail.html" class="btn btn-outline-primary">寄信邀請</a>
+                                <a href="./Real-timeNotifications.html" class="btn btn-outline-primary">即時通知</a>
+                            </div>
+                            <div class="">
+                                參加者名單
+                                <div class="list-group mt-2 mb-2" id="createList"
+                                    style="height: 350px; overflow: auto;">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="space col-0 col-sm-1  d-none d-sm-block">
                 </div>

@@ -10,7 +10,18 @@ $(document).ready(function () {
             document.getElementById('eventTitle').placeholder = title;
         }
     });
-
+    $.ajax({
+        url: "/events/userEvent",
+        type: "GET",
+        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        success: function (response) {
+            console.log(response);
+            updateOptions(response);
+        },
+        error: function () {
+            console.log("取得已創建活動失敗");
+        }
+    });
     $("#Form").submit(function (event) {
         console.log('test');
         event.preventDefault();
@@ -34,3 +45,15 @@ $(document).ready(function () {
         });
     });
 })
+function updateOptions(data) {
+    let selectElement = document.getElementById("event");
+    selectElement.innerHTML = '';
+    for (let i = 0; i < data.length; i++) {
+        let option = document.createElement("option");
+        console.log(data[i].title);
+        option.value = data[i].title;
+        option.innerHTML = data[i].title;
+        option.setAttribute("eventId", data[i].id);
+        selectElement.appendChild(option);
+    }
+}
