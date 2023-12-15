@@ -18,17 +18,22 @@ function createCampaign(data) {
     let createList = document.getElementById("createList");
     for (let i = 0; i < data.length; i++) {
         let campaign = document.createElement("a");
+        campaign.id = "list";
         campaign.classList.add("list-group-item", "list-group-item-action");
         let con = document.createElement("div");
-        con.classList.add("container");
-        let word = document.createElement("div");
-        word.classList.add("d-flex", "col", "align-items-center");
+        con.id = "butRow";
+        con.classList.add("row", "px-1");
+        let word = document.createElement("span");
+        word.classList.add("d-flex","align-items-center");
+        word.id = "word";
         word.textContent = data[i].title;
-        con.appendChild(word);
+        campaign.appendChild(word);
 
         let lockButton = document.createElement("button");
 
-        lockButton.style.float = "right";
+        let lockCon = document.createElement("div");
+        lockCon.classList.add( "col-sm-4", "p-1");
+        lockCon.id = "eventBut";
         if (typeof (data[i].restrict) === 'boolean') {
             if (data[i].restrict) {
                 lockButton.classList.add("btn", "btn-secondary");
@@ -69,17 +74,49 @@ function createCampaign(data) {
             }
 
         });
+        lockCon.appendChild(lockButton);
 
+        let manCon = document.createElement("div");
+        manCon.classList.add( "col-sm-4", "p-1");
         let eventMan = document.createElement("button");
-        eventMan.classList.add("btn", "btn-link", "me-2");
-        eventMan.textContent = "管理活動";
+        eventMan.classList.add("btn", "btn-link");
+        eventMan.id = "eventBut";
+        eventMan.textContent = "修改活動";
         eventMan.addEventListener('click', () => {
             localStorage.removeItem('eventID');
             localStorage.setItem('eventID', data[i].id);
             window.location.assign('/html/modifyEvent.html',);
         });
-        con.appendChild(eventMan);
-        con.appendChild(lockButton);
+        manCon.appendChild(eventMan);
+
+        let delCon = document.createElement("div");
+        delCon.classList.add( "col-sm-4", "p-1");
+        let delButton = document.createElement("button");
+        delButton.id = "eventBut";
+        delButton.classList.add("btn", "btn-outline-danger");
+        delButton.textContent = "刪除活動";
+        delButton.addEventListener('click', ()=>{
+            let result = confirm("確認刪除");
+            if(result){
+                $.ajax({
+                    url: "/events/" + data[i].id,
+                    type: "DELETE",
+                    headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                    success: function (response) {
+                        alert("刪除成功");
+                        location.reload();
+                    },
+                    error: function () {
+                        console.log("刪除活動失敗");
+                    }
+                });
+            }
+        })
+        delCon.appendChild(delButton)
+
+        con.appendChild(manCon);
+        con.appendChild(delCon);
+        con.appendChild(lockCon);
         campaign.appendChild(con);
         createList.appendChild(campaign);
     }

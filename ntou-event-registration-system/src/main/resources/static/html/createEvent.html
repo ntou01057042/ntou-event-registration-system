@@ -16,7 +16,7 @@
     <script src="../js/fetchSearchBar.js"></script>
     <script src="../js/createEvent.js"></script>
     <link href="../css/main.css" rel="stylesheet" type="text/css">
-    <link href="../css/eventManagementPage.css" rel="stylesheet" type="text/css">
+    <link href="../css/eventManagement.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -38,36 +38,36 @@
             <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
 
                 <div class="card m-3">
-                    <div class="card-header">
+                    <div class="card-header pt-3">
                         <h5 class="card-title">創建活動</h5>
                     </div>
                     <form class="card-body" id="Form">
                         <div class="form-outline mb-4">
-                            <label for="activityTitle">活動主題</label>
-                            <input type="text" id="title" name="title" class="form-control">
+                            <label for="title">活動主題</label>
+                            <input type="text" id="title" name="title" class="form-control" required>
                         </div>
 
                         <div class="form-outline mb-4">
                             <label for="activityCategory">活動分類</label>
-                            <select id="activityCategory" name="from" class="form-control">
+                            <select id="activityCategory" name="from" class="form-control" required>
                             </select>
                         </div>
                         <div class="form-outline mb-4">
-                            <label for="activityTime">活動開始時間</label>
-                            <input type="datetime-local" name="startTime" class="form-control">
+                            <label for="startTime">活動開始時間</label>
+                            <input type="datetime-local" name="startTime" class="form-control" id="startTime" required>
                         </div>
                         <div class="form-outline mb-4">
-                            <label for="activityTime">活動結束時間</label>
-                            <input type="datetime-local" name="endTime" class="form-control">
+                            <label for="endTime">活動結束時間</label>
+                            <input type="datetime-local" name="endTime" class="form-control" id="endTime" required>
                         </div>
                         <div class="form-outline mb-4">
                             <label for="activityLocation">活動地點</label>
-                            <input type="text" name="venue" class="form-control"/>
+                            <input type="text" name="venue" class="form-control" id="activityLocation" required>
                         </div>
                         <div class="form-group mb-4">
                             <label for="activityDescription">活動介紹</label>
                             <textarea id="activityDescription" name="describe" rows="4"
-                                      class="form-control"></textarea>
+                                      class="form-control" required></textarea>
                         </div>
                         <div class="text-center">
                             <input type="submit" value="提交" class="btn btn-primary" id="submitBtn"/>

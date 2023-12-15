@@ -46,6 +46,7 @@ function createMyEvent(response, regisID) {
     let createList = document.getElementById("myEvent");
     let event = document.createElement("a");
     event.classList.add("list-group-item", "list-group-item-action");
+    event.id = "list";
     let con = document.createElement("div");
     con.classList.add("container");
     let word = document.createElement("div");
