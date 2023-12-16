@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    //const eventId = localStorage.getItem("eventID");
     $.ajax({
         url: "/events/userEvent",
         type: "GET",
@@ -28,14 +29,22 @@ $(document).ready(function () {
                 "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")
             },
             success: function () {
-                console.log("成功：" + title);
+                console.log("成功：" + eventId);
                 alert("訊息傳送成功!");
+                window.location.href = `../html/SendMail.html`;
             },
             error: function (xhr, status, error) {
-                console.error("發生錯誤：" + error);
+                console.error("發生錯誤：" + eventId);
                 alert("訊息傳送失敗!");
+            },
+            complete: function () {
+                $("#loadingIndicator").hide();
+                $("#submitButton").show();
+                console.log("完成：" + eventId);
             }
         });
+        $("#submitButton").hide();
+        $("#loadingIndicator").show();
     });
 })
 function updateOptions(data) {

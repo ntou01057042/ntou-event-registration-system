@@ -1,7 +1,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
 
     <title>Log in</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -16,81 +16,81 @@
 </head>
 
 <body>
-    <div class="login">
-        <div class="login__content">
-            <div class="login__img">
-                <img src="../img/img-login.svg" alt="">
-            </div>
+<div class="login">
+    <div class="login__content">
+        <div class="login__img">
+            <img src="../img/img-login.svg" alt="">
+        </div>
 
-            <div class="login__forms">
-                <form action="" class="login__registre" id="login-in">
-                    <h1 class="login__title">Sign In</h1>
+        <div class="login__forms">
+            <form action="" class="login__registre" id="login-in">
+                <h1 class="login__title">Sign In</h1>
 
-                    <div class="login__box">
-                        <i class='bx bx-user login__icon'></i>
-                        <input type="email" placeholder="Username" name="username" class="login__input" required>
-                    </div>
+                <div class="login__box">
+                    <i class='bx bx-user login__icon'></i>
+                    <input type="email" placeholder="Username" name="username" class="login__input" required>
+                </div>
 
-                    <div class="login__box">
-                        <i class='bx bx-lock-alt login__icon'></i>
-                        <input type="password" placeholder="Password" name="password" class="login__input" required>
-                    </div>
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input type="password" placeholder="Password" name="password" class="login__input" required>
+                </div>
 
-                    <a href="homepage.html" class="login__forgot">back to homepage</a>
+                <a href="homepage.html" class="login__forgot">back to homepage</a>
 
-                    <button type="submit" class="login__button" style="text-decoration: none;">Sign In</button>
+                <button type="submit" class="login__button" style="text-decoration: none;">Sign In</button>
 
-                    <div>
-                        <span class="login__account">Don't have an Account ?</span>
-                        <span class="login__signin" id="sign-up">Sign Up</span>
-                    </div>
-                </form>
+                <div>
+                    <span class="login__account">Don't have an Account ?</span>
+                    <span class="login__signin" id="sign-up">Sign Up</span>
+                </div>
+            </form>
 
-                <form action="" class="login__create none" id="login-up">
-                    <h1 class="login__title">Create Account</h1>
-                    <select id="identity" name="identity" class="login__select">
-                        <option value="學生">學生</option>
-                        <option value="教職員">教職員</option>
-                        <option value="行政人員">行政人員</option>
+            <form action="" class="login__create none" id="login-up">
+                <h1 class="login__title">Create Account</h1>
+                <select id="identity" name="identity" class="login__select">
+                    <option value="學生">學生</option>
+                    <option value="教職員">教職員</option>
+                    <option value="行政人員">行政人員</option>
+                </select>
+                <!--選擇單位-->
+                <div>
+                    <select name="organization" id="organization" class="login__select">
                     </select>
-                    <!--選擇單位-->
-                    <div>
-                        <select name="organization" id="organization" class="login__select">
-                        </select>
-                    </div>
-                    <div class="login__box">
-                        <i class='bx bx-user login__icon'></i>
-                        <input type="text" placeholder="name" name="name" class="login__input" required>
-                    </div>
-                    <div class="login__box">
-                        <i class='bx bx-lock-alt login__icon'></i>
-                        <input type="password" placeholder="Password" name="password" class="login__input" required>
-                    </div>
-                    <div class="login__box">
-                        <i class='bx bx-lock-alt login__icon'></i>
-                        <input type="password" placeholder="CheckPassword" name="confirmPassword" class="login__input"
-                            required>
-                    </div>
-                    <div class="login__box">
-                        <i class='bx bx-at login__icon'></i>
-                        <input type="email" placeholder="School Email" name="email" class="login__input" required>
-                    </div>
+                </div>
+                <div class="login__box">
+                    <i class='bx bx-user login__icon'></i>
+                    <input type="text" placeholder="name" name="name" class="login__input" required>
+                </div>
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input type="password" placeholder="Password" name="password" class="login__input" required>
+                </div>
+                <div class="login__box">
+                    <i class='bx bx-lock-alt login__icon'></i>
+                    <input type="password" placeholder="CheckPassword" name="confirmPassword" class="login__input"
+                           required>
+                </div>
+                <div class="login__box">
+                    <i class='bx bx-at login__icon'></i>
+                    <input type="email" placeholder="School Email" name="email" class="login__input" required>
+                </div>
 
-                    <button type="submit" class="login__button">Sign Up</button>
+                <button type="submit" class="login__button">Sign Up</button>
 
-                    <div>
-                        <span class="login__account">Already have an Account ?</span>
-                        <span class="login__signup" id="sign-in">Sign In</span>
-                    </div>
+                <div>
+                    <span class="login__account">Already have an Account ?</span>
+                    <span class="login__signup" id="sign-in">Sign In</span>
+                </div>
 
 
-                </form>
-            </div>
+            </form>
         </div>
     </div>
+</div>
 
-    <!--===== MAIN JS =====-->
-    <script src="../js/main.js"></script>
+<!--===== MAIN JS =====-->
+<script src="../js/main.js"></script>
 </body>
 
 </html>
