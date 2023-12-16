@@ -35,4 +35,9 @@ public class CommentController {
     public ResponseEntity<List<Comment>> getReport(){
         return ResponseEntity.ok(service.getReport());
     }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteComment(@PathVariable String id){
+        service.deleteComment(id);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+    }
 }
