@@ -34,8 +34,15 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 console.error("發生錯誤：" + eventId);
                 alert("訊息傳送失敗!");
+            },
+            complete: function () {
+                $("#loadingIndicator").hide();
+                $("#submitButton").show();
+                console.log("完成：" + eventId);
             }
         });
+        $("#submitButton").hide();
+        $("#loadingIndicator").show();
     });
 })
 function updateOptions(data) {

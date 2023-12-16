@@ -58,8 +58,12 @@
                                 <textarea id="message" rows="6" class="form-control"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary" id="submitButton">提交</button>
+                                <div class="d-flex align-items-center flex-column">
+                                    <button class="btn btn-primary" id="submitButton">提交</button>
+                                    <div id="loadingIndicator" class="loader" style="display: none;"></div>
+                                </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

@@ -36,7 +36,7 @@
                 </div>
                 <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
 
-                    <div class="card m-3" style="height: 500px;">
+                    <div class="card m-3">
                         <button onclick="window.history.back()" class="mt-2"
                             style="border:none;background: transparent;width:150px">
                             <img src="../img/arrow-small-left.svg" alt="Back Icon" width="16" height="16">
@@ -57,10 +57,13 @@
                             </div>
                             <div class="form-group mb-4">
                                 <label>Email 訊息</label>
-                                <textarea id="message" rows="6" class="form-control"></textarea>
+                                <textarea id="message" rows="5" class="form-control"></textarea>
                             </div>
                             <div class="text-center">
-                                <button class="btn btn-primary" id="submitButton">提交</button>
+                                <div class="d-flex align-items-center flex-column">
+                                    <button class="btn btn-primary" id="submitButton">提交</button>
+                                    <div id="loadingIndicator" class="loader" style="display: none;"></div>
+                                </div>
                             </div>
                         </form>
                     </div>
