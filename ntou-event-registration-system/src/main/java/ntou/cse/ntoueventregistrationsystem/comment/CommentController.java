@@ -27,4 +27,12 @@ public class CommentController {
         service.createComment(comment);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
+    @PostMapping("/{id}")
+    public void reportComment(@PathVariable String id){
+        service.prosecuteComment(id);
+    }
+    @GetMapping
+    public ResponseEntity<List<Comment>> getReport(){
+        return ResponseEntity.ok(service.getReport());
+    }
 }
