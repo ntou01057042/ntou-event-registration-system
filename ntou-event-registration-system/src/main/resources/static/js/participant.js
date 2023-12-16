@@ -41,7 +41,7 @@ $(document).ready(function () {
     $('#eventList').change(function () {
 
         let eventId = $(this).val();
-        if (eventId != "請選擇一個活動") {
+        if (eventId !== "請選擇一個活動") {
             $.ajax({
                 url: "/registrations/" + eventId,
                 type: "GET",
@@ -81,18 +81,18 @@ $(document).ready(function () {
 })
 
 function exportToExcel(data) {
-    var filteredData = data.map(function (item) {
+    const filteredData = data.map(function (item) {
         return {
             name: item.name,
-            studentID: item.studentID,
+            email: item.email,
             phoneNumber: item.phoneNumber,
-            email: item.email
+            notes: item.notes
         };
     });
 
-    var worksheet = XLSX.utils.json_to_sheet(filteredData);
-    var workbook = XLSX.utils.book_new();
+    const worksheet = XLSX.utils.json_to_sheet(filteredData);
+    const workbook = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(workbook, worksheet, "Participants");
-    let file = "okok" + ".xlsx";
+    let file = "participants.xlsx";
     XLSX.writeFile(workbook, file);
 }
