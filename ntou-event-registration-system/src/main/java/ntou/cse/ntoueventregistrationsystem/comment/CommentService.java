@@ -30,4 +30,7 @@ public class CommentService {
     public List<Comment> getReport(){
         return repository.findAll(Sort.by(Sort.Order.desc("report")));
     }
+    public void deleteComment(String id){
+        repository.deleteById(id);
+    }
 }
