@@ -6,8 +6,12 @@ $(document).ready(function () {
         success: function (response) {
             MyEvent(response);
         },
-        error: function () {
-            console.log("取得報名失敗!");
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'user.html');
+                window.location.assign("/html/login.html");
+            }
         }
     });
 })
@@ -21,8 +25,12 @@ function cancelRegistration(registrationId) {
             alert("取消報名成功!");
             location.reload();
         },
-        error: function () {
-            console.log("取消報名活動失敗");
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'user.html');
+                window.location.assign("/html/login.html");
+            }
         }
     })
 }
@@ -66,7 +74,7 @@ function createMyEvent(response, regisID) {
     }
     cancelButton.addEventListener("click", function () {
         let clickedButtonId = this.getAttribute("id");
-        if (clickedButtonId != "lock") {
+        if (clickedButtonId !== "lock") {
             let confirmation = confirm("確定取消報名？");
             if (confirmation) {
                 console.log("取消報名 clicked. Button ID: ", clickedButtonId);

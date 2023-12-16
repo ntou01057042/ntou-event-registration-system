@@ -49,8 +49,14 @@ $(document).ready(function () {
                 success: function (data) {
                     participantsData = data;
                     createParticipant(data);
+                },
+                error: function(jqXHR, textStatus, errorThrow) {
+                    if (jqXHR.responseText === 'Expired JWT!') {
+                        alert('驗證已過期，請重新登入！');
+                        localStorage.setItem('redirect', 'participant.html');
+                        window.location.assign("/html/login.html");
+                    }
                 }
-
             });
         }
         else {
@@ -71,8 +77,13 @@ $(document).ready(function () {
                 option.text = data[i].title;
                 selectElement.appendChild(option);
             }
-        }, error: function () {
-            console.log("取得已創建活動失敗");
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'participant.html');
+                window.location.assign("/html/login.html");
+            }
         }
     })
     document.getElementById('exportButton').addEventListener('click', function () {

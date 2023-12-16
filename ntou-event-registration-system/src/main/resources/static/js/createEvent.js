@@ -30,6 +30,13 @@ $(document).ready(function () {
                 console.log("成功：" + JSON.stringify(obj));
                 window.alert("創建成功");
                 window.location.assign("/html/eventManagement.html");
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'createEvent.html');
+                    window.location.assign("/html/login.html");
+                }
             }
         });
     });
