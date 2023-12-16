@@ -17,7 +17,8 @@
     <script src="../js/fetchUserMenu.js"></script>
     <script src="../js/fetchSearchBar.js"></script>
     <link href="../css/main.css" rel="stylesheet" type="text/css">
-    <link href="../css/eventManagementPage.css" rel="stylesheet" type="text/css">
+    <link href="../css/user.css" rel="stylesheet" type="text/css">
+
 </head>
 
 <body>
@@ -36,31 +37,25 @@
 
                 </div>
                 <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-                    <div class="card m-3">
-                        <div class="card-header">
-                            <h5 class="card-title">我的活動</h5>
+                    <div>
+                        <div class="list-group m-3" id="myEvent">
+                            <h5>已報名</h5>
                         </div>
-                        <div class="card-body" style="height:500px">
-                            <div>
-                                已報名
-                                <div class="list-group mt-2 mb-2" id="myEvent">
-                                </div>
-                            </div>
-                            <div>
-                                已結束
-                                <div class="list-group mt-2 mb-2">
-                                </div>
-                            </div>
+                    </div>
+                    <div>
+                        <div class="list-group m-3">
+                            <h5>已結束</h5>
                         </div>
+                    </div>
 
-                    </div>
-                    <div class="space col-0 col-sm-1  d-none d-sm-block">
-                    </div>
+                </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block">
                 </div>
             </div>
-
-
         </div>
+
+
+    </div>
 
 
 </body>

@@ -40,7 +40,8 @@ public class EventController {
     @PutMapping
     public ResponseEntity<Void> putEvent(@RequestBody Event event,
             @AuthenticationPrincipal CustomUserDetails userDetails) {
-        if (userDetails.getId().equals(event.getCreatorId())) {
+        if (userDetails.getId().equals(service.getEventBy(event.getId()).getCreatorId())) {
+            event.setCreatorId(userDetails.getId());
             service.updateEvent(event);
             return ResponseEntity.ok().build();
         } else {

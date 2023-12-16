@@ -40,14 +40,17 @@ $(document).ready(function () {
         $.ajax({
             contentType: "application/json",
             data: JSON.stringify(obj),
+            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+            type: "POST",
+            url: "/registrations/" + id,
             success: function () {
                 console.log("成功：" + id + " " + JSON.stringify(obj));
-            },
-            type: "POST",
-            url: "/events/register?id=" + id
+                window.alert("報名成功");
+                window.location.href = "/html/homepage.html";
+            }
         });
-        window.alert("報名成功");
-        window.location.href = "/html/homepage.html";
+
+
     });
 
 });

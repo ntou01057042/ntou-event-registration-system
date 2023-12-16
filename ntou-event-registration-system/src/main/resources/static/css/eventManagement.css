@@ -1,0 +1,95 @@
+a {
+    text-decoration: none;
+    text-align: center;
+}
+
+.remaining-space {
+    height: calc(1024px - 56px);
+}
+
+* {
+    font-family: "微軟正黑體";
+    box-sizing: border-box;
+}
+
+body{
+    display: flex;
+    place-items: center;
+    background-image: url("../img/background.svg");
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.navbar{
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+
+.space{
+    border-style: none;
+    margin: 0;
+}
+
+.navbar{
+
+}
+
+.menu{
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    border-style: none;
+    margin: 0;
+}
+
+.card{
+    border-radius: 30px;
+    border-style: none;
+    --bs-card-cap-bg: rgba(0, 0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.6);
+    box-sizing: border-box;
+}
+
+
+.card-title{
+
+}
+
+.card-text{
+    font-size: small;
+    height: 40px;
+}
+
+#submitBtn{
+    border-radius: 30px;
+    background-color: rgb(74, 110, 190);
+    border:none;
+    transition: transform 0.3s, background 0.3s;
+    height: 50px;
+    width: 100px;
+    text-align: center;
+}
+
+#submitBtn:hover{
+    background-color: rgb(45, 73, 131);
+}
+
+#list{
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+}
+
+#butRow{
+    margin-left: auto;
+}
+
+#word{
+    width: 300px;
+}

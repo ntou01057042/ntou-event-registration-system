@@ -58,6 +58,7 @@ function loading() {
 
         $.ajax({
             contentType: "application/json",
+            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
             data: JSON.stringify({
                 "eventId": id,
                 "text": comment
@@ -110,6 +111,7 @@ function loadComment() {
     $.ajax({
         url: "/comments/" + id,
         type: "GET",
+        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
             console.log(data);
             let commentArea = document.getElementById("comments");

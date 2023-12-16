@@ -24,14 +24,14 @@ $(document).ready(function () {
             url: "/auth/login"
         });
     });
-    updateOptions("../file/department.json");
+    updateOptions("/json/department.json");
     $('#identity').change(function () {
         let identity = $(this).val();
         let dataUrl = '';
         if (identity === '學生' || identity === '教職員') {
-            dataUrl = "../file/department.json";
+            dataUrl = "/json/department.json";
         } else if (identity === '行政人員') {
-            dataUrl = "../file/office.json";
+            dataUrl = "/json/office.json";
         }
         updateOptions(dataUrl);
     });

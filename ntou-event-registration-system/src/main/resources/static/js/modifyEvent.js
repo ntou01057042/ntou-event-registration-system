@@ -55,16 +55,23 @@ $(document).ready(function () {
         const obj = Object.fromEntries(formData.entries());
         obj['id'] = localStorage.getItem("eventID");
         console.log(obj);
-
-        $.ajax({
-            contentType: "application/json",
-            data: JSON.stringify(obj),
-            success: function () {
-                console.log("成功：" + JSON.stringify(obj));
-            },
-            type: "PUT",
-            url: "/events"
-        });
+        let result = confirm("確認更改");
+        if(result){
+            $.ajax({
+                url: "/events",
+                type: "PUT",
+                contentType: "application/json",
+                data: JSON.stringify(obj),
+                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                success: function (response) {
+                    alert("修改成功");
+                    window.location.assign('/html/eventManagement.html',);
+                },
+                error: function () {
+                    console.log("刪除修改失敗");
+                }
+            });
+        }
     });
 
 });
