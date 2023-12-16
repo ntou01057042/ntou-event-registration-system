@@ -15,7 +15,7 @@
   },
   "authority": "ADVANCED",
   "password": "$2a$10$Ycuc7aQDf7WUj4WoZo4sHOAquaQ0.s2CYJiBvwNgKqAUKE0fePZ6e",
-  "email": "01057014@email.ntou.edu.tw",
+  "email": "01057014@mail.ntou.edu.tw",
   "enabled": true,
   "name": "洪淵傳",
   "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
@@ -26,7 +26,7 @@
   },
   "authority": "ADVANCED",
   "password": "$2a$10$J.rDFaVWdqOY6omvHTb2dOQxe4taMHFpDW86UCjn..79YzVBwYvUO",
-  "email": "01057020@email.ntou.edu.tw",
+  "email": "01057020@mail.ntou.edu.tw",
   "enabled": true,
   "name": "林佑丞",
   "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
@@ -37,7 +37,7 @@
   },
   "authority": "ADVANCED",
   "password": "$2a$10$HY.vCcY1xgcKgD/GGoPxO.sPbVXD9P6Ve1Y4aXRF83f.wDpVO07sm",
-  "email": "01057051@email.ntou.edu.tw",
+  "email": "01057051@mail.ntou.edu.tw",
   "enabled": true,
   "name": "陳俞君",
   "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
@@ -48,7 +48,7 @@
   },
   "authority": "ADVANCED",
   "password": "$2a$10$Em/AnKEyanufWqsgVUPiVuConvYO6LGIWhi3ta2XD7zEMFkM./b4e",
-  "email": "01057055@email.ntou.edu.tw",
+  "email": "01057055@mail.ntou.edu.tw",
   "enabled": true,
   "name": "宋威儀",
   "_class": "ntou.cse.ntoueventregistrationsystem.user.AppUser"
