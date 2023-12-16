@@ -13,7 +13,11 @@ $(document).ready(function () {
                 sessionStorage.setItem('email', data.username);
                 sessionStorage.setItem('name', data.name);
                 sessionStorage.setItem('authority', data.authority);
-                window.location.assign('homepage.html',);
+                if (localStorage.getItem('redirect')) {
+                    window.location.assign(localStorage.getItem('redirect'));
+                } else {
+                    window.location.assign('homepage.html');
+                }
             },
             error: function (xhr) {
                 if (xhr.status === 403) {
