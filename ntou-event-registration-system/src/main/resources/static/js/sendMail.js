@@ -31,6 +31,7 @@ $(document).ready(function () {
             success: function () {
                 console.log("成功：" + eventId);
                 alert("訊息傳送成功!");
+                window.location.href = `../html/SendMail.html`;
             },
             error: function (xhr, status, error) {
                 console.error("發生錯誤：" + eventId);
