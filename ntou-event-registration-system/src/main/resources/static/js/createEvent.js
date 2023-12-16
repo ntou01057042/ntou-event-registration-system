@@ -32,9 +32,11 @@ $(document).ready(function () {
                 window.location.assign("/html/eventManagement.html");
             },
             error: function(jqXHR, textStatus, errorThrow) {
-                alert('驗證已過期，請重新登入！');
-                localStorage.setItem('redirect', 'createEvent.html');
-                window.location.assign("/html/login.html");
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'createEvent.html');
+                    window.location.assign("/html/login.html");
+                }
             }
         });
     });

@@ -67,6 +67,13 @@ function loading() {
                 // console.log("成功：" + JSON.stringify(obj));
                 loadComment();
             },
+            error: function(jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', `eventDetail.html?id=${id}`);
+                    window.location.assign("/html/login.html");
+                }
+            },
             type: "POST",
             url: "/comments"
         });
@@ -111,7 +118,6 @@ function loadComment() {
     $.ajax({
         url: "/comments/" + id,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
             console.log(data);
             let commentArea = document.getElementById("comments");
