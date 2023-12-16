@@ -21,13 +21,16 @@ $(document).ready(function () {
         const obj = Object.fromEntries(formData.entries());
 
         $.ajax({
+            url: "/events",
+            type: "POST",
             contentType: "application/json",
             data: JSON.stringify(obj),
+            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
             success: function () {
                 console.log("成功：" + JSON.stringify(obj));
-            },
-            type: "POST",
-            url: "/events"
+                window.alert("創建成功");
+                window.location.assign("/html/eventManagement.html");
+            }
         });
     });
 
