@@ -4,7 +4,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
     <!-- SheetJS 函式庫 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
@@ -21,42 +21,96 @@
 </head>
 
 <body>
-<!-- Navbar -->
-<div class="container-fluid p-0 m-0">
-    <div id="navbar"></div>
-    <div class="container-fluid">
-        <div class="row remaining-space">
-            <div class="space col-0 col-lg-1 d-none d-lg-block"></div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu"></div>
-            <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-                <div class="card m-3">
-                    <div class="card-header">
-                        <h5 class="card-title">參加者管理</h5>
-                    </div>
-                    <div class="card-body mb-4">
-                        <div class="list-group mt-2 mb-2">
-                            <div class="container">
-                                <select class="form-select" id="eventList" aria-label="Default select example">
-                                    <option selected>選擇一個活動</option>
-                                </select>
+    <!-- Navbar -->
+    <div class="container-fluid p-0 m-0">
+        <div id="navbar"></div>
+        <div class="container-fluid">
+            <div class="row remaining-space">
+                <div class="space col-0 col-lg-1 d-none d-lg-block"></div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu"></div>
+                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
+                    <div class="card m-3">
+                        <div class="card-header">
+                            <h5 class="card-title">參加者管理</h5>
+                        </div>
+                        <div class="card-body mb-4">
+                            <div class="list-group mt-2 mb-2">
+                                <div class="container">
+                                    <select class="form-select" id="eventList" aria-label="Default select example">
+                                        <option selected>選擇一個活動</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="btn-group d-flex flex-wrap justify-content-center py-3 mb-4" role="group">
-                            <a class="btn btn-outline-primary" id="exportButton">資料匯出</a>
-                            <a href="./SendMail.html" class="btn btn-outline-primary">寄信邀請</a>
-                            <a href="./Real-timeNotifications.html" class="btn btn-outline-primary">即時通知</a>
-                        </div>
-                        <div class="">
-                            參加者名單
-                            <div class="list-group mt-2 mb-2" id="createList"
-                                 style="height: 350px; overflow: auto;"></div>
+                            <div class="btn-group d-flex flex-wrap justify-content-center py-3 mb-4" role="group">
+                                <a class="btn btn-outline-primary" id="exportButton">資料匯出</a>
+                                <a href="./SendMail.html" class="btn btn-outline-primary">寄信邀請</a>
+                                <a href="./Real-timeNotifications.html" class="btn btn-outline-primary">即時通知</a>
+                            </div>
+                            <div class="">
+                                參加者名單
+                                <button type="button" class="btn btn-primary" id="rollstbtn" data-bs-toggle="modal"
+                                    data-bs-target="#rollCallModal" style="float:right;display:none;">開始點名</button>
+                                <button type="button" class="btn btn-primary" id="rollendbtn" data-bs-toggle="modal"
+                                    data-bs-target="#rollCallModalrec" style="float:right;display:none;">點名紀錄</button>
+                                <!-- Modal -->
+                                <div class="modal fade" id="rollCallModal" tabindex="-1"
+                                    aria-labelledby="rollCallModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="rollCallModalLabel">選擇點名時間</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <form>
+                                                    <div class="mb-3">
+                                                        <label for="rollCallTime" class="form-label">選擇時間（1-10
+                                                            分鐘）:</label>
+                                                        <input type="number" class="form-control" id="rollCallTime"
+                                                            min="1" max="10" required>
+                                                    </div>
+                                                    <!-- Add more form fields as needed -->
+                                                    <input type="text" class="form-control mb-4" id="rollCallEndTime"
+                                                        readonly>
+                                                    <input type="text" class="form-control mb-4" id="password" readonly>
+                                                    <input type="text" class="form-control mb-4" id="rollCallTimeCount"
+                                                        readonly>
+                                                    <button type="button" class="btn btn-primary"
+                                                        id="startRollCall">開始點名</button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal fade" id="rollCallModalrec" tabindex="-1"
+                                    aria-labelledby="rollCallModalrecLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="rollCallModalrecLabel">點名紀錄</h5>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="mb-3">
+                                                    <input type="text" class="form-control mb-4" id="rollCallEndTimerec"
+                                                        readonly>
+                                                    <input type="text" class="form-control mb-4" id="passwordrec"
+                                                        readonly>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-group mt-2 mb-2" id="createList"
+                                    style="height: 350px; overflow: auto;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block"></div>
             </div>
-            <div class="space col-0 col-sm-1  d-none d-sm-block"></div>
         </div>
     </div>
-</div>
 </body>
+
 </html>
