@@ -34,6 +34,7 @@ function createParticipant(data) {
     }
 }
 function rollcallState(num, endtime) {
+    console.log(num);
     // set event rollcall
     if (num == 0) { // start rollcall
         document.getElementById('rollstbtn').style.display = 'block';
@@ -60,7 +61,7 @@ function setRollcallRec(eventId) {
         headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
             console.log(data);
-            rollcallState(data.rollcall, data.rollCallEndTime);
+            rollcallState(data.rollcall, data.rollcallEndTime);
         },
         error: function () {
             // rollcallState(0, endTime);
@@ -149,23 +150,25 @@ $(document).ready(function () {
                 headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                 success: function () {
                     console.log("新增點名success");
+                    $.ajax({
+                        url: "/events/" + eventId,
+                        type: "GET",
+                        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                        success: function (data) {
+                            document.getElementById('password').value = data.rollcall;
+                            console.log("success");
+                        },
+                        error: function () {
+                            console.log("師辦了");
+                        }
+                    })
                 },
                 error: function () {
                     console.log("新增點名失敗");
                 }
             })
             // set random number
-            $.ajax({
-                url: "/events/" + eventId,
-                type: "GET",
-                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
-                success: function (data) {
-                    document.getElementById('password').value = data.rollcall;
-                },
-                error: function () {
-                    console.log("獲取活動password失敗");
-                }
-            })
+
             let countdownInterval = setInterval(function () {
                 document.getElementById('rollCallTimeCount').value = '倒數時間：' + countdown + ' 秒';
                 countdown--;
@@ -178,8 +181,7 @@ $(document).ready(function () {
         $('#rollCallModal').on('hidden.bs.modal', function () {
             document.getElementById('rollstbtn').style.display = 'none';
             document.getElementById('rollendbtn').style.display = "block";
-            console.log("關閉視窗");
-            setRollcallRec2(eventId)
+            setRollcallRec(eventId)
         });
 
     });
