@@ -53,11 +53,14 @@
                                         <div class="modal-body">
                                             <form>
                                                 <div class="mb-3">
-                                                    <label for="inputText" class="form-label">number Input</label>
-                                                    <input type="text" class="form-control" id="rollcallNum">
+                                                    <label for="inputText" class="form-label">輸入四位數字點名</label>
+                                                    <input type="text" class="form-control" id="rollcallNum"
+                                                        maxlength="4" pattern="\d{4}">
                                                 </div>
-                                                <button type="submit" class="btn btn-primary"
-                                                    id="ModalSubmit">Submit</button>
+                                                <div class="text-center">
+                                                    <button type="submit" class="btn btn-primary"
+                                                        id="ModalSubmit">Submit</button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
