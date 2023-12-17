@@ -1,6 +1,5 @@
 package ntou.cse.ntoueventregistrationsystem.auth;
 
-import ntou.cse.ntoueventregistrationsystem.auth.JwtAuthenticationFilter;
 import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,6 +41,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/email").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("GENERAL")
+                        .requestMatchers(HttpMethod.POST, "/requests").hasAnyAuthority("GENERAL")
+                        .requestMatchers(HttpMethod.GET, "/requests/all").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/requests/?*").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )
