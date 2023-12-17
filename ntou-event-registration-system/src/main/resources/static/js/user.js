@@ -39,8 +39,9 @@ function MyEvent(data) {
         $.ajax({
             url: "/events/" + data[i].eventId,
             type: "GET",
+            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
             success: function (response) {
-                createMyEvent(response, data[i].id);
+                createMyEvent(response, data[i].id, data[i].eventId, data[i].attendance);
             },
             error: function () {
                 alert("尋找活動失敗!");
@@ -48,7 +49,7 @@ function MyEvent(data) {
         });
     }
 }
-function createMyEvent(response, regisID) {
+function createMyEvent(response, regisID, eventId, attendance) {
     let createList = document.getElementById("myEvent");
     let event = document.createElement("a");
     event.classList.add("list-group-item", "list-group-item-action");
@@ -58,23 +59,64 @@ function createMyEvent(response, regisID) {
     let word = document.createElement("div");
     word.classList.add("d-flex", "col", "align-items-center");
     word.textContent = response.title;
-    let rollcall = document.createElement("button");
-    rollcall.classList.add("btn", "btn-danger");
-    rollcall.style.float = "right";
-    rollcall.textContent = "點名";
-    rollcall.setAttribute("data-regisid", regisID);
-    rollcall.addEventListener("click", function () {
-        let myModal = new bootstrap.Modal(document.getElementById('number-rollcall'));
-        let regisID = rollcall.getAttribute('data-regisid');
-        myModal.show();
-        console.log(regisID)
-        document.getElementById('ModalSubmit').addEventListener("click", function (event) {
-            console.log("Submitted with regisID:", regisID);
-            myModal.hide();
-        });
-    });
+    con.appendChild(word);
+    // if event have rollcall? display btn:none
+    let rollcallstate = 0;
+    let givenTime = "2023-12-18T05:58:06.904+00:00";
+    $.ajax({
+        url: "/events/" + eventId,
+        type: "GET",
+        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        success: function (data) {
+            rollcallstate = data.rollcall;
+            givenTime = data.rollcallEndTime;
+            var rollcalldate = new Date(givenTime);
+            var currentTime = new Date();
+            if (rollcalldate > currentTime && rollcallstate != 0 && attendance == false) {
+                let rollcall = document.createElement("button");
+                rollcall.classList.add("btn", "btn-danger");
+                rollcall.style.float = "right";
+                rollcall.textContent = "點名";
+                rollcall.setAttribute("data-regisid", regisID);
+                rollcall.setAttribute("rc-dateTime", rollcalldate);
+                rollcall.setAttribute("rc-state", rollcallstate);
+                rollcall.addEventListener("click", function () {
+                    let myModal = new bootstrap.Modal(document.getElementById('number-rollcall'));
+                    let regisID = rollcall.getAttribute('data-regisid');
+                    let state = rollcall.getAttribute('rc-state');
+                    myModal.show();
+                    console.log(regisID);
+                    console.log(state)
+                    document.getElementById('ModalSubmit').addEventListener("click", function (event) {
+                        event.preventDefault();
+                        let input = document.getElementById('rollcallNum').value;
+                        if (state == input) {
+                            $.ajax({
+                                url: "/registrations/attend/" + regisID,
+                                type: "POST",
+                                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                                success: function () {
+                                    alert("點名成功");
+                                    window.location.assign('/html/user.html',);
+                                },
+                                error: function () {
+                                    console.log("點名傳送失敗");
+                                }
+                            })
+                            myModal.hide();
+                        } else {
+                            alert("error input");
+                        }
+
+                    });
+                });
+                con.appendChild(rollcall);
+            }
+        }
+    })
+
     let cancelButton = document.createElement("button");
-    cancelButton.classList.add("btn", "btn-danger");
+    cancelButton.classList.add("btn", "btn-danger", "me-2");
     cancelButton.style.float = "right";
     cancelButton.textContent = "取消報名";
     cancelButton.setAttribute("id", regisID);
@@ -98,8 +140,7 @@ function createMyEvent(response, regisID) {
         }
 
     });
-    con.appendChild(word);
-    con.appendChild(rollcall);
+
     con.appendChild(cancelButton);
     event.appendChild(con);
     createList.appendChild(event);

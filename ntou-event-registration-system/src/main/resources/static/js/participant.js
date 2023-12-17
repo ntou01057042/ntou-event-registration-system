@@ -134,7 +134,7 @@ $(document).ready(function () {
             // delete start button
             document.getElementById('startRollCall').style.display = "none";
             let startTime = new Date();
-            let endTime = new Date(startTime.getTime() + rollCallTime * 60 * 1000);
+            let endTime = new Date(startTime.getTime() + rollCallTime * 600 * 1000);
             const options = {
                 weekday: "long",
                 year: "numeric",
@@ -163,9 +163,6 @@ $(document).ready(function () {
                         success: function (data) {
                             document.getElementById('password').value = data.rollcall;
                             console.log("success");
-                        },
-                        error: function () {
-                            console.log("師辦了");
                         }
                     })
                 },
