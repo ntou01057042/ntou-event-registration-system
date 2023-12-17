@@ -36,10 +36,6 @@ public class RequestService {
         return repository.findAll();
     }
 
-    public boolean existsById(String id) {
-        return repository.existsById(id);
-    }
-
     public boolean updateRequest(String id, boolean approved) {
         Optional<Request> request = repository.findById(id);
         if (request.isPresent()) {
