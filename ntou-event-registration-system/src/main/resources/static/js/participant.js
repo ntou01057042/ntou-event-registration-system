@@ -13,20 +13,38 @@ function createParticipant(data) {
         let word = document.createElement("div");
         word.classList.add("d-flex", "col", "align-items-center");
         word.textContent = data[i].name;
+        con.appendChild(word);
         let blackButton = document.createElement("button");
         blackButton.classList.add("btn", "btn-danger");
         blackButton.style.float = "right";
         blackButton.textContent = "新增黑名單";
+
+        if (thisRollState != 0) {
+            let Image = document.createElement("img");
+
+            Image.height = 25;
+            Image.alt = "logout";
+            Image.loading = "lazy";
+            if (data[i].attendance == false) {
+                Image.src = "/img/denial.png";
+            }
+            else {
+                Image.src = "/img/chosen.png";
+
+            }
+            Image.style.marginTop = "auto";
+            Image.style.marginBottom = "auto";
+            con.appendChild(Image);
+        }
 
         let pinfo = document.createElement("button");
         pinfo.classList.add("btn", "btn-link", "me-2");
         pinfo.textContent = "詳細資訊";
         pinfo.addEventListener('click', () => {
             localStorage.removeItem('eventID');
-            localStorage.setItem('eventID', data[i].id);
-            // window.location.assign('/html/modifyEvent.html',);
+            localStorage.setItem('eventID', data[i].id); //報名id
         });
-        con.appendChild(word);
+
         con.appendChild(pinfo);
         con.appendChild(blackButton);
         participant.appendChild(con);
@@ -36,7 +54,15 @@ function createParticipant(data) {
 function rollcallState(num, endtime) {
     // set event rollcall
     if (num == 0) { // start rollcall
-        document.getElementById('rollstbtn').style.display = 'block';
+        let btngroupElement = document.getElementById('btngroup');
+        let rollstbtn = document.createElement('button');
+        rollstbtn.type = 'button';
+        rollstbtn.className = 'btn btn-outline-primary';
+        rollstbtn.id = 'rollstbtn';
+        rollstbtn.dataset.bsToggle = 'modal';
+        rollstbtn.dataset.bsTarget = '#rollCallModal';
+        rollstbtn.textContent = '開始點名';
+        btngroupElement.appendChild(rollstbtn);
     }
     else { //display rollcall record
         let endTime = new Date(endtime);
@@ -48,11 +74,20 @@ function rollcallState(num, endtime) {
             hour: "2-digit",
             minute: "2-digit"
         };
-        document.getElementById('rollendbtn').style.display = "block";
+        let btngroupElement = document.getElementById('btngroup');
+        let rollendbtn = document.createElement('button');
+        rollendbtn.type = 'button';
+        rollendbtn.className = 'btn btn-outline-primary';
+        rollendbtn.id = 'rollendbtn';
+        rollendbtn.dataset.bsToggle = 'modal';
+        rollendbtn.dataset.bsTarget = '#rollCallModalrec';
+        rollendbtn.textContent = '點名紀錄';
+        btngroupElement.appendChild(rollendbtn);
         document.getElementById('passwordrec').value = num;
         document.getElementById('rollCallEndTimerec').value = '結束時間：' + endTime.toLocaleString(undefined, options);
     }
 }
+let thisRollState;
 function setRollcallRec(eventId) {
     $.ajax({
         url: "/events/" + eventId,
@@ -60,6 +95,8 @@ function setRollcallRec(eventId) {
         headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
             rollcallState(data.rollcall, data.rollcallEndTime);
+            thisRollState = data.rollcall;
+            createList(eventId);//participant
         },
         error: function () {
             // rollcallState(0, endTime);
@@ -110,9 +147,18 @@ $(document).ready(function () {
     })
     $('#eventList').change(function () {
         eventId = $(this).val();
+        let rollendbtn = document.getElementById('rollendbtn');
+        let rollstbtn = document.getElementById('rollstbtn');
+
+        if (rollendbtn) {
+            rollendbtn.remove();
+        }
+
+        if (rollstbtn) {
+            rollstbtn.remove();
+        }
         if (eventId != "選擇一個活動") {
             setRollcallRec(eventId); //報名database
-            createList(eventId);//participant
             document.getElementById('exportButton').style.display = 'block';
             document.getElementById('sendMailLink').style.display = 'block';
             document.getElementById('realTimeNotificationsLink').style.display = 'block';
@@ -120,8 +166,6 @@ $(document).ready(function () {
         else {
             let createList = document.getElementById("createList");
             createList.innerHTML = "";
-            document.getElementById('rollstbtn').style.display = "none";
-            document.getElementById('rollendbtn').style.display = "none";
             document.getElementById('exportButton').style.display = "none";
             document.getElementById('sendMailLink').style.display = "none";
             document.getElementById('realTimeNotificationsLink').style.display = "none";
@@ -134,7 +178,7 @@ $(document).ready(function () {
             // delete start button
             document.getElementById('startRollCall').style.display = "none";
             let startTime = new Date();
-            let endTime = new Date(startTime.getTime() + rollCallTime * 600 * 1000);
+            let endTime = new Date(startTime.getTime() + rollCallTime * 60 * 1000);
             const options = {
                 weekday: "long",
                 year: "numeric",
@@ -181,8 +225,8 @@ $(document).ready(function () {
             }, 1000);
         });
         $('#rollCallModal').on('hidden.bs.modal', function () {
-            document.getElementById('rollstbtn').style.display = 'none';
-            document.getElementById('rollendbtn').style.display = "block";
+            let rollstbtn = document.getElementById('rollstbtn');
+            rollstbtn.remove();
             setRollcallRec(eventId)
         });
 

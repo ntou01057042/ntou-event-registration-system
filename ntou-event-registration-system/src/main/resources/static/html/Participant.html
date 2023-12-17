@@ -47,13 +47,18 @@
                                 <a id="sendMailLink" class="btn btn-outline-primary" style="display:none">寄信邀請</a>
                                 <a id="realTimeNotificationsLink" class="btn btn-outline-primary"
                                     style="display:none">即時通知</a>
+                                <button type="button" class="btn btn-outline-primary" id="rollendbtn"
+                                    data-bs-toggle="modal" data-bs-target="#rollCallModalrec"
+                                    style="display:none;">點名紀錄</button>
+                                <button type="button" class="btn btn-outline-primary" id="rollstbtn"
+                                    data-bs-toggle="modal" data-bs-target="#rollCallModal"
+                                    style="display:none;">開始點名</button>
+
                             </div>
                             <div class="">
-                                參加者名單
-                                <button type="button" class="btn btn-primary" id="rollstbtn" data-bs-toggle="modal"
-                                    data-bs-target="#rollCallModal" style="float:right;display:none;">開始點名</button>
-                                <button type="button" class="btn btn-primary" id="rollendbtn" data-bs-toggle="modal"
-                                    data-bs-target="#rollCallModalrec" style="float:right;display:none;">點名紀錄</button>
+                                <div>
+                                    參加者名單
+                                </div>
                                 <!-- Modal -->
                                 <div class="modal fade" id="rollCallModal" tabindex="-1"
                                     aria-labelledby="rollCallModalLabel" aria-hidden="true">
