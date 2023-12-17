@@ -6,7 +6,7 @@ $(document).ready(function () {
         success: function (response) {
             MyEvent(response);
         },
-        error: function(jqXHR, textStatus, errorThrow) {
+        error: function (jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -25,7 +25,7 @@ function cancelRegistration(registrationId) {
             alert("取消報名成功!");
             location.reload();
         },
-        error: function(jqXHR, textStatus, errorThrow) {
+        error: function (jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -36,12 +36,10 @@ function cancelRegistration(registrationId) {
 }
 function MyEvent(data) {
     for (let i = 0; i < data.length; i++) {
-        // alert(data[i].eventId);
         $.ajax({
             url: "/events/" + data[i].eventId,
             type: "GET",
             success: function (response) {
-                console.log(response);
                 createMyEvent(response, data[i].id);
             },
             error: function () {
@@ -60,7 +58,21 @@ function createMyEvent(response, regisID) {
     let word = document.createElement("div");
     word.classList.add("d-flex", "col", "align-items-center");
     word.textContent = response.title;
-    console.log(response);
+    let rollcall = document.createElement("button");
+    rollcall.classList.add("btn", "btn-danger");
+    rollcall.style.float = "right";
+    rollcall.textContent = "點名";
+    rollcall.setAttribute("data-regisid", regisID);
+    rollcall.addEventListener("click", function () {
+        let myModal = new bootstrap.Modal(document.getElementById('number-rollcall'));
+        let regisID = rollcall.getAttribute('data-regisid');
+        myModal.show();
+        console.log(regisID)
+        document.getElementById('ModalSubmit').addEventListener("click", function (event) {
+            console.log("Submitted with regisID:", regisID);
+            myModal.hide();
+        });
+    });
     let cancelButton = document.createElement("button");
     cancelButton.classList.add("btn", "btn-danger");
     cancelButton.style.float = "right";
@@ -87,6 +99,7 @@ function createMyEvent(response, regisID) {
 
     });
     con.appendChild(word);
+    con.appendChild(rollcall);
     con.appendChild(cancelButton);
     event.appendChild(con);
     createList.appendChild(event);
