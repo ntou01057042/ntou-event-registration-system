@@ -34,7 +34,6 @@ function createParticipant(data) {
     }
 }
 function rollcallState(num, endtime) {
-    console.log(num);
     // set event rollcall
     if (num == 0) { // start rollcall
         document.getElementById('rollstbtn').style.display = 'block';
@@ -60,7 +59,6 @@ function setRollcallRec(eventId) {
         type: "GET",
         headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
-            console.log(data);
             rollcallState(data.rollcall, data.rollcallEndTime);
         },
         error: function () {
@@ -69,35 +67,26 @@ function setRollcallRec(eventId) {
         }
     })
 }
-$(document).ready(function () {
-    $('#eventList').change(function () {
-
-        eventId = $(this).val();
-        if (eventId !== "請選擇一個活動") {
-            setRollcallRec(eventId);
-            $.ajax({
-                url: "/registrations/" + eventId,
-                type: "GET",
-                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
-                success: function (data) {
-                    participantsData = data;
-                    createParticipant(data);
-                },
-                error: function (jqXHR, textStatus, errorThrow) {
-                    if (jqXHR.responseText === 'Expired JWT!') {
-                        alert('驗證已過期，請重新登入！');
-                        localStorage.setItem('redirect', 'participant.html');
-                        window.location.assign("/html/login.html");
-                    }
-                }
-            });
+function createList(eventId) {
+    $.ajax({
+        url: "/registrations/" + eventId,
+        type: "GET",
+        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        success: function (data) {
+            participantsData = data;
+            createParticipant(data); //generate
+        },
+        error: function (jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'participant.html');
+                window.location.assign("/html/login.html");
+            }
         }
-        else {
-            let createList = document.getElementById("createList");
-            createList.innerHTML = "";
-        }
-
     });
+}
+$(document).ready(function () {
+
     $.ajax({
         url: "/events/userEvent",
         type: "GET",
@@ -119,10 +108,27 @@ $(document).ready(function () {
             }
         }
     })
-
+    $('#eventList').change(function () {
+        eventId = $(this).val();
+        if (eventId != "選擇一個活動") {
+            setRollcallRec(eventId); //報名database
+            createList(eventId);//participant
+            document.getElementById('exportButton').style.display = 'block';
+            document.getElementById('sendMailLink').style.display = 'block';
+            document.getElementById('realTimeNotificationsLink').style.display = 'block';
+        }
+        else {
+            let createList = document.getElementById("createList");
+            createList.innerHTML = "";
+            document.getElementById('rollstbtn').style.display = "none";
+            document.getElementById('rollendbtn').style.display = "none";
+            document.getElementById('exportButton').style.display = "none";
+            document.getElementById('sendMailLink').style.display = "none";
+            document.getElementById('realTimeNotificationsLink').style.display = "none";
+        }
+    });
     // create start rollcall
     document.getElementById('rollCallModal').addEventListener('shown.bs.modal', function () {
-
         document.getElementById('startRollCall').addEventListener('click', function () {
             let rollCallTime = document.getElementById('rollCallTime').value;
             // delete start button
@@ -168,7 +174,6 @@ $(document).ready(function () {
                 }
             })
             // set random number
-
             let countdownInterval = setInterval(function () {
                 document.getElementById('rollCallTimeCount').value = '倒數時間：' + countdown + ' 秒';
                 countdown--;
@@ -185,13 +190,16 @@ $(document).ready(function () {
         });
 
     });
-
-
-
     document.getElementById('exportButton').addEventListener('click', function () {
         exportToExcel(participantsData);
     });
+    document.getElementById('sendMailLink').addEventListener('click', function () {
+        window.location.href = './SendMail.html?eventId=' + eventId;
+    });
 
+    document.getElementById('realTimeNotificationsLink').addEventListener('click', function () {
+        window.location.href = './Real-timeNotifications.html?eventId=' + eventId;
+    });
 })
 
 function exportToExcel(data) {
