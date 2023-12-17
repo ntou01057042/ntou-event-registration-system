@@ -48,4 +48,6 @@ public class EventService {
     public List<Event> getAllEventsByCreatorId(String Id){
         return repository.findAllByCreatorId(Id);
     }
+
+
 }

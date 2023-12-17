@@ -18,6 +18,7 @@ public class Event implements Serializable {
     private String venue;
     private String creatorId;
     private boolean restrict;
+    private int maxPeople;
 
     public String getTitle() {
         return title;
@@ -87,7 +88,11 @@ public class Event implements Serializable {
         this.creatorId = creatorId;
     }
 
-    public void setRestrict(boolean restrict) {
-        this.restrict = restrict;
+    public void setRestrict(boolean restrict) { this.restrict = restrict; }
+    public int getMaxPeople() {
+        return maxPeople;
     }
+
+    public void setMaxPeople(int maxPeople) { this.maxPeople = maxPeople; }
+
 }
