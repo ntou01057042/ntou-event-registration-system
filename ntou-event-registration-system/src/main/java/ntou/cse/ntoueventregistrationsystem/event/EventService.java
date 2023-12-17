@@ -50,7 +50,7 @@ public class EventService {
         return repository.findAllByCreatorId(Id);
     }
     public void setRollcall(String id, LocalDateTime time){
-        int rollcall = (int)(Math.random() * 10000) + 1000;
+        int rollcall = (int)(Math.random() * 9000) + 1000;
         Event event = repository.findById(id).get();
         event.setRollcall(rollcall);
         event.setRollcallEndTime(time);
