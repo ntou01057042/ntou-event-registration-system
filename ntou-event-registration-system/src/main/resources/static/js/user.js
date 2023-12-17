@@ -6,7 +6,7 @@ $(document).ready(function () {
         success: function (response) {
             MyEvent(response);
         },
-        error: function(jqXHR, textStatus, errorThrow) {
+        error: function (jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -25,7 +25,7 @@ function cancelRegistration(registrationId) {
             alert("取消報名成功!");
             location.reload();
         },
-        error: function(jqXHR, textStatus, errorThrow) {
+        error: function (jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -41,7 +41,6 @@ function MyEvent(data) {
             url: "/events/" + data[i].eventId,
             type: "GET",
             success: function (response) {
-                console.log(response);
                 createMyEvent(response, data[i].id);
             },
             error: function () {
@@ -60,7 +59,6 @@ function createMyEvent(response, regisID) {
     let word = document.createElement("div");
     word.classList.add("d-flex", "col", "align-items-center");
     word.textContent = response.title;
-    console.log(response);
     let cancelButton = document.createElement("button");
     cancelButton.classList.add("btn", "btn-danger");
     cancelButton.style.float = "right";

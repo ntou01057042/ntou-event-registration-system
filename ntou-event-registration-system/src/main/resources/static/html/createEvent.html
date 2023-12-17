@@ -4,7 +4,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title>海大活動報名系統</title>
@@ -20,67 +20,73 @@
 </head>
 
 <body>
-<!-- Navbar -->
+    <!-- Navbar -->
 
-<div class="container-fluid p-0 m-0">
-    <div id="navbar">
+    <div class="container-fluid p-0 m-0">
+        <div id="navbar">
 
-    </div>
+        </div>
 
-    <div class="container-fluid">
-        <div class="row remaining-space" ;>
-            <div class="space col-0 col-lg-1 d-none d-lg-block">
+        <div class="container-fluid">
+            <div class="row remaining-space" ;>
+                <div class="space col-0 col-lg-1 d-none d-lg-block">
 
-            </div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu">
-
-            </div>
-            <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-
-                <div class="card m-3">
-                    <div class="card-header pt-3">
-                        <h5 class="card-title">創建活動</h5>
-                    </div>
-                    <form class="card-body" id="Form">
-                        <div class="form-outline mb-4">
-                            <label for="title">活動主題</label>
-                            <input type="text" id="title" name="title" class="form-control" required>
-                        </div>
-
-                        <div class="form-outline mb-4">
-                            <label for="activityCategory">活動分類</label>
-                            <select id="activityCategory" name="from" class="form-control" required>
-                            </select>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="startTime">活動開始時間</label>
-                            <input type="datetime-local" name="startTime" class="form-control" id="startTime" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="endTime">活動結束時間</label>
-                            <input type="datetime-local" name="endTime" class="form-control" id="endTime" required>
-                        </div>
-                        <div class="form-outline mb-4">
-                            <label for="activityLocation">活動地點</label>
-                            <input type="text" name="venue" class="form-control" id="activityLocation" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label for="activityDescription">活動介紹</label>
-                            <textarea id="activityDescription" name="describe" rows="4"
-                                      class="form-control" required></textarea>
-                        </div>
-                        <div class="text-center">
-                            <input type="submit" value="提交" class="btn btn-primary" id="submitBtn"/>
-                        </div>
-                    </form>
                 </div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu">
 
-            </div>
-            <div class="space col-0 col-sm-1  d-none d-sm-block">
+                </div>
+                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
+
+                    <div class="card m-3">
+                        <div class="card-header pt-3">
+                            <h5 class="card-title">創建活動</h5>
+                        </div>
+                        <form class="card-body" id="Form">
+                            <div class="form-outline mb-4">
+                                <label for="title">活動主題</label>
+                                <input type="text" id="title" name="title" class="form-control" required>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <label for="activityCategory">活動分類</label>
+                                <select id="activityCategory" name="from" class="form-control" required>
+                                </select>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="startTime">活動開始時間</label>
+                                <input type="datetime-local" name="startTime" class="form-control" id="startTime"
+                                    required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="endTime">活動結束時間</label>
+                                <input type="datetime-local" name="endTime" class="form-control" id="endTime" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="activityLocation">活動地點</label>
+                                <input type="text" name="venue" class="form-control" id="activityLocation" required>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label for="activityLocation">活動最大人數</label>
+                                <input type="number" name="maxPeople" class="form-control" id="activityNum"
+                                    pattern="[0-9]+" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label for="activityDescription">活動介紹</label>
+                                <textarea id="activityDescription" name="describe" rows="4" class="form-control"
+                                    required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <input type="submit" value="提交" class="btn btn-primary" id="submitBtn" />
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="space col-0 col-sm-1  d-none d-sm-block">
+                </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 
 </html>
