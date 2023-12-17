@@ -4,12 +4,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function loading() {
     let id = localStorage.getItem("eventID");
-    console.log(id);
+    // console.log(id);
     $.ajax({
         url: "/events/" + id,
         type: "GET",
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             setting(data);
         }
     })
@@ -67,8 +67,12 @@ $(document).ready(function () {
                     alert("修改成功");
                     window.location.assign('/html/eventManagement.html',);
                 },
-                error: function () {
-                    console.log("刪除修改失敗");
+                error: function(jqXHR, textStatus, errorThrow) {
+                    if (jqXHR.responseText === 'Expired JWT!') {
+                        alert('驗證已過期，請重新登入！');
+                        localStorage.setItem('redirect', 'modifyEvent.html');
+                        window.location.assign("/html/login.html");
+                    }
                 }
             });
         }

@@ -4,6 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
+import static ntou.cse.ntoueventregistrationsystem.user.Authority.ADVANCED;
+
 @Service
 public class AppUserService {
     private final AppUserRepository repository;
@@ -15,13 +19,22 @@ public class AppUserService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Boolean createAppUser(AppUser appUser) {
+    public boolean createAppUser(AppUser appUser) {
         if (repository.existsByEmail(appUser.getEmail())) {
             return false;
         } else {
             appUser.setPassword(passwordEncoder.encode(appUser.getPassword()));
             repository.insert(appUser);
             return true;
+        }
+    }
+
+    public void elevateAuthorityToAdvanced(String id) {
+        Optional<AppUser> user = repository.findById(id);
+        if (user.isPresent()) {
+            user.get().setAuthority(ADVANCED);
+            System.out.println(user.get().getAuthority());
+            repository.save(user.get());
         }
     }
 }
