@@ -27,8 +27,7 @@ public class EventController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postEvent(@RequestBody Event event,
-            @AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<Void> postEvent(@RequestBody Event event, @AuthenticationPrincipal CustomUserDetails userDetails) {
         event.setCreatorId(userDetails.getId());
         event.setRollcallEndTime(event.getStartTime());
         service.createEvent(event);

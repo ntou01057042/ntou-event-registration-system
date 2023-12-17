@@ -7,8 +7,12 @@ $(document).ready(function () {
             console.log(response);
             updateOptions(response);
         },
-        error: function () {
-            console.log("取得已創建活動失敗");
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'Real-timeNotifications.html');
+                window.location.assign("/html/login.html");
+            }
         }
     });
     $("#Form").submit(function (event) {
@@ -21,6 +25,8 @@ $(document).ready(function () {
 
         const url = "/email?subject=" + subject + "&text=" + text + "&eventId=" + eventId;
 
+        $("#submitButton").hide();
+        $("#loadingIndicator").show();
         $.ajax({
             type: "POST",
             url: url,
@@ -28,24 +34,20 @@ $(document).ready(function () {
                 "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")
             },
             success: function () {
-                console.log("成功：" + eventId);
                 alert("訊息傳送成功!");
-                window.location.href = `../html/Real-timeNotifications.html`;
+                location.reload();
             },
-            error: function (xhr, status, error) {
-                console.error("發生錯誤：" + eventId);
-                alert("訊息傳送失敗!");
-            },
-            complete: function () {
-                $("#loadingIndicator").hide();
-                $("#submitButton").show();
-                console.log("完成：" + eventId);
+            error: function(jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'Real-timeNotifications.html');
+                    window.location.assign("/html/login.html");
+                }
             }
         });
-        $("#submitButton").hide();
-        $("#loadingIndicator").show();
     });
 })
+
 function updateOptions(data) {
     let selectElement = document.getElementById("event");
     selectElement.innerHTML = '';

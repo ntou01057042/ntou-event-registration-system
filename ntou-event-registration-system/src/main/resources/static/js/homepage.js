@@ -73,10 +73,9 @@ document.addEventListener("DOMContentLoaded", function () {
             url: "/events",
             type: "GET",
             success: function (data) {
-                let eventsArray = data;
-                window[functionName](keyword, eventsArray);
+                window[functionName](keyword, data);
             }
-        })
+        });
     }else{
         loading();
     }
