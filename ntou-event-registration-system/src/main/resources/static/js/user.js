@@ -50,7 +50,7 @@ function MyEvent(data) {
     }
 }
 function createMyEvent(response, regisID, eventId, attendance) {
-    let createList = document.getElementById("myEvent");
+    let createList = document.getElementById("finished");
     let event = document.createElement("a");
     event.classList.add("list-group-item", "list-group-item-action");
     event.id = "list";
@@ -73,6 +73,13 @@ function createMyEvent(response, regisID, eventId, attendance) {
             var rollcalldate = new Date(givenTime);
             rollcalldate.setHours(rollcalldate.getHours() + 8);
             var currentTime = new Date();
+            var stTime = new Date(data.startTime);
+            var edTime = new Date(data.endTime);
+            if(currentTime < stTime)
+                createList = document.getElementById("notStart");
+            else if(currentTime > stTime && currentTime < edTime)
+                createList = document.getElementById("ongoing");
+            createList.appendChild(event);
             if (rollcalldate > currentTime && rollcallstate != 0 && attendance == false) {
                 let rollcall = document.createElement("button");
                 rollcall.classList.add("btn", "btn-danger");
@@ -144,5 +151,5 @@ function createMyEvent(response, regisID, eventId, attendance) {
 
     con.appendChild(cancelButton);
     event.appendChild(con);
-    createList.appendChild(event);
+    // createList.appendChild(event);
 }
