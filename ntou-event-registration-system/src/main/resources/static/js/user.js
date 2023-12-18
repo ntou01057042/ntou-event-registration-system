@@ -71,6 +71,7 @@ function createMyEvent(response, regisID, eventId, attendance) {
             rollcallstate = data.rollcall;
             givenTime = data.rollcallEndTime;
             var rollcalldate = new Date(givenTime);
+            rollcalldate.setHours(rollcalldate.getHours() + 8);
             var currentTime = new Date();
             if (rollcalldate > currentTime && rollcallstate != 0 && attendance == false) {
                 let rollcall = document.createElement("button");
