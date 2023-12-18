@@ -50,4 +50,8 @@ public class RegistrationController {
     public ResponseEntity<ArrayList<Registration>> getRegistrations(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(service.getAllRegistrationByUserId(userDetails.getId()));
     }
+    @PostMapping("/attend/{id}")
+    public void confirmAttendance(@PathVariable String id){
+        service.updateAttendance(id);
+    }
 }
