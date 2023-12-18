@@ -4,6 +4,7 @@
   },
   "eventId": "6534cc24b8f4901b759cca1f",
   "text": "不可怕",
+  "report": 0,
   "_class": "ntou.cse.ntoueventregistrationsystem.comment.Comment"
 },
 {
@@ -12,5 +13,6 @@
   },
   "eventId": "6534cc24b8f4901b759cca1f",
   "text": "好可怕",
+  "report": 0,
   "_class": "ntou.cse.ntoueventregistrationsystem.comment.Comment"
 }]
