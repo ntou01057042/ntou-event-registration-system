@@ -34,4 +34,9 @@ public class RegistrationService {
     public ArrayList<Registration> getAllRegistrationByUserId(String userId) {
         return repository.findAllByUserId(userId);
     }
+    public void updateAttendance(String id){
+        Registration registration = repository.findById(id).get();
+        registration.setAttendance(true);
+        repository.save(registration);
+    }
 }
