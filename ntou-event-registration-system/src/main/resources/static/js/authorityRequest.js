@@ -16,14 +16,29 @@ function getApplicationRecord(){
             if(response.status != null){
                 if(response.status === "rejected"){
                     window.alert("您的申請已被拒絕");
-
+                    $.ajax({
+                        url:"/requests/" + response.id,
+                        type: "DELETE",
+                        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                        success: function (){
+                            console.log("刪除成功");
+                            location.reload();
+                        },
+                        error: function(jqXHR, textStatus, errorThrow) {
+                            if (jqXHR.responseText === 'Expired JWT!') {
+                                alert('驗證已過期，請重新登入！');
+                                localStorage.setItem('redirect', 'createEvent.html');
+                                window.location.assign("/html/login.html");
+                            }
+                        }
+                    });
                 }
                 else{
                     for (let i = 0; i < myForm.elements.length; i++) {
                         myForm.elements[i].disabled = true;
                     }
+                    document.getElementById("submitBtn").value = "審核中";
                 }
-                document.getElementById("submitBtn").value = "審核中";
             }
         },
         error: function(jqXHR, textStatus, errorThrow) {
