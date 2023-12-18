@@ -28,6 +28,7 @@ function loadNavbarScript(src) {
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 let eventCondition = false;
+
 function loading() {
     $.ajax({
         url: "../events/" + id,
@@ -41,8 +42,7 @@ function loading() {
     document.getElementById("sign_up").addEventListener('click', () => {
         if (!eventCondition) {
             window.location.assign(`signUpPage.html?id=${id}`);
-        }
-        else {
+        } else {
             alert("無法報名!");
         }
     });
@@ -58,7 +58,7 @@ function loading() {
 
         $.ajax({
             contentType: "application/json",
-            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+            headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
             data: JSON.stringify({
                 "eventId": id,
                 "text": comment
@@ -67,7 +67,7 @@ function loading() {
                 // console.log("成功：" + JSON.stringify(obj));
                 loadComment();
             },
-            error: function(jqXHR, textStatus, errorThrow) {
+            error: function (jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
                     localStorage.setItem('redirect', `eventDetail.html?id=${id}`);
@@ -127,16 +127,67 @@ function loadComment() {
                 console.log(commentArea);
                 commentArea.innerHTML += `
                             <div class="card mt-3 commentArea">
-                                <div class="card-body">
+                                <div class="card-body align-items-center">
                                     <img src="../img/user_circle.png" alt="circle" class="userCircle me-3">
                                     ${data[i].text}
+                                    <button class="dropdown" id="${data[i].id}">
+                                        <div><img src="../img/ellipsis.svg" alt="ellipsis"></div>
+                                        <div class="dropdown-content" id="dropdown-content-${data[i].id}">
+                                            <span>檢舉</span>
+                                        </div>
+                                    </button>
                                 </div>
+                                
                             </div>
                         `
+            }
+            for (let i = 0; i < data.length; ++i) {
+                addDropDownButton(data[i].id);
             }
         }
     })
 
+}
+
+function addDropDownButton(id) {
+    document.addEventListener('click', function (event) {
+        let myElement = document.getElementById(id);
+        let hideElement = document.getElementById("dropdown-content-" + id);
+        let targetElement = event.target;
+
+        // 檢查點擊事件是否發生在目標元素之外
+        if (targetElement !== myElement && !myElement.contains(targetElement)) {
+            hideElement.style.display = 'none'; // 隱藏指定元素
+        }
+    });
+
+// 點擊顯示元素
+    document.getElementById(id).addEventListener('click', function (event) {
+        let hideElement = document.getElementById('dropdown-content-' + id);
+        event.stopPropagation(); // 防止點擊事件冒泡到 document 上
+        hideElement.style.display = 'block'; // 顯示指定元素
+    });
+
+    document.getElementById("dropdown-content-" + id).addEventListener('click', function (event) {
+        let dropdownContentElement = this;
+        $.ajax({
+            url: "/comments/" + id,
+            type: "POST",
+            headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
+            success: function (response) {
+                console.log("成功");
+                window.alert("檢舉成功");
+                dropdownContentElement.style.display = 'none';
+            },
+            error: function (jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'createEvent.html');
+                    window.location.assign("/html/login.html");
+                }
+            }
+        })
+    });
 }
 
 
