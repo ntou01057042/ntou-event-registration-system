@@ -78,7 +78,7 @@ function createMyEvent(response, regisID, eventId, attendance) {
             if(currentTime < stTime)
                 createList = document.getElementById("notStart");
             else if(currentTime > stTime && currentTime < edTime)
-                createList = document.getElementById("ongoing");
+                createList = document.getElementById("myEvent");
             createList.appendChild(event);
             if (rollcalldate > currentTime && rollcallstate != 0 && attendance == false) {
                 let rollcall = document.createElement("button");
