@@ -25,7 +25,10 @@ public class RequestController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> postRequest(@RequestBody Request request) {
+    public ResponseEntity<Void> postRequest(@RequestBody Request request, @AuthenticationPrincipal CustomUserDetails userDetails) {
+        request.setUserId(userDetails.getId());
+        request.setName(userDetails.getName());
+        request.setEmail(userDetails.getEmail());
         return service.createRequest(request) ? ResponseEntity.ok().build() :
                 ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
