@@ -80,6 +80,8 @@ function createMyEvent(response, regisID, eventId, attendance) {
             else if(currentTime > stTime && currentTime < edTime)
                 createList = document.getElementById("myEvent");
             createList.appendChild(event);
+            console.log(currentTime, stTime);
+
             if (rollcalldate > currentTime && rollcallstate != 0 && attendance == false) {
                 let rollcall = document.createElement("button");
                 rollcall.classList.add("btn", "btn-danger");
@@ -120,36 +122,65 @@ function createMyEvent(response, regisID, eventId, attendance) {
                 });
                 con.appendChild(rollcall);
             }
+            if(createList.id == "notStart"){
+                let cancelButton = document.createElement("button");
+                cancelButton.classList.add("btn", "btn-danger", "me-2");
+                cancelButton.style.float = "right";
+                cancelButton.textContent = "取消報名";
+                cancelButton.setAttribute("id", regisID);
+                if (typeof (response.restrict) === 'boolean') {
+                    if (response.restrict) {
+                        cancelButton.disabled = true;
+                        cancelButton.setAttribute("id", "lock");
+                    }
+                }
+                cancelButton.addEventListener("click", function () {
+                    let clickedButtonId = this.getAttribute("id");
+                    if (clickedButtonId !== "lock") {
+                        let confirmation = confirm("確定取消報名？");
+                        if (confirmation) {
+                            console.log("取消報名 clicked. Button ID: ", clickedButtonId);
+                            cancelRegistration(clickedButtonId);
+                        }
+                    }
+                    else {
+                        alert("無法取消報名!");
+                    }
+                
+                });
+            
+                con.appendChild(cancelButton);
+            }
         }
     })
 
-    let cancelButton = document.createElement("button");
-    cancelButton.classList.add("btn", "btn-danger", "me-2");
-    cancelButton.style.float = "right";
-    cancelButton.textContent = "取消報名";
-    cancelButton.setAttribute("id", regisID);
-    if (typeof (response.restrict) === 'boolean') {
-        if (response.restrict) {
-            cancelButton.disabled = true;
-            cancelButton.setAttribute("id", "lock");
-        }
-    }
-    cancelButton.addEventListener("click", function () {
-        let clickedButtonId = this.getAttribute("id");
-        if (clickedButtonId !== "lock") {
-            let confirmation = confirm("確定取消報名？");
-            if (confirmation) {
-                console.log("取消報名 clicked. Button ID: ", clickedButtonId);
-                cancelRegistration(clickedButtonId);
-            }
-        }
-        else {
-            alert("無法取消報名!");
-        }
+    // let cancelButton = document.createElement("button");
+    // cancelButton.classList.add("btn", "btn-danger", "me-2");
+    // cancelButton.style.float = "right";
+    // cancelButton.textContent = "取消報名";
+    // cancelButton.setAttribute("id", regisID);
+    // if (typeof (response.restrict) === 'boolean') {
+    //     if (response.restrict) {
+    //         cancelButton.disabled = true;
+    //         cancelButton.setAttribute("id", "lock");
+    //     }
+    // }
+    // cancelButton.addEventListener("click", function () {
+    //     let clickedButtonId = this.getAttribute("id");
+    //     if (clickedButtonId !== "lock") {
+    //         let confirmation = confirm("確定取消報名？");
+    //         if (confirmation) {
+    //             console.log("取消報名 clicked. Button ID: ", clickedButtonId);
+    //             cancelRegistration(clickedButtonId);
+    //         }
+    //     }
+    //     else {
+    //         alert("無法取消報名!");
+    //     }
 
-    });
+    // });
 
-    con.appendChild(cancelButton);
+    // con.appendChild(cancelButton);
     event.appendChild(con);
     // createList.appendChild(event);
 }
