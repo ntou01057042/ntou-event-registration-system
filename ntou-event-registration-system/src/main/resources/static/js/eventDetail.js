@@ -142,32 +142,60 @@ function loadComment() {
                         `
             }
             for (let i = 0; i < data.length; ++i) {
-                addDropDownButton(data[i].id);
+                addReportButton(data[i].id);
             }
+            addDropdownBtn();
         }
     })
 
 }
 
-function addDropDownButton(id) {
-    document.addEventListener('click', function (event) {
-        let myElement = document.getElementById(id);
-        let hideElement = document.getElementById("dropdown-content-" + id);
-        let targetElement = event.target;
+function addDropdownBtn(){
+    const moreOptionsBtns = document.querySelectorAll('.dropdown');
+    const optionsMenus = document.querySelectorAll('.dropdown-content');
 
-        // 檢查點擊事件是否發生在目標元素之外
-        if (targetElement !== myElement && !myElement.contains(targetElement)) {
-            hideElement.style.display = 'none'; // 隱藏指定元素
+    // 點擊按鈕時顯示選單
+    moreOptionsBtns.forEach((btn, index) => {
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation(); // 防止點擊事件傳播到 document
+            btn.classList.add('on');
+            btn.classList.remove('off');
+            // 隱藏其他選單
+            optionsMenus.forEach((menu, i) => {
+                if (i !== index) {
+                    menu.style.display = 'none';
+                }
+            });
+            moreOptionsBtns.forEach((btn,i)=>{
+                if(i !== index){
+                    btn.classList.add('off');
+                    btn.classList.remove('on');
+                }
+            });
+
+            // 切換顯示或隱藏選單
+            const menu = optionsMenus[index];
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        });
+    });
+
+    // 監聽整個文件的點擊事件
+    document.addEventListener('click', (event) => {
+        // 當點擊發生在非選單區域時，隱藏所有選單
+        if (!event.target.matches('.more-options-btn')) {
+            optionsMenus.forEach((menu) => {
+                menu.style.display = 'none';
+
+            });
+            moreOptionsBtns.forEach((btn)=>{
+                btn.classList.add('off');
+                btn.classList.remove('on');
+            })
         }
     });
+}
 
-// 點擊顯示元素
-    document.getElementById(id).addEventListener('click', function (event) {
-        let hideElement = document.getElementById('dropdown-content-' + id);
-        event.stopPropagation(); // 防止點擊事件冒泡到 document 上
-        hideElement.style.display = 'block'; // 顯示指定元素
-    });
-
+function addReportButton(id) {
     document.getElementById("dropdown-content-" + id).addEventListener('click', function (event) {
         let dropdownContentElement = this;
         $.ajax({

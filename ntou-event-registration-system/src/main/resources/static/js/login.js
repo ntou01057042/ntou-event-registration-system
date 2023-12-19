@@ -16,7 +16,7 @@ $(document).ready(function () {
                 if (localStorage.getItem('redirect')) {
                     window.location.assign(localStorage.getItem('redirect'));
                 } else {
-                    window.location.assign('homepage.html');
+                    window.location.assign('/html/homepage.html');
                 }
             },
             error: function (xhr) {
