@@ -63,9 +63,7 @@ h5{
 }
 
 .dropdown {
-    position: absolute;
     display: inline-block;
-    right: 20px;
     background-color: rgba(255, 255, 255, 0);
     border-style: none;
     border-radius: 20px;
@@ -99,4 +97,19 @@ h5{
 
 .off{
     background-color: rgba(255, 255, 255, 0);
+}
+
+#signUpDiv {
+    height: calc(1024px - 56px);
+}
+
+/* 螢幕寬度小於 768px 時的樣式變化 */
+@media screen and (max-width: 768px) {
+    #signUpDiv {
+        height: 115px; /* 當螢幕寬度小於 768px 時，將高度設置為 100px */
+    }
+    #sign_up {
+        position: relative;
+        top: 0;
+    }
 }

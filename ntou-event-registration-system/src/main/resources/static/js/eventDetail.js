@@ -70,7 +70,7 @@ function loading() {
             error: function (jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
-                    localStorage.setItem('redirect', `eventDetail.html?id=${id}`);
+                    localStorage.setItem('redirect', 'eventDetail.html?id=' + id);
                     window.location.assign("/html/login.html");
                 }
             },
@@ -127,17 +127,22 @@ function loadComment() {
                 console.log(commentArea);
                 commentArea.innerHTML += `
                             <div class="card mt-3 commentArea">
-                                <div class="card-body align-items-center">
-                                    <img src="../img/user_circle.png" alt="circle" class="userCircle me-3">
-                                    ${data[i].text}
-                                    <button class="dropdown" id="${data[i].id}">
-                                        <div><img src="../img/ellipsis.svg" alt="ellipsis"></div>
-                                        <div class="dropdown-content" id="dropdown-content-${data[i].id}">
-                                            <span>檢舉</span>
-                                        </div>
-                                    </button>
+                                <div class="card-body align-items-center row">
+                                    <div class="col-2 col-sm-1 p-0">
+                                        <img src="../img/user_circle.png" alt="circle" class="userCircle ms-1">
+                                    </div>
+                                    <div class="col-8 col-sm-10 p-0">
+                                        ${data[i].text}
+                                    </div>
+                                    <div class="col-2 col-sm-1 p-0">
+                                        <button class="dropdown" id="${data[i].id}">
+                                            <div><img src="../img/ellipsis.svg" alt="ellipsis"></div>
+                                            <div class="dropdown-content" id="dropdown-content-${data[i].id}">
+                                                <span>檢舉</span>
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
-                                
                             </div>
                         `
             }
@@ -150,10 +155,12 @@ function loadComment() {
 
 }
 
-function addDropdownBtn(){
-    const moreOptionsBtns = document.querySelectorAll('.dropdown');
-    const optionsMenus = document.querySelectorAll('.dropdown-content');
+let moreOptionsBtns = document.querySelectorAll('.dropdown');
+let optionsMenus = document.querySelectorAll('.dropdown-content');
 
+function addDropdownBtn(){
+    moreOptionsBtns = document.querySelectorAll('.dropdown');
+    optionsMenus = document.querySelectorAll('.dropdown-content');
     // 點擊按鈕時顯示選單
     moreOptionsBtns.forEach((btn, index) => {
         btn.addEventListener('click', (event) => {
@@ -195,22 +202,26 @@ function addDropdownBtn(){
     });
 }
 
-function addReportButton(id) {
-    document.getElementById("dropdown-content-" + id).addEventListener('click', function (event) {
+function addReportButton(comId) {
+    document.getElementById("dropdown-content-" + comId).addEventListener('click', function (event) {
         let dropdownContentElement = this;
         $.ajax({
-            url: "/comments/" + id,
+            url: "/comments/" + comId,
             type: "POST",
             headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
             success: function (response) {
                 console.log("成功");
                 window.alert("檢舉成功");
                 dropdownContentElement.style.display = 'none';
+                moreOptionsBtns.forEach((btn)=>{
+                    btn.classList.add('off');
+                    btn.classList.remove('on');
+                })
             },
             error: function (jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
-                    localStorage.setItem('redirect', 'createEvent.html');
+                    localStorage.setItem('redirect', 'eventDetail.html?id=' + id);
                     window.location.assign("/html/login.html");
                 }
             }

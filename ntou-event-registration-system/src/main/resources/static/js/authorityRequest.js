@@ -27,7 +27,7 @@ function getApplicationRecord(){
                         error: function(jqXHR, textStatus, errorThrow) {
                             if (jqXHR.responseText === 'Expired JWT!') {
                                 alert('驗證已過期，請重新登入！');
-                                localStorage.setItem('redirect', 'createEvent.html');
+                                localStorage.setItem('redirect', 'authorityRequest.html');
                                 window.location.assign("/html/login.html");
                             }
                         }
@@ -44,7 +44,7 @@ function getApplicationRecord(){
         error: function(jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
-                localStorage.setItem('redirect', 'createEvent.html');
+                localStorage.setItem('redirect', 'authorityRequest.html');
                 window.location.assign("/html/login.html");
             }
         }
@@ -78,7 +78,7 @@ function submitApplication(){
             error: function(jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
-                    localStorage.setItem('redirect', 'createEvent.html');
+                    localStorage.setItem('redirect', 'authorityRequest.html');
                     window.location.assign("/html/login.html");
                 }
             }

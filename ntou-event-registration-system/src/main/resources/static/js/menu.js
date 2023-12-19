@@ -7,6 +7,7 @@ function  loadMenu(){
                 data[category].forEach(function (unit) {
                     let button = document.createElement("button");
                     button.className = "btn text-center col";
+                    button.style.wordWrap = 'break-word';
                     button.textContent = unit;
                     button.addEventListener("click", function () {
                         console.log(unit);
