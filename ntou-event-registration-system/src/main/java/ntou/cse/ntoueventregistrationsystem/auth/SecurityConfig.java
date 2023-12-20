@@ -50,6 +50,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/requests").hasAnyAuthority("GENERAL")
                         .requestMatchers(HttpMethod.GET, "/requests/all").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/requests/?*").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/requests/?*").hasAnyAuthority("GENERAL")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )
