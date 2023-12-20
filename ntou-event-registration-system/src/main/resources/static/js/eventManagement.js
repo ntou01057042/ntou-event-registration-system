@@ -6,13 +6,15 @@ $(document).ready(function () {
         success: function (response) {
             createCampaign(response);
         },
-        error: function () {
-            console.log("取得已創建活動失敗");
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'eventManagement.html');
+                window.location.assign("/html/login.html");
+            }
         }
     });
 })
-
-
 
 function createCampaign(data) {
     let createList = document.getElementById("createList");
@@ -63,11 +65,15 @@ function createCampaign(data) {
                     type: "POST",
                     headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
                     success: function (response) {
-                        alert("修改成功");
+                        alert("鎖定成功");
                         location.reload();
                     },
-                    error: function () {
-                        console.log("修改活動失敗");
+                    error: function(jqXHR, textStatus, errorThrow) {
+                        if (jqXHR.responseText === 'Expired JWT!') {
+                            alert('驗證已過期，請重新登入！');
+                            localStorage.setItem('redirect', 'eventManagement.html');
+                            window.location.assign("/html/login.html");
+                        }
                     }
                 });
 
@@ -97,7 +103,7 @@ function createCampaign(data) {
         delButton.textContent = "刪除活動";
         delButton.addEventListener('click', ()=>{
             let result = confirm("確認刪除");
-            if(result){
+            if (result){
                 $.ajax({
                     url: "/events/" + data[i].id,
                     type: "DELETE",
@@ -106,8 +112,12 @@ function createCampaign(data) {
                         alert("刪除成功");
                         location.reload();
                     },
-                    error: function () {
-                        console.log("刪除活動失敗");
+                    error: function(jqXHR, textStatus, errorThrow) {
+                        if (jqXHR.responseText === 'Expired JWT!') {
+                            alert('驗證已過期，請重新登入！');
+                            localStorage.setItem('redirect', 'eventManagement.html');
+                            window.location.assign("/html/login.html");
+                        }
                     }
                 });
             }

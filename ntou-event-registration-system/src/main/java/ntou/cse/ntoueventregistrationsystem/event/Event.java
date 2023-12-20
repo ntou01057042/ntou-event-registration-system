@@ -18,6 +18,8 @@ public class Event implements Serializable {
     private String venue;
     private String creatorId;
     private boolean restrict;
+    private int rollcall;
+    private LocalDateTime rollcallEndTime;
     private int maxPeople;
 
     public String getTitle() {
@@ -88,11 +90,31 @@ public class Event implements Serializable {
         this.creatorId = creatorId;
     }
 
-    public void setRestrict(boolean restrict) { this.restrict = restrict; }
+    public void setRestrict(boolean restrict) {
+        this.restrict = restrict;
+    }
+
+    public int getRollcall() {
+        return rollcall;
+    }
+
+    public void setRollcall(int rollcall) {
+        this.rollcall = rollcall;
+    }
+
+    public LocalDateTime getRollcallEndTime() {
+        return rollcallEndTime;
+    }
+
+    public void setRollcallEndTime(LocalDateTime rollcallEndTime) {
+        this.rollcallEndTime = rollcallEndTime;
+    }
+
     public int getMaxPeople() {
         return maxPeople;
     }
 
-    public void setMaxPeople(int maxPeople) { this.maxPeople = maxPeople; }
-
+    public void setMaxPeople(int maxPeople) {
+        this.maxPeople = maxPeople;
+    }
 }

@@ -1,6 +1,5 @@
 package ntou.cse.ntoueventregistrationsystem.auth;
 
-import ntou.cse.ntoueventregistrationsystem.auth.JwtAuthenticationFilter;
 import ntou.cse.ntoueventregistrationsystem.user.CustomUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,20 +27,30 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/events/userEvent").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.PUT, "/events").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/events/?*").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.POST, "/events/rollcall/?*").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/events/register*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/events/restrict/?*").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/users").permitAll()
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/registrations/attend/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.POST, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/registrations/?*").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/registrations/cancel/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
                         .requestMatchers(HttpMethod.POST, "/comments").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
+                        .requestMatchers(HttpMethod.POST, "/comments/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
+                        .requestMatchers(HttpMethod.GET, "/comments").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/comments/?*").hasAnyAuthority("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.GET, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.DELETE, "/blocks").hasAnyAuthority("ADMIN", "ADVANCED")
                         .requestMatchers(HttpMethod.POST, "/email").hasAnyAuthority("ADMIN", "ADVANCED")
+                        .requestMatchers(HttpMethod.GET, "/requests").hasAnyAuthority("GENERAL")
+                        .requestMatchers(HttpMethod.POST, "/requests").hasAnyAuthority("GENERAL")
+                        .requestMatchers(HttpMethod.GET, "/requests/all").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/requests/?*").hasAnyAuthority("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/requests/?*").hasAnyAuthority("GENERAL")
                         .requestMatchers(HttpMethod.GET, "/**").permitAll()   // front page
                         .anyRequest().authenticated()
                 )
