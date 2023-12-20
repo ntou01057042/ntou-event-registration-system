@@ -33,4 +33,9 @@ public class CommentService {
     public void deleteComment(String id){
         repository.deleteById(id);
     }
+    public void resetReport(String id){
+        Comment comment = repository.findById(id).get();
+        comment.setReport(0);
+        repository.save(comment);
+    }
 }

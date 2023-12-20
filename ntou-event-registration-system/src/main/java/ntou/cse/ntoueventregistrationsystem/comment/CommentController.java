@@ -40,4 +40,8 @@ public class CommentController {
         service.deleteComment(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+    @PostMapping("/resetReport/{id}")
+    public void resetReport(@PathVariable String id){
+        service.resetReport(id);
+    }
 }
