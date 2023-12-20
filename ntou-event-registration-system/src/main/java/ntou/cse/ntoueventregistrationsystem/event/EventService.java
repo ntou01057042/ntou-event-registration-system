@@ -3,6 +3,7 @@ package ntou.cse.ntoueventregistrationsystem.event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,5 +48,12 @@ public class EventService {
     }
     public List<Event> getAllEventsByCreatorId(String Id){
         return repository.findAllByCreatorId(Id);
+    }
+    public void setRollcall(String id, LocalDateTime time){
+        int rollcall = (int)(Math.random() * 9000) + 1000;
+        Event event = repository.findById(id).get();
+        event.setRollcall(rollcall);
+        event.setRollcallEndTime(time);
+        repository.save(event);
     }
 }

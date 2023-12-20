@@ -13,6 +13,7 @@ public class Registration {
     private String email;
     private String phoneNumber;
     private String notes;
+    private boolean attendance;
 
     public Registration() {
     }
@@ -80,5 +81,13 @@ public class Registration {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public boolean isAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(boolean attendance) {
+        this.attendance = attendance;
     }
 }
