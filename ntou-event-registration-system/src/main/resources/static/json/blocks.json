@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "656a439a2ce8ca63e389704c"
+  },
+  "userId": "6561217f82f1e92b8a5926bd",
+  "targetId": "6561219a82f1e92b8a5926be",
+  "eventId": "65675b3894a4160004a5b245",
+  "reason": "太油",
+  "_class": "ntou.cse.ntoueventregistrationsystem.block.Block"
+},{
+  "_id": {
+    "$oid": "657dee2dea0dc62f89c104d9"
+  },
+  "userId": "6561217382f1e92b8a5926bc",
+  "targetId": "6561217f82f1e92b8a5926bd",
+  "eventId": "65675b3894a4160004a5b245",
+  "reason": "一直蛤",
+  "_class": "ntou.cse.ntoueventregistrationsystem.block.Block"
+}]
