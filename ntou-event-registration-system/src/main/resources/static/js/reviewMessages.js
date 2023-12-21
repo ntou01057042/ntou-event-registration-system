@@ -78,7 +78,23 @@ function respondRequest(id, respond) {
                 }
             });
         } else if (respond === "ignore") {
-
+            $.ajax({
+                url: "/comments/resetReport/" + id,
+                type: "POST",
+                headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
+                success: function (response) {
+                    console.log("成功");
+                    window.alert("更新成功");
+                    location.reload();
+                },
+                error: function (jqXHR, textStatus, errorThrow) {
+                    if (jqXHR.responseText === 'Expired JWT!') {
+                        alert('驗證已過期，請重新登入！');
+                        localStorage.setItem('redirect', 'reviewMessages.html');
+                        window.location.assign("/html/login.html");
+                    }
+                }
+            });
         }
 
     }
