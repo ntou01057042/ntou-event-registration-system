@@ -4,7 +4,7 @@
 <head>
     <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"
-            integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
+        integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
     <title>海大活動報名系統</title>
@@ -20,48 +20,49 @@
 </head>
 
 <body>
-<!-- Navbar -->
-<div class="container-fluid p-0 m-0">
-    <div id="navbar"></div>
-    <div class="container-fluid">
-        <div class="row remaining-space">
-            <div class="space col-0 col-lg-1 d-none d-lg-block"></div>
-            <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu"></div>
-            <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
-                <div class="card m-3">
-                    <button onclick="window.history.back()" class="mt-2"
+    <!-- Navbar -->
+    <div class="container-fluid p-0 m-0">
+        <div id="navbar"></div>
+        <div class="container-fluid">
+            <div class="row remaining-space">
+                <div class="space col-0 col-lg-1 d-none d-lg-block"></div>
+                <div class="d-flex flex-column col-3 col-lg-2 shadow menu" id="menu"></div>
+                <div class="px-1 m-0 col-9 col-sm-8 col-xl-7">
+                    <div class="card m-3">
+                        <button onclick="window.history.back()" class="mt-2"
                             style="border:none;background: transparent;width:150px">
-                        <img src="../img/arrow-small-left.svg" alt="Back Icon" width="16" height="16">
-                        返回上一頁
-                    </button>
-                    <div class="card-header">
-                        <h5 class="card-title">寄信邀請</h5>
-                    </div>
-                    <form class="card-body mb-4" id="Form">
-                        <div class="form-outline mb-4">
-                            <label>寄給哪個活動的參加者</label>
-                            <select id="event" class="form-select"></select>
+                            <img src="../img/arrow-small-left.svg" alt="Back Icon" width="16" height="16">
+                            返回上一頁
+                        </button>
+                        <div class="card-header">
+                            <h5 class="card-title">寄信邀請</h5>
                         </div>
-                        <div class="form-outline mb-4">
-                            <label>標題</label>
-                            <input id="subject" class="form-control" placeholder="填寫活動邀請標題" required>
-                        </div>
-                        <div class="form-group mb-4">
-                            <label>Email 訊息</label>
-                            <textarea id="message" rows="6" class="form-control"></textarea>
-                        </div>
-                        <div class="text-center">
-                            <div class="d-flex align-items-center flex-column">
-                                <button class="btn btn-primary" id="submitButton">提交</button>
-                                <div id="loadingIndicator" class="loader" style="display: none;"></div>
+                        <form class="card-body mb-4" id="Form">
+                            <div class="form-outline mb-4">
+                                <label>寄給以前哪個活動的參加者</label>
+                                <select id="event" class="form-select"></select>
                             </div>
-                        </div>
-                    </form>
+                            <div class="form-outline mb-4">
+                                <label>標題</label>
+                                <input id="subject" class="form-control" placeholder="填寫活動邀請標題" required>
+                            </div>
+                            <div class="form-group mb-4">
+                                <label>Email 訊息</label>
+                                <textarea id="message" rows="6" class="form-control"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <div class="d-flex align-items-center flex-column">
+                                    <button class="btn btn-primary" id="submitButton">提交</button>
+                                    <div id="loadingIndicator" class="loader" style="display: none;"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
+            <div class="space col-0 col-sm-1  d-none d-sm-block"></div>
         </div>
-        <div class="space col-0 col-sm-1  d-none d-sm-block"></div>
     </div>
-</div>
 </body>
+
 </html>
