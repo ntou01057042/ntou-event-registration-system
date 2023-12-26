@@ -20,6 +20,7 @@ public class Event implements Serializable {
     private boolean restrict;
     private int rollcall;
     private LocalDateTime rollcallEndTime;
+    private int maxPeople;
 
     public String getTitle() {
         return title;
@@ -107,5 +108,13 @@ public class Event implements Serializable {
 
     public void setRollcallEndTime(LocalDateTime rollcallEndTime) {
         this.rollcallEndTime = rollcallEndTime;
+    }
+
+    public int getMaxPeople() {
+        return maxPeople;
+    }
+
+    public void setMaxPeople(int maxPeople) {
+        this.maxPeople = maxPeople;
     }
 }
