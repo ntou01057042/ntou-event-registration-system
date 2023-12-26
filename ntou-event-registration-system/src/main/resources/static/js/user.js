@@ -6,7 +6,7 @@ $(document).ready(function () {
         success: function (response) {
             MyEvent(response);
         },
-        error: function (jqXHR, textStatus, errorThrow) {
+        error: function(jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -25,7 +25,7 @@ function cancelRegistration(registrationId) {
             alert("取消報名成功!");
             location.reload();
         },
-        error: function (jqXHR, textStatus, errorThrow) {
+        error: function(jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'user.html');
@@ -146,9 +146,9 @@ function createMyEvent(response, regisID, eventId, attendance) {
                     else {
                         alert("無法取消報名!");
                     }
-                
+
                 });
-            
+
                 con.appendChild(cancelButton);
             }
         }

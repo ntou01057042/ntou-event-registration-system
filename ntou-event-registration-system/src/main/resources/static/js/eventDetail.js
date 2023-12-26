@@ -110,7 +110,33 @@ function events(data) {
             document.getElementById('sign_up').disabled = true;
             document.getElementById('sign_up').innerHTML = "報名截止";
         }
+
     }
+    let limit = data.maxPeople;
+    $.ajax({
+        url: "/registrations/" + data.id,
+        type: "GET",
+        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        success: function (data) {
+            let now = data.length;
+            if (limit <= now) {
+                document.getElementById('sign_up').disabled = true;
+                document.getElementById('sign_up').innerHTML = "已額滿";
+            }
+            else {
+                document.getElementById('sign_up').innerHTML += '<div style="font-size: 13px;">已報名:' + now + '</div>';
+            }
+        },
+        error: function (jqXHR, textStatus, errorThrow) {
+            console.log("獲取報名資料失敗");
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'eventDetail.html?id=' + id);
+                window.location.assign("/html/login.html");
+            }
+        }
+    });
+
 }
 
 
