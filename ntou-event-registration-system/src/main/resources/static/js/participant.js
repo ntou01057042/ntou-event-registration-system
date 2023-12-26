@@ -19,6 +19,39 @@ function createParticipant(data) {
         blackButton.style.float = "right";
         blackButton.textContent = "新增黑名單";
 
+        blackButton.addEventListener('click', () => {
+            localStorage.removeItem('eventID');
+            localStorage.setItem('eventID', data[i].userId);
+            var blockData =
+                {
+                    targetId: data[i].userId,
+                    eventId: data[i].eventId,
+                    reason: "..."
+                };
+            $.ajax({
+                url: "/blocks",
+                type: "POST",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")
+                },
+                data: JSON.stringify(blockData),
+                success: function (data) {
+                    // console.log("新增黑名單" + data[i].name);
+                    alert('新增黑名單成功！');
+                    console.log(blockData);
+                },
+                error: function (jqXHR, textStatus, errorThrow) {
+                    if (jqXHR.responseText === 'Expired JWT!') {
+                        alert('驗證已過期，請重新登入！');
+                        localStorage.setItem('redirect', 'participant.html');
+                        window.location.assign("/html/login.html");
+                    }
+                }
+            });
+
+        });
+
         if (thisRollState != 0) {
             let Image = document.createElement("img");
 
