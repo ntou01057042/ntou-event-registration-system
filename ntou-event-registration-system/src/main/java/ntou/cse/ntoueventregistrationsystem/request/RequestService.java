@@ -51,4 +51,8 @@ public class RequestService {
             return false;
         }
     }
+
+    public void deleteRequestById(String id) {
+        repository.deleteById(id);
+    }
 }

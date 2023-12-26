@@ -43,4 +43,10 @@ public class RequestController {
         return service.updateRequest(id, approved) ? ResponseEntity.ok().build()
                 : ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteRequest(@PathVariable("id") String id) {
+        service.deleteRequestById(id);
+        return ResponseEntity.noContent().build();
+    }
 }
