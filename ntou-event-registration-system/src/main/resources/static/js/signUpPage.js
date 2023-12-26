@@ -26,27 +26,44 @@ $(document).ready(function () {
         success: function (data) {
             console.log(data);
             document.getElementById("title").value = data.title;
+        },
+        error: function(jqXHR, textStatus, errorThrow) {
+            if (jqXHR.responseText === 'Expired JWT!') {
+                alert('驗證已過期，請重新登入！');
+                localStorage.setItem('redirect', 'createEvent.html');
+                window.location.assign("/html/signUpPage.html?id=" + id);
+            }
         }
     })
 
     document.getElementById("Form").addEventListener("submit", function (event) {
         event.preventDefault();
 
-        const formData = new FormData(event.target);
-
-        const obj = Object.fromEntries(formData.entries());
-        console.log(JSON.stringify(obj) + " " + id);
+        const phoneNumber = document.getElementById("phoneNumber").value;
+        const note = document.getElementById("note").value;
+        console.log("/registrations/" + id + "?phoneNumber=" + phoneNumber + "&notes=" + note);
 
         $.ajax({
             contentType: "application/json",
-            data: JSON.stringify(obj),
             headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+            statusCode: {
+                403: function() {
+                    alert('報名失敗');
+                }
+            },
             type: "POST",
-            url: "/registrations/" + id,
+            url: "/registrations/" + id + "?phoneNumber=" + phoneNumber + "&notes=" + note,
             success: function () {
-                console.log("成功：" + id + " " + JSON.stringify(obj));
+                console.log("成功");
                 window.alert("報名成功");
                 window.location.href = "/html/homepage.html";
+            },
+            error: function(jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'createEvent.html');
+                    window.location.assign("/html/signUpPage.html?id=" + id);
+                }
             }
         });
 
