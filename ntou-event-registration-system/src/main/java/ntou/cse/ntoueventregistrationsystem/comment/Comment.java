@@ -11,7 +11,7 @@ public class Comment {
 //    private String userId;
     private String text;
 //    private Integer likes;
-
+    private int report;
 
     public String getEventId() {
         return eventId;
@@ -27,5 +27,21 @@ public class Comment {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getReport() {
+        return report;
+    }
+
+    public void setReport(int report) {
+        this.report = report;
     }
 }

@@ -28,6 +28,7 @@ function loadNavbarScript(src) {
 const urlParams = new URLSearchParams(window.location.search);
 const id = urlParams.get('id');
 let eventCondition = false;
+
 function loading() {
     $.ajax({
         url: "../events/" + id,
@@ -41,8 +42,7 @@ function loading() {
     document.getElementById("sign_up").addEventListener('click', () => {
         if (!eventCondition) {
             window.location.assign(`signUpPage.html?id=${id}`);
-        }
-        else {
+        } else {
             alert("無法報名!");
         }
     });
@@ -58,7 +58,7 @@ function loading() {
 
         $.ajax({
             contentType: "application/json",
-            headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+            headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
             data: JSON.stringify({
                 "eventId": id,
                 "text": comment
@@ -70,7 +70,7 @@ function loading() {
             error: function (jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
-                    localStorage.setItem('redirect', `eventDetail.html?id=${id}`);
+                    localStorage.setItem('redirect', 'eventDetail.html?id=' + id);
                     window.location.assign("/html/login.html");
                 }
             },
@@ -148,16 +148,106 @@ function loadComment() {
                 console.log(commentArea);
                 commentArea.innerHTML += `
                             <div class="card mt-3 commentArea">
-                                <div class="card-body">
-                                    <img src="../img/user_circle.png" alt="circle" class="userCircle me-3">
-                                    ${data[i].text}
+                                <div class="card-body align-items-center row">
+                                    <div class="col-2 col-sm-1 p-0">
+                                        <img src="../img/user_circle.png" alt="circle" class="userCircle ms-1">
+                                    </div>
+                                    <div class="col-8 col-sm-10 p-0">
+                                        ${data[i].text}
+                                    </div>
+                                    <div class="col-2 col-sm-1 p-0">
+                                        <button class="dropdown" id="${data[i].id}">
+                                            <div><img src="../img/ellipsis.svg" alt="ellipsis"></div>
+                                            <div class="dropdown-content" id="dropdown-content-${data[i].id}">
+                                                <span>檢舉</span>
+                                            </div>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         `
             }
+            for (let i = 0; i < data.length; ++i) {
+                addReportButton(data[i].id);
+            }
+            addDropdownBtn();
         }
     })
 
+}
+
+let moreOptionsBtns = document.querySelectorAll('.dropdown');
+let optionsMenus = document.querySelectorAll('.dropdown-content');
+
+function addDropdownBtn(){
+    moreOptionsBtns = document.querySelectorAll('.dropdown');
+    optionsMenus = document.querySelectorAll('.dropdown-content');
+    // 點擊按鈕時顯示選單
+    moreOptionsBtns.forEach((btn, index) => {
+        btn.addEventListener('click', (event) => {
+            event.stopPropagation(); // 防止點擊事件傳播到 document
+            btn.classList.add('on');
+            btn.classList.remove('off');
+            // 隱藏其他選單
+            optionsMenus.forEach((menu, i) => {
+                if (i !== index) {
+                    menu.style.display = 'none';
+                }
+            });
+            moreOptionsBtns.forEach((btn,i)=>{
+                if(i !== index){
+                    btn.classList.add('off');
+                    btn.classList.remove('on');
+                }
+            });
+
+            // 切換顯示或隱藏選單
+            const menu = optionsMenus[index];
+            menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+        });
+    });
+
+    // 監聽整個文件的點擊事件
+    document.addEventListener('click', (event) => {
+        // 當點擊發生在非選單區域時，隱藏所有選單
+        if (!event.target.matches('.more-options-btn')) {
+            optionsMenus.forEach((menu) => {
+                menu.style.display = 'none';
+
+            });
+            moreOptionsBtns.forEach((btn)=>{
+                btn.classList.add('off');
+                btn.classList.remove('on');
+            })
+        }
+    });
+}
+
+function addReportButton(comId) {
+    document.getElementById("dropdown-content-" + comId).addEventListener('click', function (event) {
+        let dropdownContentElement = this;
+        $.ajax({
+            url: "/comments/" + comId,
+            type: "POST",
+            headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
+            success: function (response) {
+                console.log("成功");
+                window.alert("檢舉成功");
+                dropdownContentElement.style.display = 'none';
+                moreOptionsBtns.forEach((btn)=>{
+                    btn.classList.add('off');
+                    btn.classList.remove('on');
+                })
+            },
+            error: function (jqXHR, textStatus, errorThrow) {
+                if (jqXHR.responseText === 'Expired JWT!') {
+                    alert('驗證已過期，請重新登入！');
+                    localStorage.setItem('redirect', 'eventDetail.html?id=' + id);
+                    window.location.assign("/html/login.html");
+                }
+            }
+        })
+    });
 }
 
 

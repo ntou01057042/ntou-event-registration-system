@@ -1,144 +1,176 @@
 [{
   "_id": {
-    "$oid": "6568827b866adc1af716a917"
+    "$oid": "657df964e3c1897b20c8f799"
   },
   "title": "資工系新生茶會",
   "startTime": {
-    "$date": "2023-09-07T00:00:00.000Z"
+    "$date": "2023-09-06T16:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-09-07T02:30:00.000Z"
+    "$date": "2023-09-06T18:30:00.000Z"
   },
   "describe": "The description of 「資工系新生茶會」.",
   "from": "資工系學會",
   "venue": "資工系館",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-09-06T16:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "6568840bb809ae1a1c5f8d4a"
+    "$oid": "657df982e3c1897b20c8f79a"
   },
   "title": "資工x光電x機械 聯合宿營",
   "startTime": {
-    "$date": "2023-09-22T08:00:00.000Z"
+    "$date": "2023-09-22T00:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-09-23T08:00:00.000Z"
+    "$date": "2023-09-23T00:00:00.000Z"
   },
   "describe": "The description of 「資工x光電x機械 聯合宿營」.",
   "from": "資工系學會",
   "venue": "合歡自然生活體驗基地",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-09-22T00:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "6568843bb809ae1a1c5f8d4b"
+    "$oid": "657df999e3c1897b20c8f79b"
   },
   "title": "生科x電機 聯合迎新宿營 - 生電實驗室",
   "startTime": {
-    "$date": "2023-10-16T02:00:00.000Z"
+    "$date": "2023-10-15T18:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-10-16T05:00:00.000Z"
+    "$date": "2023-10-15T21:00:00.000Z"
   },
   "describe": "The description of 「生科x電機 聯合迎新宿營 - 生電實驗室」.",
   "from": "電機系學會",
   "venue": "合歡自然生活體驗基地",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-10-15T18:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "65688453b809ae1a1c5f8d4c"
+    "$oid": "657df9c7e3c1897b20c8f79c"
   },
   "title": "資工系系烤",
   "startTime": {
-    "$date": "2023-10-16T02:00:00.000Z"
+    "$date": "2023-10-15T18:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-10-16T05:00:00.000Z"
+    "$date": "2023-10-15T21:00:00.000Z"
   },
   "describe": "The description of 「資工系系烤」.",
   "from": "資工系學會",
   "venue": "壘球場附近的烤肉區",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-10-15T18:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "6568846eb809ae1a1c5f8d4d"
+    "$oid": "657df9e1e3c1897b20c8f79d"
   },
   "title": "河工鬼屋 - 邪",
   "startTime": {
-    "$date": "2023-03-30T02:00:00.000Z"
+    "$date": "2023-03-29T18:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-03-30T09:00:00.000Z"
+    "$date": "2023-03-30T01:00:00.000Z"
   },
   "describe": "The description of 「河工鬼屋 - 邪」.",
   "from": "河工系學會",
   "venue": "河工系館",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-03-29T18:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "6568848ab809ae1a1c5f8d4e"
+    "$oid": "657df9fce3c1897b20c8f79e"
   },
   "title": "2023 學生創業新手村",
   "startTime": {
-    "$date": "2023-11-17T08:00:00.000Z"
+    "$date": "2023-11-17T00:00:00.000Z"
   },
   "endTime": {
-    "$date": "2023-11-17T08:00:00.000Z"
+    "$date": "2023-11-17T00:00:00.000Z"
   },
   "describe": "The description of 「2023 學生創業新手村」.",
   "from": "教務處 教學中心",
   "venue": "延平技術大樓五樓501教室",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-11-17T00:00:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "656884a0b809ae1a1c5f8d4f"
+    "$oid": "657dfa12e3c1897b20c8f79f"
   },
   "title": "創新思維工作坊",
   "startTime": {
-    "$date": "2023-06-06T17:30:00.000Z"
+    "$date": "2023-06-06T09:30:00.000Z"
   },
   "endTime": {
-    "$date": "2023-06-07T02:00:00.000Z"
+    "$date": "2023-06-06T18:00:00.000Z"
   },
   "describe": "The description of 「創新思維工作坊」.",
   "from": "教務處 教學中心",
   "venue": "延平技術大樓11樓1102教室",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-06-06T09:30:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 },
 {
   "_id": {
-    "$oid": "656884b7b809ae1a1c5f8d50"
+    "$oid": "657dfa25e3c1897b20c8f7a0"
   },
   "title": "Review for Iteration 3",
   "startTime": {
-    "$date": "2023-12-26T17:20:00.000Z"
+    "$date": "2023-12-26T09:20:00.000Z"
   },
   "endTime": {
-    "$date": "2023-12-26T08:00:00.000Z"
+    "$date": "2023-12-26T00:00:00.000Z"
   },
   "describe": "新版需求與設計文件+90%↑系統實作+測試報告+專案看板",
   "from": "資工系選修課",
   "venue": "資工系館",
   "creatorId": "6561217382f1e92b8a5926bc",
   "restrict": false,
+  "rollcall": 0,
+  "rollcallEndTime": {
+    "$date": "2023-12-26T09:20:00.000Z"
+  },
   "_class": "ntou.cse.ntoueventregistrationsystem.event.Event"
 }]

@@ -61,3 +61,55 @@ h5{
 .commentArea{
     border-radius: 40px;
 }
+
+.dropdown {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+    border-radius: 20px;
+    transition: background-color 0.3s ease;
+    width: 30px;
+    height: 30px;
+}
+
+.dropdown:hover{
+    background-color: #e8e8e8;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 80px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 3px 4px;
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown-content:hover{
+    background-color: #e8e8e8;
+}
+
+.on{
+    background-color: #e8e8e8;
+}
+
+.off{
+    background-color: rgba(255, 255, 255, 0);
+}
+
+#signUpDiv {
+    height: calc(1024px - 56px);
+}
+
+/* 螢幕寬度小於 768px 時的樣式變化 */
+@media screen and (max-width: 768px) {
+    #signUpDiv {
+        height: 115px; /* 當螢幕寬度小於 768px 時，將高度設置為 100px */
+    }
+    #sign_up {
+        position: relative;
+        top: 0;
+    }
+}

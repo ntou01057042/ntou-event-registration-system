@@ -1,13 +1,16 @@
 $(document).ready(function () {
+    const queryString = window.location.search;
+    const params = new URLSearchParams(queryString);
+    const eventId = params.get('eventId');
     $.ajax({
-        url: "/events/userEvent",
+        url: "/events/" + eventId,
         type: "GET",
         headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (response) {
             console.log(response);
-            updateOptions(response);
+            document.getElementById("eventTitle").value = response.title;
         },
-        error: function(jqXHR, textStatus, errorThrow) {
+        error: function (jqXHR, textStatus, errorThrow) {
             if (jqXHR.responseText === 'Expired JWT!') {
                 alert('驗證已過期，請重新登入！');
                 localStorage.setItem('redirect', 'Real-timeNotifications.html');
@@ -18,11 +21,8 @@ $(document).ready(function () {
     $("#Form").submit(function (event) {
         event.preventDefault();
 
-        const title = document.getElementById("event").value;
         const subject = document.getElementById("subject").value;
         const text = document.getElementById("message").value;
-        const eventId = document.getElementById("event").options[document.getElementById("event").selectedIndex].getAttribute("eventId");
-
         const url = "/email?subject=" + subject + "&text=" + text + "&eventId=" + eventId;
 
         $("#submitButton").hide();
@@ -37,7 +37,7 @@ $(document).ready(function () {
                 alert("訊息傳送成功!");
                 location.reload();
             },
-            error: function(jqXHR, textStatus, errorThrow) {
+            error: function (jqXHR, textStatus, errorThrow) {
                 if (jqXHR.responseText === 'Expired JWT!') {
                     alert('驗證已過期，請重新登入！');
                     localStorage.setItem('redirect', 'Real-timeNotifications.html');
@@ -47,16 +47,3 @@ $(document).ready(function () {
         });
     });
 })
-
-function updateOptions(data) {
-    let selectElement = document.getElementById("event");
-    selectElement.innerHTML = '';
-    for (let i = 0; i < data.length; i++) {
-        let option = document.createElement("option");
-        console.log(data[i].title);
-        option.value = data[i].title;
-        option.innerHTML = data[i].title;
-        option.setAttribute("eventId", data[i].id);
-        selectElement.appendChild(option);
-    }
-}
