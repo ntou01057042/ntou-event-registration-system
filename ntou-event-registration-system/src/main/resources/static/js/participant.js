@@ -23,11 +23,11 @@ function createParticipant(data) {
             localStorage.removeItem('eventID');
             localStorage.setItem('eventID', data[i].userId);
             var blockData =
-                {
-                    targetId: data[i].userId,
-                    eventId: data[i].eventId,
-                    reason: "..."
-                };
+            {
+                targetId: data[i].userId,
+                eventId: data[i].eventId,
+                reason: "..."
+            };
             $.ajax({
                 url: "/blocks",
                 type: "POST",
@@ -74,8 +74,37 @@ function createParticipant(data) {
         pinfo.classList.add("btn", "btn-link", "me-2");
         pinfo.textContent = "詳細資訊";
         pinfo.addEventListener('click', () => {
-            localStorage.removeItem('eventID');
-            localStorage.setItem('eventID', data[i].id); //報名id
+            let participantDetailModal = new bootstrap.Modal(document.getElementById('participantDetail'));
+
+            let filteredData = participantsData.filter(item => item.id == data[i].id);
+            console.log(filteredData);
+            let dt = '';
+            dt = `
+                <div class="form-outline mb-4">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" value= ${filteredData[0].name} disabled
+                        readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" value= ${filteredData[0].email}  disabled
+                        readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="phoneNumber">電話</label>
+                    <input type="text" id="phoneNumber" class="form-control" value= ${filteredData[0].phoneNumber}
+                        disabled readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="note">備註</label>
+                    <input type="text" id="note" class="form-control"  value= ${filteredData[0].notes}  disabled
+                        readonly>
+                </div>
+            `
+            let model = document.getElementById('ptDetail');
+            model.innerHTML = '';
+            model.innerHTML += dt;
+            participantDetailModal.show();
         });
 
         con.appendChild(pinfo);
