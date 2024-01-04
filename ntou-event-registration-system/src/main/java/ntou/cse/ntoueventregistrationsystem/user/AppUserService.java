@@ -1,5 +1,6 @@
 package ntou.cse.ntoueventregistrationsystem.user;
 
+import ntou.cse.ntoueventregistrationsystem.event.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class AppUserService {
             System.out.println(user.get().getAuthority());
             repository.save(user.get());
         }
+    }
+
+    public AppUser getAppUserBy(String id){
+        Optional<AppUser> appUser = repository.findById(id);
+        return (AppUser) appUser.orElse(null);
     }
 }

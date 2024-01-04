@@ -22,8 +22,7 @@ function createParticipant(data) {
         blackButton.addEventListener('click', () => {
             localStorage.removeItem('eventID');
             localStorage.setItem('eventID', data[i].userId);
-            var blockData =
-            {
+            const blockData = {
                 targetId: data[i].userId,
                 eventId: data[i].eventId,
                 reason: "..."
@@ -46,22 +45,23 @@ function createParticipant(data) {
                         alert('驗證已過期，請重新登入！');
                         localStorage.setItem('redirect', 'participant.html');
                         window.location.assign("/html/login.html");
+                    } else {
+                        alert('該使用者已在黑名單之中！');
                     }
                 }
             });
 
         });
 
-        if (thisRollState != 0) {
+        if (thisRollState !== 0) {
             let Image = document.createElement("img");
 
             Image.height = 25;
             Image.alt = "logout";
             Image.loading = "lazy";
-            if (data[i].attendance == false) {
+            if (data[i].attendance === false) {
                 Image.src = "/img/denial.png";
-            }
-            else {
+            } else {
                 Image.src = "/img/chosen.png";
 
             }
@@ -113,6 +113,7 @@ function createParticipant(data) {
         createList.appendChild(participant);
     }
 }
+
 function rollcallState(num, endtime) {
     // set event rollcall
     if (num == 0) { // start rollcall
@@ -125,8 +126,7 @@ function rollcallState(num, endtime) {
         rollstbtn.dataset.bsTarget = '#rollCallModal';
         rollstbtn.textContent = '開始點名';
         btngroupElement.appendChild(rollstbtn);
-    }
-    else { //display rollcall record
+    } else { //display rollcall record
         let endTime = new Date(endtime);
         const options = {
             weekday: "long",
@@ -149,12 +149,14 @@ function rollcallState(num, endtime) {
         document.getElementById('rollCallEndTimerec').value = '結束時間：' + endTime.toLocaleString(undefined, options);
     }
 }
+
 let thisRollState;
+
 function setRollcallRec(eventId) {
     $.ajax({
         url: "/events/" + eventId,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             rollcallState(data.rollcall, data.rollcallEndTime);
             thisRollState = data.rollcall;
@@ -166,11 +168,12 @@ function setRollcallRec(eventId) {
         }
     })
 }
+
 function createList(eventId) {
     $.ajax({
         url: "/registrations/" + eventId,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             participantsData = data;
             createParticipant(data); //generate
@@ -184,12 +187,13 @@ function createList(eventId) {
         }
     });
 }
+
 $(document).ready(function () {
 
     $.ajax({
         url: "/events/userEvent",
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             let selectElement = document.getElementById("eventList");
             for (let i = 0; i < data.length; i++) {
@@ -224,8 +228,7 @@ $(document).ready(function () {
             document.getElementById('exportButton').style.display = 'block';
             document.getElementById('sendMailLink').style.display = 'block';
             document.getElementById('realTimeNotificationsLink').style.display = 'block';
-        }
-        else {
+        } else {
             let createList = document.getElementById("createList");
             createList.innerHTML = "";
             document.getElementById('exportButton').style.display = "none";
@@ -259,13 +262,13 @@ $(document).ready(function () {
             $.ajax({
                 url: "/events/rollcall/" + eventId + '?time=' + endTime.toISOString(),
                 type: "POST",
-                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
                 success: function () {
                     console.log("新增點名success");
                     $.ajax({
                         url: "/events/" + eventId,
                         type: "GET",
-                        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
                         success: function (data) {
                             document.getElementById('password').value = data.rollcall;
                             console.log("success");
