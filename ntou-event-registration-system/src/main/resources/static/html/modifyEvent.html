@@ -62,6 +62,11 @@
                             <label for="venue">活動地點</label>
                             <input id="venue" type="text" name="venue" class="form-control" required>
                         </div>
+                        <div class="form-outline mb-4">
+                            <label for="activityNum">活動最大人數</label>
+                            <input type="number" name="maxPeople" class="form-control" id="activityNum"
+                                   pattern="[0-9]+" required>
+                        </div>
                         <div class="form-group mb-4">
                             <label for="activityDescription">活動介紹</label>
                             <textarea id="activityDescription" name="describe" rows="4" class="form-control"
