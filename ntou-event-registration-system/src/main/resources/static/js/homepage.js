@@ -15,14 +15,14 @@ function showSearchResults(keyword) {
     document.getElementById("events").innerHTML = "";
     $.ajax({
         url: `/events/search?keyword=${keyword}`,
-        success: function (data){
+        success: function (data) {
             console.log(data)
             addEventsCard(data)
         },
     });
 }
 
-function addEventsCard(data){
+function addEventsCard(data) {
     for (const i in data) {
         let campaign = document.createElement("div");
         campaign.className = "col-md-6 col-xl-4";
@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if ((functionName === "showSearchResults") && window[functionName]) {
         console.log("search");
         window[functionName](keyword);
-    }else if((functionName === "filterEventsByCategory") && window[functionName]){
+    } else if ((functionName === "filterEventsByCategory") && window[functionName]) {
         console.log("filter");
         $.ajax({
             url: "/events",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 window[functionName](keyword, data);
             }
         });
-    }else{
+    } else {
         loading();
     }
 

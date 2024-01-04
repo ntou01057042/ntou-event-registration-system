@@ -30,8 +30,8 @@ public class RegistrationController {
     public ResponseEntity<Void> postRegistration(
             @PathVariable String eventId, @RequestParam String phoneNumber, @RequestParam String notes,
             @AuthenticationPrincipal CustomUserDetails userDetails) {
-        if(blockService.existsByUserIdAndTargetId(
-                eventService.getEventBy(eventId).getCreatorId(),userDetails.getId())){
+        if (blockService.existsByUserIdAndTargetId(
+                eventService.getEventBy(eventId).getCreatorId(), userDetails.getId())) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
         }
         Registration registration = new Registration(
@@ -61,8 +61,9 @@ public class RegistrationController {
     public ResponseEntity<ArrayList<Registration>> getRegistrations(@AuthenticationPrincipal CustomUserDetails userDetails) {
         return ResponseEntity.ok(service.getAllRegistrationByUserId(userDetails.getId()));
     }
+
     @PostMapping("/attend/{id}")
-    public void confirmAttendance(@PathVariable String id){
+    public void confirmAttendance(@PathVariable String id) {
         service.updateAttendance(id);
     }
 }

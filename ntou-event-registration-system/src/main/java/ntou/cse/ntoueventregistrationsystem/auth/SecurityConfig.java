@@ -34,7 +34,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.POST, "/registrations/attend/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.POST, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
-                        .requestMatchers(HttpMethod.GET, "/registrations/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
+                        .requestMatchers(HttpMethod.GET, "/registrations/?*").permitAll()
                         .requestMatchers(HttpMethod.DELETE, "/registrations/cancel/?*").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/registrations").hasAnyAuthority("ADMIN", "ADVANCED", "GENERAL")
                         .requestMatchers(HttpMethod.GET, "/comments/?*").permitAll()
