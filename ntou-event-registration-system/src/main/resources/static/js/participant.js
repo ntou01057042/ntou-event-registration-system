@@ -46,6 +46,8 @@ function createParticipant(data) {
                         alert('驗證已過期，請重新登入！');
                         localStorage.setItem('redirect', 'participant.html');
                         window.location.assign("/html/login.html");
+                    } else {
+                        alert('該使用者已在黑名單之中！');
                     }
                 }
             });
@@ -70,15 +72,15 @@ function createParticipant(data) {
             con.appendChild(Image);
         }
 
-        let pinfo = document.createElement("button");
-        pinfo.classList.add("btn", "btn-link", "me-2");
-        pinfo.textContent = "詳細資訊";
-        pinfo.addEventListener('click', () => {
-            localStorage.removeItem('eventID');
-            localStorage.setItem('eventID', data[i].id); //報名id
-        });
+        // let pinfo = document.createElement("button");
+        // pinfo.classList.add("btn", "btn-link", "me-2");
+        // pinfo.textContent = "詳細資訊";
+        // pinfo.addEventListener('click', () => {
+        //     localStorage.removeItem('eventID');
+        //     localStorage.setItem('eventID', data[i].id);
+        // });
 
-        con.appendChild(pinfo);
+        // con.appendChild(pinfo);
         con.appendChild(blackButton);
         participant.appendChild(con);
         createList.appendChild(participant);
