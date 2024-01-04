@@ -1,7 +1,7 @@
 window.addEventListener("load", start, false);
 
 function start(){
-    fetch('/html/searchbar.html')
+    fetch('/html/searchBar.html')
         .then(response => response.text())
         .then(data => {
             document.getElementById('navbar').innerHTML = data;

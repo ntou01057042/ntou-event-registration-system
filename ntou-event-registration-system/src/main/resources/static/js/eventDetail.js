@@ -34,7 +34,6 @@ function loading() {
         url: "../events/" + id,
         type: "GET",
         success: function (data) {
-            console.log(data);
             events(data);
         }
     })
@@ -104,26 +103,30 @@ function events(data) {
                    </div>
 
             `;
+    // 報名button
+    let currentTime = new Date();
     if (typeof (data.restrict) === 'boolean') {
         eventCondition = data.restrict;
         if (data.restrict) {
             document.getElementById('sign_up').disabled = true;
             document.getElementById('sign_up').innerHTML = "報名截止";
+        } else if (currentTime > endTime) {
+            document.getElementById('sign_up').disabled = true;
+            document.getElementById('sign_up').innerHTML = "活動已結束";
         }
-
     }
+
+
     let limit = data.maxPeople;
     $.ajax({
         url: "/registrations/" + data.id,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
         success: function (data) {
             let now = data.length;
             if (limit <= now) {
                 document.getElementById('sign_up').disabled = true;
                 document.getElementById('sign_up').innerHTML = "已額滿";
-            }
-            else {
+            } else {
                 document.getElementById('sign_up').innerHTML += '<div style="font-size: 13px;">已報名:' + now + '</div>';
             }
         },
@@ -145,12 +148,9 @@ function loadComment() {
         url: "/comments/" + id,
         type: "GET",
         success: function (data) {
-            console.log(data);
             let commentArea = document.getElementById("comments");
             commentArea.innerHTML = "";
             for (let i = 0; i < data.length; ++i) {
-
-                console.log(commentArea);
                 commentArea.innerHTML += `
                             <div class="card mt-3 commentArea">
                                 <div class="card-body align-items-center row">
@@ -184,7 +184,7 @@ function loadComment() {
 let moreOptionsBtns = document.querySelectorAll('.dropdown');
 let optionsMenus = document.querySelectorAll('.dropdown-content');
 
-function addDropdownBtn(){
+function addDropdownBtn() {
     moreOptionsBtns = document.querySelectorAll('.dropdown');
     optionsMenus = document.querySelectorAll('.dropdown-content');
     // 點擊按鈕時顯示選單
@@ -199,8 +199,8 @@ function addDropdownBtn(){
                     menu.style.display = 'none';
                 }
             });
-            moreOptionsBtns.forEach((btn,i)=>{
-                if(i !== index){
+            moreOptionsBtns.forEach((btn, i) => {
+                if (i !== index) {
                     btn.classList.add('off');
                     btn.classList.remove('on');
                 }
@@ -220,7 +220,7 @@ function addDropdownBtn(){
                 menu.style.display = 'none';
 
             });
-            moreOptionsBtns.forEach((btn)=>{
+            moreOptionsBtns.forEach((btn) => {
                 btn.classList.add('off');
                 btn.classList.remove('on');
             })
@@ -236,10 +236,9 @@ function addReportButton(comId) {
             type: "POST",
             headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
             success: function (response) {
-                console.log("成功");
                 window.alert("檢舉成功");
                 dropdownContentElement.style.display = 'none';
-                moreOptionsBtns.forEach((btn)=>{
+                moreOptionsBtns.forEach((btn) => {
                     btn.classList.add('off');
                     btn.classList.remove('on');
                 })

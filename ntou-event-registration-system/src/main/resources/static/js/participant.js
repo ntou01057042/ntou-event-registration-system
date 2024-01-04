@@ -19,16 +19,49 @@ function createParticipant(data) {
         blackButton.style.float = "right";
         blackButton.textContent = "新增黑名單";
 
-        if (thisRollState != 0) {
+        blackButton.addEventListener('click', () => {
+            localStorage.removeItem('eventID');
+            localStorage.setItem('eventID', data[i].userId);
+            const blockData = {
+                targetId: data[i].userId,
+                eventId: data[i].eventId,
+                reason: "..."
+            };
+            $.ajax({
+                url: "/blocks",
+                type: "POST",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")
+                },
+                data: JSON.stringify(blockData),
+                success: function (data) {
+                    // console.log("新增黑名單" + data[i].name);
+                    alert('新增黑名單成功！');
+                    console.log(blockData);
+                },
+                error: function (jqXHR, textStatus, errorThrow) {
+                    if (jqXHR.responseText === 'Expired JWT!') {
+                        alert('驗證已過期，請重新登入！');
+                        localStorage.setItem('redirect', 'participant.html');
+                        window.location.assign("/html/login.html");
+                    } else {
+                        alert('該使用者已在黑名單之中！');
+                    }
+                }
+            });
+
+        });
+
+        if (thisRollState !== 0) {
             let Image = document.createElement("img");
 
             Image.height = 25;
             Image.alt = "logout";
             Image.loading = "lazy";
-            if (data[i].attendance == false) {
+            if (data[i].attendance === false) {
                 Image.src = "/img/denial.png";
-            }
-            else {
+            } else {
                 Image.src = "/img/chosen.png";
 
             }
@@ -41,8 +74,37 @@ function createParticipant(data) {
         pinfo.classList.add("btn", "btn-link", "me-2");
         pinfo.textContent = "詳細資訊";
         pinfo.addEventListener('click', () => {
-            localStorage.removeItem('eventID');
-            localStorage.setItem('eventID', data[i].id); //報名id
+            let participantDetailModal = new bootstrap.Modal(document.getElementById('participantDetail'));
+
+            let filteredData = participantsData.filter(item => item.id == data[i].id);
+            console.log(filteredData);
+            let dt = '';
+            dt = `
+                <div class="form-outline mb-4">
+                    <label for="name">姓名</label>
+                    <input type="text" id="name" class="form-control" value= ${filteredData[0].name} disabled
+                        readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="email">Email</label>
+                    <input type="text" id="email" class="form-control" value= ${filteredData[0].email}  disabled
+                        readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="phoneNumber">電話</label>
+                    <input type="text" id="phoneNumber" class="form-control" value= ${filteredData[0].phoneNumber}
+                        disabled readonly>
+                </div>
+                <div class="form-outline mb-4">
+                    <label for="note">備註</label>
+                    <input type="text" id="note" class="form-control"  value= ${filteredData[0].notes}  disabled
+                        readonly>
+                </div>
+            `
+            let model = document.getElementById('ptDetail');
+            model.innerHTML = '';
+            model.innerHTML += dt;
+            participantDetailModal.show();
         });
 
         con.appendChild(pinfo);
@@ -51,6 +113,7 @@ function createParticipant(data) {
         createList.appendChild(participant);
     }
 }
+
 function rollcallState(num, endtime) {
     // set event rollcall
     if (num == 0) { // start rollcall
@@ -63,8 +126,7 @@ function rollcallState(num, endtime) {
         rollstbtn.dataset.bsTarget = '#rollCallModal';
         rollstbtn.textContent = '開始點名';
         btngroupElement.appendChild(rollstbtn);
-    }
-    else { //display rollcall record
+    } else { //display rollcall record
         let endTime = new Date(endtime);
         const options = {
             weekday: "long",
@@ -87,12 +149,14 @@ function rollcallState(num, endtime) {
         document.getElementById('rollCallEndTimerec').value = '結束時間：' + endTime.toLocaleString(undefined, options);
     }
 }
+
 let thisRollState;
+
 function setRollcallRec(eventId) {
     $.ajax({
         url: "/events/" + eventId,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             rollcallState(data.rollcall, data.rollcallEndTime);
             thisRollState = data.rollcall;
@@ -104,11 +168,12 @@ function setRollcallRec(eventId) {
         }
     })
 }
+
 function createList(eventId) {
     $.ajax({
         url: "/registrations/" + eventId,
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             participantsData = data;
             createParticipant(data); //generate
@@ -122,12 +187,13 @@ function createList(eventId) {
         }
     });
 }
+
 $(document).ready(function () {
 
     $.ajax({
         url: "/events/userEvent",
         type: "GET",
-        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
         success: function (data) {
             let selectElement = document.getElementById("eventList");
             for (let i = 0; i < data.length; i++) {
@@ -162,8 +228,7 @@ $(document).ready(function () {
             document.getElementById('exportButton').style.display = 'block';
             document.getElementById('sendMailLink').style.display = 'block';
             document.getElementById('realTimeNotificationsLink').style.display = 'block';
-        }
-        else {
+        } else {
             let createList = document.getElementById("createList");
             createList.innerHTML = "";
             document.getElementById('exportButton').style.display = "none";
@@ -197,13 +262,13 @@ $(document).ready(function () {
             $.ajax({
                 url: "/events/rollcall/" + eventId + '?time=' + endTime.toISOString(),
                 type: "POST",
-                headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
                 success: function () {
                     console.log("新增點名success");
                     $.ajax({
                         url: "/events/" + eventId,
                         type: "GET",
-                        headers: { "Authorization": 'Bearer ' + sessionStorage.getItem("accessToken") },
+                        headers: {"Authorization": 'Bearer ' + sessionStorage.getItem("accessToken")},
                         success: function (data) {
                             document.getElementById('password').value = data.rollcall;
                             console.log("success");

@@ -1,6 +1,7 @@
 package ntou.cse.ntoueventregistrationsystem.block;
 
 import ntou.cse.ntoueventregistrationsystem.event.Event;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
