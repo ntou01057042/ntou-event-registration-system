@@ -160,7 +160,7 @@ function loadComment() {
                                     <div class="col-8 col-sm-10 p-0">
                                         ${data[i].text}
                                     </div>
-                                    <div class="col-2 col-sm-1 p-0">
+                                    <div class="col-2 col-sm-1 p-0" style="display: flex; justify-content: flex-end" >
                                         <button class="dropdown" id="${data[i].id}">
                                             <div><img src="../img/ellipsis.svg" alt="ellipsis"></div>
                                             <div class="dropdown-content" id="dropdown-content-${data[i].id}">

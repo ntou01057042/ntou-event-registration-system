@@ -26,6 +26,8 @@ function setting(data) {
     endTime.value = data.endTime;
     let venue = document.getElementById("venue");
     venue.value = data.venue;
+    let activityNum = document.getElementById("activityNum");
+    activityNum.value = data.maxPeople;
     let activityDescription = document.getElementById("activityDescription");
     activityDescription.value = data.describe;
 }

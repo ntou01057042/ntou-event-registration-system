@@ -52,6 +52,7 @@ function MyEvent(data) {
 function createMyEvent(response, regisID, eventId, attendance) {
     let createList = document.getElementById("finished");
     let event = document.createElement("a");
+    event.href = `/html/eventDetail.html?id=${eventId}`;
     event.classList.add("list-group-item", "list-group-item-action");
     event.id = "list";
     let con = document.createElement("div");
